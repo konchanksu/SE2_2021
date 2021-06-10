@@ -37,13 +37,186 @@
   </div>
   <hr>
   <h2>ソフトウェア工学II「樹状整列」テスト仕様書</h2>
+  <ul>
+    <li>
+      <a href="#SougouTest">総合テスト</a>
+      <ul>
+        <li><a href="#KinouseiTest">機能性テスト</a></li>
+        <li><a href="#KouritsuseiTest">効率性テスト</a></li>
+        <li><a href="#ShiyouseiTest">使用性テスト</a></li>
+        <li><a href="#ShinraiseiTest">信頼性テスト</a></li>
+        <li><a href="#HosyuseiTest">保守性テスト</a></li>
+        <li><a href="#IshokuseiTest">移植性テスト</a></li>
+      </ul>
+    </li>
+    <li><a href="#KetsugouTest">結合テスト</a></li>
+    <li><a href="#TantaiTest">単体テスト</a></li>
+    <li><a href="#Example">Example</a>（メインクラス）
+  </ul>
   <div class="belt">
-    <h3><a name="KanseiSaseteKudasai">完成させてください</a></h3>
+    <h3><a name="SougouTest">総合テスト</a></h3>
   </div>
   <ul>
-    <li><a href="#Example">Example</a>（メインクラス）
-    <li>…
+    <li>
+      <h4><a name="KinouseiTest">機能性テスト</a></h4>
+      <table border="1" summary="table">
+        <tr>
+          <th class="left-padding" abbr="1">概要</th>
+          <th class="left-padding" abbr="2">テスト内容</th>
+        </tr>
+        <tr>
+          <td class="left-padding">表示時間のテスト</td>
+          <td class="left-padding">100個以下のデータを複数パターン試し、それぞれが3秒以内に表示が完了するかどうかを確かめる。</td>
+        </tr>
+        <tr>
+          <td class="left-padding">マウスドラッグのテスト</td>
+          <td class="left-padding">アプリケーションがマウスドラッグ可能な画面でマウスドラッグを受け付けるかを確かめる。</td>
+        </tr>
+        <tr>
+          <td class="left-padding">スクロール時の描画のテスト</td>
+          <td class="left-padding">画面をスクロールしたとき、画面表示が正しく綺麗に表示されるかを確かめる。</td>
+        </tr>
+        <tr>
+          <td class="left-padding">クリックのテスト</td>
+          <td class="left-padding">アプリケーション全体を通して、クリック可能な箇所で正常にクリックができるかを確かめる。</td>
+        </tr>
+        <tr>
+          <td class="left-padding">ノードのテスト</td>
+          <td class="left-padding">ノードをクリックした時に、ノードの情報が正しく表示されるかを確かめる。</td>
+        </tr>
+        <tr>
+          <td class="left-padding">正常なデータの読み込みテスト</td>
+          <td class="left-padding">誤りのない木構造のデータを正常に読み込まれるか、読み込みが3秒以内に終わるかどうかを確かめる。</td>
+        </tr>
+        <tr>
+          <td class="left-padding">文字コードのテスト</td>
+          <td class="left-padding">文字化けが発生していないかどうかを確かめる。</td>
+        </tr>
+        <tr>
+          <td class="left-padding">ウィンドウタイトルのテスト</td>
+          <td class="left-padding">ウィンドウタイトルがアプリケーションの名称になっているかどうかを確かめる。</td>
+        </tr>
+      </table>
+    </li>
+    <li>
+      <h4><a name="KouritsuseiTest">効率性テスト</a></h4>
+      <table border="1" summary="table">
+        <tr>
+          <th class="left-padding" abbr="1">概要</th>
+          <th class="left-padding" abbr="2">テスト内容</th>
+        </tr>
+        <tr>
+          <td class="left-padding">CPU使用率のテスト</td>
+          <td class="left-padding">CPU使用率が40％を超えることがないことを確かめる。</td>
+        </tr>
+        <tr>
+          <td class="left-padding">使用メモリ量のテスト</td>
+          <td class="left-padding">メモリの使用量が200MiBを超えることがないことを確かめる。</td>
+        </tr>
+      </table>
+    </li>
+    <li>
+      <h4><a name="ShiyouseiTest">使用性テスト</a></h4>
+      <table border="1" summary="table">
+        <tr>
+          <th class="left-padding" abbr="1">概要</th>
+          <th class="left-padding" abbr="2">テスト内容</th>
+        </tr>
+        <tr>
+          <td class="left-padding">使いやすさのアンケートテスト</td>
+          <td class="left-padding">アンケートの項目で使いにくい評価を受けていないかを確かめる。</td>
+        </tr>
+      </table>
+      <h4>使いやすさのアンケート</h4>
+      アプリケーション開発に関わっていない人数名に、以下のアンケートを実施する。アンケートは5段階評価とする。
+      <ul>
+        <li>起動速度は速いか</li>
+        <li>スクロール機能の存在はわかりやすいか</li>
+        <li>スクロールさせやすいか</li>
+        <li>ノードの表示機能は使いやすいか</li>
+        <li>ファイル読み込みは使いやすいか</li>
+        <li>それぞれの操作はわかりやすいか</li>
+        <li>このアプリケーションは使いやすいか</li>
+      </ul>
+    </li>
+    <li>
+      <h4><a name="ShinraiseiTest">信頼性テスト</a></h4>
+      <table border="1" summary="table">
+        <tr>
+          <th class="left-padding" abbr="1">概要</th>
+          <th class="left-padding" abbr="2">テスト内容</th>
+        </tr>
+        <tr>
+          <td class="left-padding">CPU負荷状態でのテスト</td>
+          <td class="left-padding">意図的にCPUに負荷をかけた状態でアプリケーションに不具合がないかを確かめる。</td>
+        </tr>
+        <tr>
+          <td class="left-padding">長期間稼働のテスト</td>
+          <td class="left-padding">10時間稼働させ、アプリケーションが途中で終了するなどの不具合が発生しないかを確かめる。</td>
+        </tr>
+      </table>
+    </li>
+    <li>
+      <h4><a name="HosyuseiTest">保守性テスト</a></h4>
+      <table border="1" summary="table">
+        <tr>
+          <th class="left-padding" abbr="1">概要</th>
+          <th class="left-padding" abbr="2">テスト内容</th>
+        </tr>
+        <tr>
+          <td class="left-padding">JavaDocのテスト</td>
+          <td class="left-padding">JavaDocに必要事項が全て記入されているかどうかを確かめる。</td>
+        </tr>
+        <tr>
+          <td class="left-padding">コーディングスタイルのテスト</td>
+          <td class="left-padding">定めたコーディングスタイルに違反していないかを確かめる。</td>
+        </tr>
+        <tr>
+          <td class="left-padding">HTMLドキュメントのテスト</td>
+          <td class="left-padding">
+            HTML文書全てを
+            <a href="http://www.htmllint.net/html-lint/htmllint.html">Another HTML Lint - Gateway</a>
+            でリント掛けし、100点であることを確かめる。
+          </td>
+        </tr>
+      </table>
+    </li>
+    <li>
+      <h4><a name="IshokuseiTest">移植性テスト</a></h4>
+      <table border="1" summary="table">
+        <tr>
+          <th class="left-padding" abbr="1">概要</th>
+          <th class="left-padding" abbr="2">テスト内容</th>
+        </tr>
+        <tr>
+          <td class="left-padding">Windowsでのテスト</td>
+          <td class="left-padding">Windows OSで使用性以外のテストを確かめる。</td>
+        </tr>
+        <tr>
+          <td class="left-padding">Mac OSでのテスト</td>
+          <td class="left-padding">Mac OSで使用性以外のテストを確かめる。</td>
+        </tr>
+        <tr>
+          <td class="left-padding">Linuxでのテスト</td>
+          <td class="left-padding">Ubuntuで使用性以外のテストを確かめる。</td>
+        </tr>
+      </table>
+
+      <h4>使用機材</h4>
+      <h5>Windows</h5>
+      詳細
+      <h5>Mac OS</h5>
+      詳細
+      <h5>Ubuntu OS (Linux)</h5>
+      詳細
+    </li>
   </ul>
+  <div class="belt">
+    <h3><a name="KetsugouTest">結合テスト</a></h3>
+  </div>
+  <div class="belt">
+    <h3><a name="TantaiTest">単体テスト</a></h3>
+  </div>
   <div class="belt">
     <h3><a name="Example" href="../Program/index.html#Example">Example（メインクラス）</a></h3>
   </div>
@@ -103,7 +276,7 @@
     </tbody>
   </table>
   <hr>
-  <div class="right-small">Copyright 2021 Project Forest, Updated: 2021/05/19 (Created: 2021/05/12)</div>
+  <div class="right-small">Copyright 2021 Project Forest, Updated: 2021/06/11 (Created: 2021/05/12)</div>
 </body>
 
 </html>
