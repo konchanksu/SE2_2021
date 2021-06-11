@@ -33,19 +33,8 @@
       display: none;
     }
 
-    .class_label {
-      background: #ad9b85;
-      color: #000000;
-      display: block;
-      margin-bottom: 1px;
-      margin-top: 10px;
-      padding-left: 2px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .class_label p {
-      padding-left: 20px;
+    p .label_text {
+      padding-left: 10px;
     }
 
     .label_content {
@@ -53,7 +42,7 @@
       transition: .5s;
     }
 
-    #class_check:checked+.class_label .label_content {
+    #class_check:checked+.belt .label_content {
       float: left;
       transition: .5s;
       transform: rotate(90deg);
@@ -67,7 +56,7 @@
       visibility: hidden;
     }
 
-    #class_check:checked+.class_label+.class_content {
+    #class_check:checked~.class_content {
       height: auto;
       opacity: 1;
       visibility: visible;
@@ -140,20 +129,24 @@
   <a href="images/Basic/Forest_Class_Diagram.svg">
     <img alt="アプリケーション全体のクラス図v2（全体構造図）" class="large" src="images/Basic/Forest_Class_Diagram_v02.svg">
   </a>
-  <div>
-    <input id="class_check" type="checkbox" value="1" tabindex="1" accesskey="o">
-    <label class="class_label" for="class_check">
-      <div class="label_content">
+  <input id="class_check" type="checkbox" value="1" tabindex="1" accesskey="o">
+  <div class="belt">
+    <div class="label_content">
+      <label class="label_icon" for="class_check">
         ▷
-      </div>
-      <p>過去のバージョン</p>
-    </label>
-    <div class="class_content">
-      <p>バージョン1 (2021/5/19 作成)</p>
-      <a href="images/Basic/Forest_Class_Diagram.svg">
-        <img alt="アプリケーション全体のクラス図v1（全体構造図）" class="normal" src="images/Basic/Forest_Class_Diagram.svg">
-      </a>
+      </label>
     </div>
+    <p>
+      <label class="label_text" for="class_check">
+        過去のバージョン
+      </label>
+    </p>
+  </div>
+  <div class="class_content">
+    <p>バージョン1 (2021/5/19 作成)</p>
+    <a href="images/Basic/Forest_Class_Diagram.svg">
+      <img alt="アプリケーション全体のクラス図v1（全体構造図）" class="normal" src="images/Basic/Forest_Class_Diagram.svg">
+    </a>
   </div>
 
   <div class="belt">
