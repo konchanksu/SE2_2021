@@ -22,11 +22,47 @@
     }
 
     /*シーケンス図*/
-    img.sequence {
+    img.large {
       max-width: 550px;
       min-width: 400px;
       width: 35%;
       height: auto;
+    }
+
+    #class_check {
+      display: none;
+    }
+
+    p .label_text {
+      padding-left: 10px;
+    }
+
+    .label_content {
+      float: left;
+      transition: .5s;
+    }
+
+    #class_check:checked+.belt .label_content {
+      float: left;
+      transition: .5s;
+      transform: rotate(90deg);
+    }
+
+    .class_content {
+      height: 0;
+      opacity: 0;
+      background-color: #c1b39f;
+      transition: .5s;
+      visibility: hidden;
+    }
+
+    #class_check:checked~.class_content {
+      height: auto;
+      opacity: 1;
+      visibility: visible;
+      margin-top: 10px;
+      padding-bottom: 10px;
+      transition: .5s;
     }
     -->
   </style>
@@ -86,14 +122,32 @@
   <div class="belt">
     <h3>
       <a name="basic-diagram">クラス図</a>
-      「全体構造図」
+      「全体構造図」バージョン2 (2021/6/11 更新)
     </h3>
   </div>
 
   <a href="images/Basic/Forest_Class_Diagram.svg">
-    <img alt="アプリケーション全体のクラス図（全体構造図）" class="normal" src="images/Basic/Forest_Class_Diagram.svg">
+    <img alt="アプリケーション全体のクラス図v2（全体構造図）" class="large" src="images/Basic/Forest_Class_Diagram_v02.svg">
   </a>
-
+  <input id="class_check" type="checkbox" value="1" tabindex="1" accesskey="o">
+  <div class="belt">
+    <div class="label_content">
+      <label class="label_icon" for="class_check">
+        ▷
+      </label>
+    </div>
+    <p>
+      <label class="label_text" for="class_check">
+        過去のバージョン
+      </label>
+    </p>
+  </div>
+  <div class="class_content">
+    <p>バージョン1 (2021/5/19 作成)</p>
+    <a href="images/Basic/Forest_Class_Diagram.svg">
+      <img alt="アプリケーション全体のクラス図v1（全体構造図）" class="normal" src="images/Basic/Forest_Class_Diagram.svg">
+    </a>
+  </div>
 
   <div class="belt">
     <h3>
@@ -102,7 +156,7 @@
     </h3>
   </div>
   <a href="images/Sequence/File_Select_Sequence.svg">
-    <img alt="ファイル選択の流れを説明するシーケンス図" class="sequence" src="images/Sequence/File_Select_Sequence.svg">
+    <img alt="ファイル選択の流れを説明するシーケンス図" class="large" src="images/Sequence/File_Select_Sequence.svg">
   </a>
 
   <div class="belt">
@@ -112,7 +166,7 @@
     </h3>
   </div>
   <a href="images/Sequence/Click_Sequence.svg">
-    <img alt="押下時の流れを説明するシーケンス図" class=" sequence" src="images/Sequence/Click_Sequence.svg">
+    <img alt="押下時の流れを説明するシーケンス図" class="large" src="images/Sequence/Click_Sequence.svg">
   </a>
 
   <div class="belt">
@@ -122,7 +176,7 @@
     </h3>
   </div>
   <a href="images/Sequence/Scroll_Sequence.svg">
-    <img alt="ドラッグ時の流れを説明するシーケンス図" class="sequence" src="images/Sequence/Scroll_Sequence.svg">
+    <img alt="ドラッグ時の流れを説明するシーケンス図" class="large" src="images/Sequence/Scroll_Sequence.svg">
   </a>
 
   <!--
@@ -130,7 +184,7 @@
   -->
 
   <hr>
-  <div class="right-small">Copyright 2021 Project Forest, Updated: 2021/05/19 (Created: 2021/05/12) Created From Kodai
+  <div class="right-small">Copyright 2021 Project Forest, Updated: 2021/06/11 (Created: 2021/05/12) Created From Kodai
     Okayama</div>
 </body>
 
