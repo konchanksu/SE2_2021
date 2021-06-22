@@ -6,7 +6,7 @@ public class NodeData {
 
 	private ForestData forestData;
 
-	public void Node(string name, int index) {
+	public void NodeData(String name, Integer index) {
 
 	}
 

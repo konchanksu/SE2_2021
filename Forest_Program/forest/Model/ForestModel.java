@@ -48,4 +48,8 @@ public class ForestModel extends Model {
 
 	}
 
+	private void waitAndBroadcast() {
+
+	}
+
 }

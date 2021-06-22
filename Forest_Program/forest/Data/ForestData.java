@@ -1,8 +1,8 @@
 public class ForestData {
 
-	private List NodeList;
+	private List<NodeData> nodeList;
 
-	private List BranchList;
+	private List<BranchData> branchList;
 
 	public void ForestData(List<NodeData> aNodeList, List<BranchData> aBranchList) {
 

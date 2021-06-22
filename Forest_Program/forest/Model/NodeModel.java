@@ -1,10 +1,10 @@
 public class NodeModel {
 
-	private List children;
+	private List<NodeModel> children;
 
 	private Point position;
 
-	private NodeModel parent;
+	private List<NodeModel> parent;
 
 	private String name;
 
@@ -41,7 +41,7 @@ public class NodeModel {
 		return null;
 	}
 
-	public void setExtent() {
+	public void setExtent(Point aPoint) {
 
 	}
 

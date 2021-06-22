@@ -6,6 +6,9 @@ public class MockForestView extends View implements IForestView {
 
 	protected ForestController forestController;
 
+	/**
+	 *  
+	 */
 	public void TestForestView(ForestModel aModel, ForestController aContoller) {
 
 	}
