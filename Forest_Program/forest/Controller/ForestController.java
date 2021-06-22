@@ -1,4 +1,4 @@
-import mvc.jar.Controller;
+import mvc.Controller;
 
 public class ForestController extends Controller {
 
@@ -8,7 +8,7 @@ public class ForestController extends Controller {
 
 	private ForestModel forestModel;
 
-	public void ForestController() {
+	public ForestController() {
 
 	}
 

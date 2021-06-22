@@ -1,4 +1,6 @@
-import mvc.jar.Model;
+import java.util.List;
+
+import mvc.Model;
 
 public class ForestModel extends Model {
 
@@ -16,7 +18,7 @@ public class ForestModel extends Model {
 
 	private IForestView iForestView;
 
-	public void ForestModel() {
+	public ForestModel() {
 
 	}
 

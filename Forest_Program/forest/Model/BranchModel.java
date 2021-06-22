@@ -4,7 +4,7 @@ public class BranchModel {
 
 	private NodeModel endNode;
 
-	public void BranchModel(NodeModel from, NodeModel to) {
+	public BranchModel(NodeModel from, NodeModel to) {
 
 	}
 

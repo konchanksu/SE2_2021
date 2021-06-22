@@ -1,6 +1,6 @@
 public class ForestDataRepository implements IForestDataRepository {
 
-	public void ForestDataRepository(File aFile) {
+	public ForestDataRepository(File aFile) {
 
 	}
 

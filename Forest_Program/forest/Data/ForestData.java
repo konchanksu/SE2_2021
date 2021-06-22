@@ -4,7 +4,7 @@ public class ForestData {
 
 	private List<BranchData> branchList;
 
-	public void ForestData(List<NodeData> aNodeList, List<BranchData> aBranchList) {
+	public ForestData(List<NodeData> aNodeList, List<BranchData> aBranchList) {
 
 	}
 

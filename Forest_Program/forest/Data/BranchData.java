@@ -6,7 +6,7 @@ public class BranchData {
 
 	private ForestData forestData;
 
-	public void BranchData(NodeData from, NodeData to) {
+	public BranchData(NodeData from, NodeData to) {
 
 	}
 

@@ -1,7 +1,5 @@
 public interface IForestView {
 
-	private ForestModel forestModel;
-
 	public void showDialog(NodeModel aNode);
 
 	public void showNodeFromPoint(Point aPoint);

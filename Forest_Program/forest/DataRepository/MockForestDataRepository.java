@@ -1,6 +1,6 @@
 public class MockForestDataRepository implements IForestDataRepository {
 
-	public void MockForestDataRepository(File aFile) {
+	public MockForestDataRepository(File aFile) {
 
 	}
 

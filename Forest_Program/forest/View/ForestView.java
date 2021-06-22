@@ -8,7 +8,7 @@ public class ForestView extends View implements IForestView {
 
 	protected ForestController controller;
 
-	public void ForestView(Model aModel, Controller aController) {
+	public ForestView(Model aModel, Controller aController) {
 
 	}
 

@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class NodeModel {
 
 	private List<NodeModel> children;
@@ -17,7 +19,7 @@ public class NodeModel {
 
 	private ForestView forestView;
 
-	public void NodeModel(String name) {
+	public NodeModel(String name) {
 
 	}
 
