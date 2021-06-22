@@ -8,8 +8,6 @@ public class ForestView extends View implements IForestView {
 
 	protected ForestController controller;
 
-	private JFileChooser jFileChooser;
-
 	public void ForestView(Model aModel, Controller aController) {
 
 	}
