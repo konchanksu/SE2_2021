@@ -1,3 +1,4 @@
+package forest;
 
 import mvc.Controller;
 
