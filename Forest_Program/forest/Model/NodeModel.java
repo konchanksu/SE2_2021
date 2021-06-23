@@ -47,7 +47,7 @@ public class NodeModel {
 		return null;
 	}
 
-	public void isVisited(Boolean aBooelan) {
+	public void isVisited(Boolean aBoolean) {
 
 	}
 

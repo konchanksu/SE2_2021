@@ -9,7 +9,7 @@ public class MockForestView extends View implements IForestView {
 	/**
 	 *  
 	 */
-	public MockForestView(ForestModel aModel, ForestController aContoller) {
+	public MockForestView(ForestModel aModel, ForestController aController) {
 
 	}
 
