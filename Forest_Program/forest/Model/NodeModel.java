@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class NodeModel {
 
 	private List<NodeModel> children;

@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class ForestDataRepository implements IForestDataRepository {
 
 	public ForestDataRepository(File aFile) {
