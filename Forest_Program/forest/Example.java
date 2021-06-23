@@ -4,7 +4,7 @@ public class Example extends Object {
 
 	private JFileChooser jFileChooser;
 
-	public void Example(IForestDataRepository anIForestDataRepository) {
+	public Example(IForestDataRepository anIForestDataRepository) {
 
 	}
 

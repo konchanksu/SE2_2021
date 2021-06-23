@@ -1,3 +1,4 @@
+
 import mvc.Controller;
 
 public class ForestController extends Controller {
@@ -5,8 +6,6 @@ public class ForestController extends Controller {
 	protected IForestView view;
 
 	protected ForestModel model;
-
-	private ForestModel forestModel;
 
 	public ForestController() {
 

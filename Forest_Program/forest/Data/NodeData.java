@@ -4,8 +4,6 @@ public class NodeData {
 
 	private String id;
 
-	private ForestData forestData;
-
 	public NodeData(String name, Integer index) {
 
 	}

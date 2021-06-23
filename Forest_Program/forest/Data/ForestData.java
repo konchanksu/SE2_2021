@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class ForestData {
 
 	private List<NodeData> nodeList;
@@ -8,11 +10,11 @@ public class ForestData {
 
 	}
 
-	public List getNodeList() {
+	public List<NodeData> getNodeList() {
 		return null;
 	}
 
-	public List getBranchList() {
+	public List<BranchData> getBranchList() {
 		return null;
 	}
 

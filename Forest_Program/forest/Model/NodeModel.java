@@ -1,14 +1,6 @@
-import java.util.List;
-
 public class NodeModel {
 
 	private List<NodeModel> children;
-
-	private Point position;
-
-	private List<NodeModel> parent;
-
-	private String name;
 
 	/**
 	 * ノードの幅と高さを記録する
@@ -17,7 +9,11 @@ public class NodeModel {
 
 	private Boolean isVisited;
 
-	private ForestView forestView;
+	private String name;
+
+	private List<NodeModel> parent;
+
+	private Point position;
 
 	public NodeModel(String name) {
 

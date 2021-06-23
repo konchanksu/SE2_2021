@@ -4,8 +4,6 @@ public class BranchData {
 
 	private NodeData endNodeData;
 
-	private ForestData forestData;
-
 	public BranchData(NodeData from, NodeData to) {
 
 	}

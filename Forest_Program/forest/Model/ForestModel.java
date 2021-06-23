@@ -4,6 +4,8 @@ import mvc.Model;
 
 public class ForestModel extends Model {
 
+	protected List<IForestView> dependents;
+
 	/**
 	 * ノードを記録するリスト
 	 */
@@ -16,13 +18,15 @@ public class ForestModel extends Model {
 
 	private List<BranchModel> branchList;
 
-	private IForestView iForestView;
-
 	public ForestModel() {
 
 	}
 
 	public void animate() {
+
+	}
+
+	public void addDependent(IForestView anIForestVIew) {
 
 	}
 
