@@ -1,3 +1,5 @@
+package forest.data;
+
 public class NodeData {
 
 	private String name;

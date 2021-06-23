@@ -1,6 +1,11 @@
-import java.util.List;
+package forest.model;
 
+import java.util.List;
+import forest.view.IForestView;
 import mvc.Model;
+import forest.data.NodeData;
+import forest.data.ForestData;
+import java.awt.Point;
 
 public class ForestModel extends Model {
 
@@ -19,7 +24,7 @@ public class ForestModel extends Model {
 	private List<BranchModel> branchList;
 
 	public ForestModel() {
-
+		super();
 	}
 
 	public void animate() {

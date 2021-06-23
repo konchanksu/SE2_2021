@@ -1,4 +1,10 @@
+package forest.repository;
+
+import java.io.File;
 import java.util.List;
+import java.lang.String;
+
+import forest.data.ForestData;
 
 public class MockForestDataRepository implements IForestDataRepository {
 

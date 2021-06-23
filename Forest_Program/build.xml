@@ -28,6 +28,7 @@
 			<classpath>
 				<pathelement location="." />
 				<pathelement location="${mvc}.jar" />
+				<pathelement location="${condition}.jar" />
 			</classpath>
 		</javac>
 		<exec executable="date" spawn="false" />
@@ -36,6 +37,7 @@
 	<target name="jar" depends="compile" description="make jar file">
 		<jar jarfile="${package}.jar" basedir="${destdir}" manifest="${package}.mf">
 			<zipfileset src="${mvc}.jar" />
+			<zipfileset src="${condition}.jar" />
 		</jar>
 		<exec executable="date" spawn="false" />
 	</target>
@@ -94,6 +96,7 @@
 			<classpath>
 				<pathelement location="." />
 				<pathelement location="${mvc}.jar" />
+				<pathelement location="${condition}.jar" />
 			</classpath>
 		</javadoc>
 		<exec executable="open">

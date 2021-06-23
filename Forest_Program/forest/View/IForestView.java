@@ -1,3 +1,8 @@
+package forest.view;
+
+import forest.model.NodeModel;
+import java.awt.Point;
+
 public interface IForestView {
 
 	public void showDialog(NodeModel aNode);

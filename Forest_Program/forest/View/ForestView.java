@@ -1,7 +1,17 @@
-import mvc.jar.View;
-import mvc.jar.Model;
-import mvc.jar.Controller;
+package forest.view;
 
+import java.awt.Graphics;
+import java.awt.Point;
+
+import mvc.View;
+import mvc.Model;
+import mvc.Controller;
+
+import forest.model.ForestModel;
+import forest.controller.ForestController;
+import forest.model.NodeModel;
+
+@SuppressWarnings("serial")
 public class ForestView extends View implements IForestView {
 
 	protected ForestModel model;
@@ -9,7 +19,7 @@ public class ForestView extends View implements IForestView {
 	protected ForestController controller;
 
 	public ForestView(Model aModel, Controller aController) {
-
+		super(aModel, aController);
 	}
 
 	public void paintComponent(Graphics aGraphics) {

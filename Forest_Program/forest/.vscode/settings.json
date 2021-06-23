@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/Users/libra/workspace/github/SE2_2021/Forest_Program/mvc.jar"
+    ]
+}

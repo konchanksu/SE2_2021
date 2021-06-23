@@ -1,3 +1,5 @@
+package forest.data;
+
 import java.util.List;
 
 public class ForestData {

@@ -1,3 +1,4 @@
+package forest.data;
 
 public class BranchData {
 

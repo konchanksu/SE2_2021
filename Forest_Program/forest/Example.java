@@ -1,3 +1,7 @@
+package forest;
+
+import forest.repository.IForestDataRepository;
+
 public class Example extends Object {
 
 	private IForestDataRepository aForestDataRepository;

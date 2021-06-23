@@ -1,3 +1,7 @@
+package forest.model;
+
+import java.awt.Graphics;
+
 public class BranchModel {
 
 	private NodeModel startNode;

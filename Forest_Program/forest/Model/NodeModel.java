@@ -1,4 +1,8 @@
+package forest.model;
+
 import java.util.List;
+import java.awt.Point;
+import java.awt.Graphics;
 
 public class NodeModel {
 

@@ -1,3 +1,5 @@
+package forest;
+
 public class Constant extends Object {
 
 	public static final Integer WINDOW_WIDTH = 800;
