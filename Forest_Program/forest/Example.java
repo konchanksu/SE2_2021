@@ -2,8 +2,6 @@ public class Example extends Object {
 
 	private IForestDataRepository aForestDataRepository;
 
-	private JFileChooser jFileChooser;
-
 	public Example(IForestDataRepository anIForestDataRepository) {
 
 	}
