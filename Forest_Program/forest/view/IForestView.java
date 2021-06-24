@@ -1,0 +1,20 @@
+package forest.view;
+
+import forest.model.NodeModel;
+import java.awt.Point;
+
+public interface IForestView {
+
+	public void showDialog(NodeModel aNode);
+
+	public void showNodeFromPoint(Point aPoint);
+
+	public abstract Point scrollAmount();
+
+	public abstract void scrollBy(Point aPoint);
+
+	public abstract void scrollTo(Point aPoint);
+
+	public abstract void update();
+
+}
