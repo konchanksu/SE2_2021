@@ -8,12 +8,12 @@ PMDDirectory="./${PMDDIR}/${PMDVersion}/"
 
 if [ -e ${PMDArchive} ]; then
 	if [ ! -e ${PMDDirectory} ]; then
-		unzip ${PMDArchive}
+		unzip ${PMDArchive} -d "${PMDDIR}/"
 		ln -s ${PMDDirectory} ${PMD}
 	else
 		if [ ! -d ${PMDDirectory} ]; then
 			rm -rf ${PMDDirectory}
-			unzip ${PMDArchive}
+			unzip ${PMDArchive} -d "${PMDDIR}/"
 			ln -s ${PMDDirectory} ${PMD}
 		fi
 	fi
