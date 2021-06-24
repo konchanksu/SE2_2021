@@ -18,6 +18,9 @@
 
 	<target name="prepare" depends="" description="prepare to compile">
 		<mkdir dir="${destdir}" />
+		<exec executable="bash" spawn="false">
+			<arg line="./PreparePMD.sh" />
+		</exec>
 		<exec executable="date" spawn="false" />
 	</target>
 
