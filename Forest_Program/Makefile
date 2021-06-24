@@ -1,8 +1,9 @@
 ANT	= sh ./PreparePMD.sh ;env LC_ALL=ja_JP.UTF-8 ant
 ARCHIVE	= $(shell basename `pwd`)
+LINT_SRC = "./"
 PMD_BIN = "pmd-bin"
 PMD_DIR = "pmd"
-PMD_COMMAND = ./$(PMD_BIN)/bin/run.sh pmd -d ./ -f textcolor -R ./$(PMD_DIR)/pmd-rules.xml -l java
+PMD_COMMAND = ./$(PMD_BIN)/bin/run.sh pmd -d $(LINT_SRC) -f textcolor -R ./$(PMD_DIR)/pmd-rules.xml -l java
 
 all:
 	$(ANT) all

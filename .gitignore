@@ -2,4 +2,8 @@
 .vscode/
 Forest_Program/forest.jar
 Forest_Program/Classes/
-
+Forest_Program/pmd-bin
+Forest_Program/pmd/pmd-bin-6.35.0
+Forest_Program/JavaDoc/
+Forest_Program/Forest.app
+Forest.zip
