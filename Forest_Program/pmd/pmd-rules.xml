@@ -112,7 +112,7 @@
     <rule ref="category/java/codestyle.xml/UnnecessaryFullyQualifiedName"/>
     <rule ref="category/java/codestyle.xml/UnnecessaryLocalBeforeReturn"/>
     <rule ref="category/java/codestyle.xml/UnnecessaryModifier"/>
-    <rule ref="category/java/codestyle.xml/UnnecessaryReturn"/>
+    <!-- <rule ref="category/java/codestyle.xml/UnnecessaryReturn"/> -->
     <!-- <rule ref="category/java/codestyle.xml/UseDiamondOperator" /> -->
     <rule ref="category/java/codestyle.xml/UselessParentheses"/>
     <rule ref="category/java/codestyle.xml/UselessQualifiedThis"/>
@@ -276,7 +276,7 @@
     <rule ref="category/java/errorprone.xml/EmptyStatementNotInLoop"/>
     <rule ref="category/java/errorprone.xml/EmptySwitchStatements"/>
     <rule ref="category/java/errorprone.xml/EmptySynchronizedBlock"/>
-    <rule ref="category/java/errorprone.xml/EmptyTryBlock"/> 
+    <rule ref="category/java/errorprone.xml/EmptyTryBlock"/>
     <rule ref="category/java/errorprone.xml/EmptyWhileStmt"/>
 
 
