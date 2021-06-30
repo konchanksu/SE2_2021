@@ -9,15 +9,16 @@ public class ForestData {
 	private List<BranchData> branchList;
 
 	public ForestData(List<NodeData> aNodeList, List<BranchData> aBranchList) {
-
+		this.nodeList = aNodeList;
+		this.branchList = aBranchList;
 	}
 
 	public List<NodeData> getNodeList() {
-		return null;
+		return this.nodeList;
 	}
 
 	public List<BranchData> getBranchList() {
-		return null;
+		return this.branchList;
 	}
 
 }

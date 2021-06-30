@@ -6,16 +6,14 @@ public class NodeData {
 
 	private String id;
 
-	public NodeData(String name, Integer index) {
-
+	public NodeData(String name, String id) {
+		this.name = name;
+		this.id = id;
 	}
-
 	public String getName() {
-		return null;
+		return this.name;
 	}
-
 	public String getId() {
-		return null;
+		return this.id;
 	}
-
 }

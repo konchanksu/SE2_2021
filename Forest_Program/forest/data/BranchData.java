@@ -7,15 +7,16 @@ public class BranchData {
 	private NodeData endNodeData;
 
 	public BranchData(NodeData from, NodeData to) {
-
+		this.startNodeData = from;
+		this.endNodeData = to;
 	}
 
 	public NodeData getStart() {
-		return null;
+		return this.startNodeData;
 	}
 
 	public NodeData getEnd() {
-		return null;
+		return this.endNodeData;
 	}
 
 }
