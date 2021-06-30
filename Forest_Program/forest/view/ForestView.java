@@ -112,7 +112,7 @@ public class ForestView extends View implements IForestView {
 
 	/**
 	 * スクロール量を指定された座標分だけ相対スクロールする。
-	 * 
+	 *
 	 * @param aPoint X軸とY軸のスクロール量を表す座標
 	 */
 	public void scrollBy(Point aPoint) {
