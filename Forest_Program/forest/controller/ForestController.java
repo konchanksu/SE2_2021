@@ -12,15 +12,18 @@ public class ForestController extends Controller {
 	protected ForestModel model;
 
 	public ForestController() {
-
+            super();
 	}
 
 	public void mouseDragged(MouseEvent aMouseEvent) {
-
+            super.mouseDragged(aMouseEvent);
 	}
 
 	public void mouseClicked(MouseEvent aMouseEvent) {
-
+            Point aPoint = aMouseEvent.getPoint();
+            aPoint.translate(view.scrollAmount().x, view.scrollAmount().y);
+            IForestView aView = this.view;
+            aView.showNodeFromPoint(aPoint);
 	}
 
 }
