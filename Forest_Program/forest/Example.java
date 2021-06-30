@@ -6,49 +6,47 @@ import forest.repository.IForestDataRepository;
 
 import javax.annotation.processing.FilerException;
 import javax.swing.JFileChooser;
-import java.io.File;
+import java.io.FileNotFoundException;
 
-public class Example extends Object{
+public class Example extends Object {
 
-	private IForestDataRepository aForestDataRepository;
+    private IForestDataRepository aForestDataRepository;
 
-	public Example(IForestDataRepository anIForestDataRepository) {
-		aForestDataRepository = anIForestDataRepository;
-	}
+    public Example(IForestDataRepository anIForestDataRepository) {
+        aForestDataRepository = anIForestDataRepository;
+    }
 
 
-	public static void main(String[] arguments) throws FilerException {
-		var aFileChooser = new FileChooser();
-		var selected = aFileChooser.showOpenDialog(aFileChooser);
+    public static void main(String[] arguments) throws FilerException, FileNotFoundException {
+        var aJFileChooser = new JFileChooser();
+        var selected = aJFileChooser.showOpenDialog(null);
 
-		if(selected == JFileChooser.CANCEL_OPTION)
-		{
-			System.out.println("ファイル選択がキャンセルされました");
-			return;
-		}
+        if (selected == JFileChooser.CANCEL_OPTION) {
+            System.out.println("ファイル選択がキャンセルされました");
+            return;
+        }
 
-		if(selected == JFileChooser.ERROR_OPTION)
-		{
-			throw new FilerException("ファイル選択中にエラーが発生しました。");
-		}
+        if (selected == JFileChooser.ERROR_OPTION) {
+            throw new FilerException("ファイル選択中にエラーが発生しました。");
+        }
 
-		if(selected == JFileChooser.APPROVE_OPTION)
-		{
-			var fileName = aFileChooser.getName();
-			var file = new File(fileName);
-			var aForestDataRepository = new ForestDataRepository(file);
-			var forestData = aForestDataRepository.getForestData();
-			var example = new Example(aForestDataRepository);
-			example.run(forestData);
-		}
-	}
+        if (selected == JFileChooser.APPROVE_OPTION) {
+            var aFile = aJFileChooser.getSelectedFile();
+            var aForestDataRepository = new ForestDataRepository(aFile);
 
-	public void run(ForestData forestData) {
-		forestData.getBranchList().stream().forEach(x -> {
-			System.out.println(x);
-		});
-		forestData.getNodeList().stream().forEach(x -> {
-			System.out.println(x);
-		});
-	}
+            var aForestData = aForestDataRepository.getForestData();
+            var example = new Example(aForestDataRepository);
+            example.run(aForestData);
+
+        }
+    }
+
+    public void run(ForestData forestData) {
+        forestData.getBranchList().stream().forEach(x -> {
+            System.out.println(x);
+        });
+        forestData.getNodeList().stream().forEach(x -> {
+            System.out.println(x);
+        });
+    }
 }
