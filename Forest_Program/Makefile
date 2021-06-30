@@ -19,7 +19,7 @@ test:
 
 #JUnitの実行
 unittest:
-	$(ANT) -Dtestfile=SampleTest unittest
+	$(ANT) unittest
 
 #PMDを実行
 pmd:all
