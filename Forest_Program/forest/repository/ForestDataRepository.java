@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 public class ForestDataRepository implements IForestDataRepository {
 
@@ -63,7 +64,6 @@ public class ForestDataRepository implements IForestDataRepository {
     }
 
     private List<NodeData> convertNodeData(List<String> nodeStringList)throws IllegalArgumentException  {
-
         return nodeStringList.stream().map(aBeforeConvert -> {
             var data = aBeforeConvert.split(",");
             var aId = data[0];
@@ -80,11 +80,13 @@ public class ForestDataRepository implements IForestDataRepository {
     }
 
     private List<BranchData> convertBranchData(List<String> branchStringList, List<NodeData> nodeList) throws NoSuchElementException {
+        var map = nodeList.stream().collect(Collectors.toMap(data -> data.getId(), data -> data));
+
         return branchStringList.stream().map(beforeConvert -> {
             var ids = beforeConvert.split(",");
-            var fromNodeData = nodeList.stream().filter(nodeData -> nodeData.getId().equals(ids[0])).findFirst();
-            var toNodeData = nodeList.stream().filter(nodeData -> nodeData.getId().equals(ids[1].trim())).findFirst();
-            var branch = new BranchData(fromNodeData.get(), toNodeData.get());
+            var fromNodeData = map.get(ids[0]);
+            var toNodeData = map.get(ids[1]);
+            var branch = new BranchData(fromNodeData, toNodeData);
             return branch;
         }).toList();
     }
