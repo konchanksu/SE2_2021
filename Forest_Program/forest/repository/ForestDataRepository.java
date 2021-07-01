@@ -15,6 +15,12 @@ import java.util.NoSuchElementException;
 
 public class ForestDataRepository implements IForestDataRepository {
 
+    private enum ForestDataType{
+        trees,
+        branches,
+        nodes
+    }
+
     private ForestData convertForestData(File aFile) throws FileNotFoundException, IllegalArgumentException, NoSuchElementException {
         try (BufferedReader reader = new BufferedReader(new FileReader(aFile))) {
             String str;
@@ -24,26 +30,26 @@ public class ForestDataRepository implements IForestDataRepository {
             }
             var nodeStringList = new ArrayList<String>();
             var branchStringList = new ArrayList<String>();
-            var state = new Object() {
-                Integer value = 1;
+            var aForestDataType = new Object() {
+                ForestDataType value =  null;
             };
             aLines.stream().forEach(x -> {
                 if (x.equals("trees:")) {
-                    state.value = 1;
+                    aForestDataType.value = ForestDataType.trees;
                     return;
                 } else if (x.equals("branches:")) {
-                    state.value = 2;
+                    aForestDataType.value = ForestDataType.branches;
                     return;
                 } else if (x.equals("nodes:")) {
-                    state.value = 3;
+                    aForestDataType.value = ForestDataType.nodes;
                     return;
                 }
 
-                if (state.value == 1) {
+                if (aForestDataType.value == ForestDataType.trees) {
                     // ignore
-                } else if (state.value == 2) {
+                } else if (aForestDataType.value == ForestDataType.branches) {
                     branchStringList.add(x);
-                } else if (state.value == 3) {
+                } else if ( aForestDataType.value == ForestDataType.nodes) {
                     nodeStringList.add(x);
                 }
             });
