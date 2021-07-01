@@ -19,4 +19,14 @@ public class BranchData {
 		return this.endNodeData;
 	}
 
+	@Override
+	public String toString() {
+		var sb = new StringBuilder();
+		sb.append("startNode : (")
+				.append(startNodeData.toString())
+				.append("), endNode : (")
+				.append(endNodeData.toString())
+				.append(")");
+		return sb.toString();
+	}
 }

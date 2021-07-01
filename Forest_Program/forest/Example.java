@@ -7,6 +7,7 @@ import forest.repository.IForestDataRepository;
 import javax.annotation.processing.FilerException;
 import javax.swing.JFileChooser;
 import java.io.FileNotFoundException;
+import java.util.NoSuchElementException;
 
 public class Example extends Object {
 
@@ -32,12 +33,23 @@ public class Example extends Object {
 
         if (selected == JFileChooser.APPROVE_OPTION) {
             var aFile = aJFileChooser.getSelectedFile();
-            var aForestDataRepository = new ForestDataRepository(aFile);
-
-            var aForestData = aForestDataRepository.getForestData();
-            var example = new Example(aForestDataRepository);
-            example.run(aForestData);
-
+            var aForestDataRepository = new ForestDataRepository();
+            try
+            {
+                var aForestData = aForestDataRepository.getForestData(aFile);
+                var example = new Example(aForestDataRepository);
+                example.run(aForestData);
+            }catch (FileNotFoundException e) {
+                // TODO : 一旦即終了させ、後でファイルを再選択させる機能を実装する
+                e.printStackTrace();
+            }catch(IllegalArgumentException e) {
+                // TODO : 一旦即終了させ、後でファイルを再選択させる機能を実装する
+                e.printStackTrace();
+            }
+            catch (NoSuchElementException e) {
+                // TODO : 一旦即終了させ、後でファイルを再選択させる機能を実装する
+                e.printStackTrace();
+            }
         }
     }
 
