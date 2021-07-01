@@ -8,3 +8,5 @@ Forest_Program/JavaDoc/
 Forest_Program/pmd_report.html
 Forest_Program/Forest.app
 Forest.zip
+out/
+.idea/
