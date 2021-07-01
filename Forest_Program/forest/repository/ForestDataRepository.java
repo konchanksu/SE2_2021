@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 
 public class ForestDataRepository implements IForestDataRepository {
 
-    private ForestData ConvertForestData(File aFile) throws FileNotFoundException, IllegalArgumentException, NoSuchElementException {
+    private ForestData convertForestData(File aFile) throws FileNotFoundException, IllegalArgumentException, NoSuchElementException {
         try (BufferedReader reader = new BufferedReader(new FileReader(aFile))) {
             String str;
             List<String> aLines = new ArrayList<String>();
@@ -47,8 +47,8 @@ public class ForestDataRepository implements IForestDataRepository {
                     nodeStringList.add(x);
                 }
             });
-            var nodeList = convertNodeData(nodeStringList);
-            var branchList = convertBranchData(branchStringList, nodeList);
+            var nodeList = this.convertNodeData(nodeStringList);
+            var branchList = this.convertBranchData(branchStringList, nodeList);
             return new ForestData(nodeList, branchList);
         } catch (IOException e) {
             e.printStackTrace();
@@ -84,7 +84,7 @@ public class ForestDataRepository implements IForestDataRepository {
     }
 
     public ForestData getForestData(File aFile) throws FileNotFoundException, IllegalArgumentException, NoSuchElementException {
-        var aForestData = ConvertForestData(aFile);
+        var aForestData = this.convertForestData(aFile);
         return aForestData;
     }
 }
