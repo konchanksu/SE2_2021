@@ -28,19 +28,19 @@ public class ForestDataRepository implements IForestDataRepository {
             while ((str = reader.readLine()) != null) {
                 aLines.add(str);
             }
-            var nodeStringList = new ArrayList<String>();
+            var aNodeStringList = new ArrayList<String>();
             var branchStringList = new ArrayList<String>();
             var aForestDataType = new Object() {
                 ForestDataType value =  null;
             };
-            aLines.stream().forEach(x -> {
-                if (x.equals("trees:")) {
+            aLines.stream().forEach(data -> {
+                if (data.equals("trees:")) {
                     aForestDataType.value = ForestDataType.trees;
                     return;
-                } else if (x.equals("branches:")) {
+                } else if (data.equals("branches:")) {
                     aForestDataType.value = ForestDataType.branches;
                     return;
-                } else if (x.equals("nodes:")) {
+                } else if (data.equals("nodes:")) {
                     aForestDataType.value = ForestDataType.nodes;
                     return;
                 }
@@ -48,14 +48,14 @@ public class ForestDataRepository implements IForestDataRepository {
                 if (aForestDataType.value == ForestDataType.trees) {
                     // ignore
                 } else if (aForestDataType.value == ForestDataType.branches) {
-                    branchStringList.add(x);
+                    branchStringList.add(data);
                 } else if ( aForestDataType.value == ForestDataType.nodes) {
-                    nodeStringList.add(x);
+                    aNodeStringList.add(data);
                 }
             });
-            var nodeList = this.convertNodeData(nodeStringList);
-            var branchList = this.convertBranchData(branchStringList, nodeList);
-            return new ForestData(nodeList, branchList);
+            var aNodeList = this.convertNodeData(aNodeStringList);
+            var aBranchList = this.convertBranchData(branchStringList, aNodeList);
+            return new ForestData(aNodeList, aBranchList);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,27 +64,27 @@ public class ForestDataRepository implements IForestDataRepository {
 
     private List<NodeData> convertNodeData(List<String> nodeStringList)throws IllegalArgumentException  {
 
-        return nodeStringList.stream().map(x -> {
-            var data = x.split(",");
-            var id = data[0];
-            if (!id.chars().allMatch(Character::isDigit)) {
-                throw new IllegalArgumentException("指定されたIdが数値ではありませんでした. id : " + id);
+        return nodeStringList.stream().map(aBeforeConvert -> {
+            var data = aBeforeConvert.split(",");
+            var aId = data[0];
+            if (!aId.chars().allMatch(Character::isDigit)) {
+                throw new IllegalArgumentException("指定されたIdが数値ではありませんでした. id : " + aId);
             }
-            var name = data[1].trim();
-            if (name.length() > 50) {
-                throw new IllegalArgumentException("指定されたノードの名前が長すぎます. name : " + name);
+            var aName = data[1].trim();
+            if (aName.length() > 50) {
+                throw new IllegalArgumentException("指定されたノードの名前が長すぎます. name : " + aName);
             }
-            var nodeData = new NodeData(id, name);
-            return nodeData;
+            var aNodeData = new NodeData(aId, aName);
+            return aNodeData;
         }).toList();
     }
 
     private List<BranchData> convertBranchData(List<String> branchStringList, List<NodeData> nodeList) throws NoSuchElementException {
-        return branchStringList.stream().map(x -> {
-            var ids = x.split(",");
-            var from = nodeList.stream().filter(nodeData -> nodeData.getId().equals(ids[0])).findFirst();
-            var to = nodeList.stream().filter(nodeData -> nodeData.getId().equals(ids[1].trim())).findFirst();
-            var branch = new BranchData(from.get(), to.get());
+        return branchStringList.stream().map(beforeConvert -> {
+            var ids = beforeConvert.split(",");
+            var fromNodeData = nodeList.stream().filter(nodeData -> nodeData.getId().equals(ids[0])).findFirst();
+            var toNodeData = nodeList.stream().filter(nodeData -> nodeData.getId().equals(ids[1].trim())).findFirst();
+            var branch = new BranchData(fromNodeData.get(), toNodeData.get());
             return branch;
         }).toList();
     }
