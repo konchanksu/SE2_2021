@@ -17,6 +17,10 @@ clean:
 test:
 	$(ANT) test
 
+#JUnitの実行
+unittest:
+	$(ANT) unittest
+
 #PMDを実行
 pmd:all
 	@echo $(PMD_COMMAND)
