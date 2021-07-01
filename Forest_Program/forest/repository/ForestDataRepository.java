@@ -6,7 +6,6 @@ import forest.data.NodeData;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,8 +21,9 @@ public class ForestDataRepository implements IForestDataRepository {
         nodes
     }
 
-    private ForestData convertForestData(File aFile) throws FileNotFoundException, IllegalArgumentException, NoSuchElementException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(aFile))) {
+    private ForestData convertForestData(File aFile) throws IOException, IllegalArgumentException, NoSuchElementException {
+        var reader = new BufferedReader(new FileReader(aFile));
+        try {
             String str;
             List<String> aLines = new ArrayList<String>();
             while ((str = reader.readLine()) != null) {
@@ -60,6 +60,9 @@ public class ForestDataRepository implements IForestDataRepository {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        finally {
+            reader.close();
+        }
         return null;
     }
 
@@ -91,7 +94,7 @@ public class ForestDataRepository implements IForestDataRepository {
         }).toList();
     }
 
-    public ForestData getForestData(File aFile) throws FileNotFoundException, IllegalArgumentException, NoSuchElementException {
+    public ForestData getForestData(File aFile) throws IOException, IllegalArgumentException, NoSuchElementException {
         var aForestData = this.convertForestData(aFile);
         return aForestData;
     }

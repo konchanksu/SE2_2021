@@ -7,6 +7,7 @@ import forest.repository.IForestDataRepository;
 import javax.annotation.processing.FilerException;
 import javax.swing.JFileChooser;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.NoSuchElementException;
 
 public class Example extends Object {
@@ -47,6 +48,9 @@ public class Example extends Object {
                 e.printStackTrace();
             }
             catch (NoSuchElementException e) {
+                // TODO : 一旦即終了させ、後でファイルを再選択させる機能を実装する
+                e.printStackTrace();
+            } catch (IOException e) {
                 // TODO : 一旦即終了させ、後でファイルを再選択させる機能を実装する
                 e.printStackTrace();
             }
