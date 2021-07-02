@@ -2,6 +2,8 @@ package forest.view;
 
 import java.awt.Point;
 
+import javax.swing.JFrame;
+
 import forest.model.NodeModel;
 
 /**
@@ -14,14 +16,21 @@ public interface IForestView {
 	 * 
 	 * @param aNode ノード
 	 */
-	public void showDialog(NodeModel aNode);
+	public abstract void showDialog(NodeModel aNode);
 
 	/**
 	 * ノードを座標から取得し、ノードの名前をダイアログで出力する
 	 * 
 	 * @param aPoint 座標
 	 */
-	public void showNodeFromPoint(Point aPoint);
+	public abstract void showNodeFromPoint(Point aPoint);
+
+	/**
+	 * このViewのウィンドウを返す
+	 *
+	 * @return このViewのウィンドウ
+	 */
+	public abstract JFrame getWindow();
 
 	/**
 	 * スクロール量（offsetの逆向きの大きさ）を応答する。

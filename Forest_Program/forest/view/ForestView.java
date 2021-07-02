@@ -5,9 +5,11 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import condition.Condition;
+import condition.ConditionException;
 import forest.controller.ForestController;
 import forest.model.ForestModel;
 import forest.model.NodeModel;
@@ -24,29 +26,40 @@ public class ForestView extends View implements IForestView {
 	 */
 	protected ForestModel model;
 
-	/**
-	 * コントローラのインスタンスを束縛する
-	 */
-	protected ForestController controller;
+	private JFrame aWindow = new JFrame();
 
 	/**
-	 * スクロール量としてPointのインスタンスを束縛する。
+	 * インスタンスを生成し、モデルを束縛する。コントローラは新規で作成
+	 *
+	 * @param aModel このビューのモデル
 	 */
-	private Point offset;
+	public ForestView(ForestModel aModel) {
+		super(aModel, new ForestController());
+		this.model = aModel;
+		this.aWindow.getContentPane().add(this);
+		return;
+	}
 
 	/**
-	 * インスタンスを生成して応答する。 指定されたモデルの依存物となり、指定されたコントローラにモデルとビューを設定し、スクロール量を(0, 0)に設定する。
-	 * 
+	 * インスタンスを生成し、モデルを束縛する
+	 *
 	 * @param aModel      このビューのモデル
 	 * @param aController このビューのコントローラ
 	 */
 	public ForestView(ForestModel aModel, ForestController aController) {
 		super(aModel, aController);
 		this.model = aModel;
-		this.controller = aController;
-		this.offset = new Point(0, 0);
-
+		this.aWindow.getContentPane().add(this);
 		return;
+	}
+
+	/**
+	 * このViewのウィンドウを返す
+	 *
+	 * @return このViewのウィンドウ
+	 */
+	public JFrame getWindow() {
+		return this.aWindow;
 	}
 
 	/**
@@ -60,17 +73,20 @@ public class ForestView extends View implements IForestView {
 		int height = this.getHeight();
 		aGraphics.setColor(Color.white);
 		aGraphics.fillRect(0, 0, width, height);
-		if (this.model == null) {
+		try {
+			new Condition(() -> this.model == null).ifTrue((aCondition) -> {
+				aCondition._return_();
+			});
+			BufferedImage anImage = this.model.picture();
+			new Condition(() -> anImage == null).ifTrue((aCondition) -> {
+				aCondition._return_();
+			});
+			Point offset = this.scrollAmount();
+			aGraphics.drawImage(anImage, offset.x, offset.y, null);
+		} catch (ConditionException exception) {
 			return;
 		}
-		BufferedImage anImage = this.model.picture();
-		if (anImage == null) {
-			return;
-		}
-		aGraphics.drawImage(anImage, this.offset.x, this.offset.y, null);
-
 		return;
-
 	}
 
 	/**
@@ -96,39 +112,6 @@ public class ForestView extends View implements IForestView {
 		NodeModel aNode = this.model.getNodeFromPoint(aPoint);
 		this.showDialog(aNode);
 
-		return;
-	}
-
-	/**
-	 * スクロール量（offsetの逆向きの大きさ）を応答する。
-	 *
-	 * @return X軸とY軸のスクロール量を表す座標
-	 */
-	public Point scrollAmount() {
-		int x = 0 - this.offset.x;
-		int y = 0 - this.offset.y;
-		return (new Point(x, y));
-	}
-
-	/**
-	 * スクロール量を指定された座標分だけ相対スクロールする。
-	 *
-	 * @param aPoint X軸とY軸のスクロール量を表す座標
-	 */
-	public void scrollBy(Point aPoint) {
-		int x = this.offset.x + aPoint.x;
-		int y = this.offset.y + aPoint.y;
-		this.scrollTo(new Point(x, y));
-		return;
-	}
-
-	/**
-	 * スクロール量を指定された座標に設定（絶対スクロール）する。
-	 * 
-	 * @param aPoint X軸とY軸の絶対スクロール量を表す座標
-	 */
-	public void scrollTo(Point aPoint) {
-		this.offset = aPoint;
 		return;
 	}
 

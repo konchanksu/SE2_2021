@@ -3,6 +3,8 @@ package forest.view;
 import java.awt.Graphics;
 import java.awt.Point;
 
+import javax.swing.JFrame;
+
 import forest.controller.ForestController;
 import forest.model.ForestModel;
 import forest.model.NodeModel;
@@ -25,7 +27,17 @@ public class MockForestView extends View implements IForestView {
 	protected ForestController forestController;
 
 	/**
-	 * インスタンスを生成して応答する。 指定されたモデルの依存物となり、指定されたコントローラにモデルとビューを設定し、スクロール量を(0, 0)に設定する。
+	 * インスタンスを生成し、モデルを束縛する。コントローラは新規で作成
+	 *
+	 * @param aModel このビューのモデル
+	 */
+	public MockForestView(ForestModel aModel) {
+		super(aModel, new ForestController());
+		return;
+	}
+
+	/**
+	 * インスタンスを生成し、モデルを束縛する
 	 *
 	 * @param aModel      このビューのモデル
 	 * @param aController このビューのコントローラ
@@ -34,6 +46,15 @@ public class MockForestView extends View implements IForestView {
 		super(aModel, aController);
 
 		return;
+	}
+
+	/**
+	 * このViewのウィンドウを返す
+	 *
+	 * @return このViewのウィンドウ
+	 */
+	public JFrame getWindow() {
+		return new JFrame();
 	}
 
 	/**
