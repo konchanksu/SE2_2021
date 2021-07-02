@@ -13,14 +13,36 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
+/**
+ * 以下に示すような.txtフィアルをForestDataクラスにコンバートするクラス
+ *
+ * trees:
+ * XXX
+ * branches:
+ * YYY
+ * nodes:
+ * ZZZ
+ * @author RyogaYamauchi
+ */
 public class ForestDataRepository implements IForestDataRepository {
 
+    /**
+     * 読み込んできた.txtファイルの中に定義されている属性
+     */
     private enum ForestDataType{
         trees,
         branches,
         nodes
     }
 
+    /**
+     * FileクラスからForestDataクラスに変換する
+     * @param aFile
+     * @return ForestData ファイルの中身の情報を格納
+     * @throws IOException ファイル読み込み時例外
+     * @throws IllegalArgumentException 変換時に想定していない例外
+     * @throws NoSuchElementException branchData作成時に指定されたnode idが見つからない例外
+     */
     private ForestData convertForestData(File aFile) throws IOException, IllegalArgumentException, NoSuchElementException {
         var reader = new BufferedReader(new FileReader(aFile));
         try {
@@ -66,6 +88,12 @@ public class ForestDataRepository implements IForestDataRepository {
         return null;
     }
 
+    /**
+     * String ListのnodeデータからNodeDataクラスにコンバートする
+     * @param nodeStringList
+     * @return NodeData String状態のnode dataの情報を格納
+     * @throws IllegalArgumentException　変換時に想定していない例外
+     */
     private List<NodeData> convertNodeData(List<String> nodeStringList)throws IllegalArgumentException  {
         return nodeStringList.stream().map(aBeforeConvert -> {
             var data = aBeforeConvert.split(",");
@@ -82,6 +110,13 @@ public class ForestDataRepository implements IForestDataRepository {
         }).toList();
     }
 
+    /**
+     *  String ListのbranchデータからBranchDataクラスにコンバートする
+     * @param branchStringList String List状態のbranch data
+     * @param nodeList 変換後nodeList
+     * @return BranchData String状態のbranch dataの情報を格納
+     * @throws NoSuchElementException branchData作成時に指定されたnode idが見つからない例外
+     */
     private List<BranchData> convertBranchData(List<String> branchStringList, List<NodeData> nodeList) throws NoSuchElementException {
         var map = nodeList.stream().collect(Collectors.toMap(data -> data.getId(), data -> data));
 
@@ -94,6 +129,14 @@ public class ForestDataRepository implements IForestDataRepository {
         }).toList();
     }
 
+    /**
+     * Fileクラスで渡された中身をForestDataに変換して返す
+     * @param aFile .txtファイル
+     * @return ForestData ファイルの中身の情報を格納
+     * @throws IOException ファイル読み込み時例外
+     * @throws IllegalArgumentException 変換時に想定していない例外
+     * @throws NoSuchElementException branchData作成時に指定されたnode idが見つからない例外
+     */
     public ForestData getForestData(File aFile) throws IOException, IllegalArgumentException, NoSuchElementException {
         var aForestData = this.convertForestData(aFile);
         return aForestData;
