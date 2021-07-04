@@ -102,4 +102,8 @@ public class NodeModel {
 
 	}
 
+	private Integer getStringWidth(String aString) {
+		// TODO Constant.javaに要素を追加
+	}
+
 }
