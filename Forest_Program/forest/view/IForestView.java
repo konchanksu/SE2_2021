@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import forest.model.NodeModel;
 
 /**
- * ForestViewのたためのインターフェース
+ * ForestViewのためのインターフェース
  * 
  * @author Kodai Okayama
  */

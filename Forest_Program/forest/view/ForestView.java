@@ -75,6 +75,17 @@ public class ForestView extends View implements IForestView {
 		int height = this.getHeight();
 		aGraphics.setColor(Color.white);
 		aGraphics.fillRect(0, 0, width, height);
+
+		/**
+		 * 以下の処理は次の処理と同じ
+		 *
+		 * if(this.model == null)return;
+		 * BufferedImage anImage = this.model.picture();
+		 * if(anImage == null) return;
+		 * Point offset = this.scrollAmount();
+		 * aGraphics.drawImage(anImage, offset.x, offset.y, null);
+		 */
+
 		try {
 			new Condition(() -> this.model == null).ifTrue((aCondition) -> {
 				aCondition._return_();
@@ -86,6 +97,8 @@ public class ForestView extends View implements IForestView {
 			Point offset = this.scrollAmount();
 			aGraphics.drawImage(anImage, offset.x, offset.y, null);
 		} catch (ConditionException exception) {
+			//Condition._retnrn_()が実行された == メソッドが終了
+			exception.isReturnTrue(() -> System.out.println("Condition._return_()が実行"));
 			return;
 		}
 		return;
