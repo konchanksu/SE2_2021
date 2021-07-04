@@ -8,6 +8,8 @@ import forest.model.NodeModel;
 
 /**
  * ForestViewのたためのインターフェース
+ * 
+ * @author Kodai Okayama
  */
 public interface IForestView {
 

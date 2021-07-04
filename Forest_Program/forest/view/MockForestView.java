@@ -12,6 +12,8 @@ import mvc.View;
 
 /**
  * ForestViewのテスト用クラス
+ * 
+ * @author Kodai Okayama
  */
 @SuppressWarnings("serial")
 public class MockForestView extends View implements IForestView {

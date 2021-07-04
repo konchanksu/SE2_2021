@@ -17,6 +17,8 @@ import mvc.View;
 
 /**
  * ビュー画面周りを担当する
+ * 
+ * @author Kodai Okayama
  */
 @SuppressWarnings("serial")
 public class ForestView extends View implements IForestView {
