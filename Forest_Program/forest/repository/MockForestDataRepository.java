@@ -1,10 +1,10 @@
 package forest.repository;
 
-import java.io.File;
-import java.util.List;
-import java.lang.String;
-
 import forest.data.ForestData;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.List;
 
 public class MockForestDataRepository implements IForestDataRepository {
 
@@ -20,4 +20,6 @@ public class MockForestDataRepository implements IForestDataRepository {
 		return null;
 	}
 
+	@Override
+	public ForestData getForestData(File aFile) throws FileNotFoundException { return null; }
 }
