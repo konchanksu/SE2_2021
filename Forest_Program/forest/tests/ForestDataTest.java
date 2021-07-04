@@ -9,7 +9,14 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestForestData {
+/**
+ * ForestDataに対するテスト
+ * @author RyogaYamauchi
+ */
+public class ForestDataTest {
+    /**
+     * ForestDataに対してコンストラクタで設定したnodeListの値が正しく取得できるかのテスト
+     */
     @Test
     public void コンストラクタで設定したnodeListと値がすべて一致する() {
         var startNodeData = new NodeData("id", "name");
@@ -26,7 +33,9 @@ public class TestForestData {
         assertEquals(startNodeData, forestData.getNodeList().get(0));
         assertEquals(endNodeData, forestData.getNodeList().get(1));
     }
-
+    /**
+     * ForestDataに対してコンストラクタで設定したbranchListの値が正しく取得できるかのテスト
+     */
     @Test
     public void コンストラクタで設定したbranchListと値がすべて一致する() {
         var startNodeData = new NodeData("id", "name");

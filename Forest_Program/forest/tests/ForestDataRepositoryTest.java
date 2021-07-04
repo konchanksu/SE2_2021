@@ -19,7 +19,15 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * ForestDataRepositoryに対するテスト
+ * @author RyogaYamauchi
+ */
 public class ForestDataRepositoryTest {
+    /**
+     * 文字列からForestDataに正しく変換できるかのテスト
+     * @throws IOException
+     */
     @Test
     public void 正しくForestDataを変換できるかTest() throws IOException {
         var data = new StringBuilder();
@@ -52,6 +60,10 @@ public class ForestDataRepositoryTest {
         Files.delete(Paths.get(path));
     }
 
+    /**
+     * 文字列からForestDataに変換する際にnodeのidが数値ではない場合に発生する想定されたエラーに対するテスト
+     * @throws IOException ファイル入出力時に発生する想定しないException
+     */
     @Test
     public void NodeのIdが数字ではない場合例外をキャッチできるかTest() throws IOException {
         var data = new StringBuilder();
@@ -81,6 +93,10 @@ public class ForestDataRepositoryTest {
         }
     }
 
+    /**
+     * 文字列からForestDataに変換する際にnodeの名前が長すぎる場合に発生する想定されたエラーに対するテスト
+     * @throws IOException ファイル入出力時に発生する想定しないException
+     */
     @Test
     public void Nodeの名前が長すぎる例外をキャッチできるかテスト() throws IOException {
         var data = new StringBuilder();

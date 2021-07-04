@@ -6,7 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestBranchDataTest {
+/**
+ * BranchDataに対するテスト
+ * @author RyogaYamauchi
+ */
+public class BranchDataTest {
+    /**
+     * BranchDataに対してコンストラクタで設定したendNodeDataの値が正しく取得できるかのテスト
+     */
     @Test
     public void コンストラクタで設定したendNodeDataと値が一致する()
     {
@@ -15,6 +22,10 @@ public class TestBranchDataTest {
         var branshData = new BranchData(startNodeData, endNodeData);
         assertEquals(endNodeData, branshData.getEnd());
     }
+
+    /**
+     * BranchDataに対してコンストラクタで設定したstartNodeDataの値が正しく取得できるかのテスト
+     */
     @Test
     public void コンストラクタで設定したstartNodeDataと値が一致する()
     {

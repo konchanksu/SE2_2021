@@ -5,7 +5,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestNodeData {
+/**
+ * NodeDataに対するテスト
+ */
+public class NodeDataTest {
+    /**
+     * NodeDataに対してコンストラクタで設定したidの値が正しく取得できるかのテスト
+     */
     @Test
     public void コンストラクタで設定したidが値と一致する()
     {
@@ -13,6 +19,9 @@ public class TestNodeData {
         assertEquals("id", nodeData.getId());
     }
 
+    /**
+     * NodeDataに対してコンストラクタで設定したnameの値が正しく取得できるかのテスト
+     */
     @Test
     public void コンストラクタで設定したnameが値と一致する()
     {
