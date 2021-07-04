@@ -97,8 +97,10 @@ public class ForestView extends View implements IForestView {
 			Point offset = this.scrollAmount();
 			aGraphics.drawImage(anImage, offset.x, offset.y, null);
 		} catch (ConditionException exception) {
-			//Condition._retnrn_()が実行された == メソッドが終了
-			exception.isReturnTrue(() -> System.out.println("Condition._return_()が実行"));
+			//Condition._retnrn_()が実行 -> 正常
+			//それ以外 -> 異常
+			exception.isReturnThenElse(() -> System.out.println("Condition._return_()が実行"),
+					() -> exception.printStackTrace());
 			return;
 		}
 		return;
