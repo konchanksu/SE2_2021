@@ -123,7 +123,7 @@ public class ForestDataRepository implements IForestDataRepository {
         return branchStringList.stream().map(beforeConvert -> {
             var ids = beforeConvert.split(",");
             var fromNodeData = map.get(ids[0]);
-            var toNodeData = map.get(ids[1]);
+            var toNodeData = map.get(ids[1].trim());
             var branch = new BranchData(fromNodeData, toNodeData);
             return branch;
         }).toList();
