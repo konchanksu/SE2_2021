@@ -42,7 +42,7 @@ public class Constant extends Object {
 	/**
 	 * フォントの詳細を示す定数
 	 */
-	public static final Font DATAIL_FONT = new Font("Serif",Font.PLAIN,12);
+	public static final Font DETAIL_FONT = new Font("Serif",Font.PLAIN,12);
 
 	/**
 	 * ノード文字色を示す定数
