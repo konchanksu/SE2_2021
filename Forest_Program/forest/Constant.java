@@ -1,5 +1,8 @@
 package forest;
 
+import java.awt.Color;
+import java.awt.Font;
+
 public class Constant extends Object {
 	/**
 	 * 初期のウィンドウサイズの幅を示す定数
@@ -35,7 +38,7 @@ public class Constant extends Object {
 	 * アニメーションの時間間隔を示す定数
 	 */
 	public static final Integer SLEEP_TIME = 50;
-	
+
 	/**
 	 * フォントの詳細を示す定数
 	 */
