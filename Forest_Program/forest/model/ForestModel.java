@@ -1,17 +1,23 @@
 package forest.model;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import condition.Condition;
+import condition.ValueHolder;
+import forest.Constant;
 import forest.data.BranchData;
 import forest.data.ForestData;
 import forest.data.NodeData;
 import mvc.Model;
+import mvc.View;
 
 public class ForestModel extends Model {
 
@@ -29,6 +35,8 @@ public class ForestModel extends Model {
 	 * 枝を束縛するリスト
 	 */
 	private List<BranchModel> branches;
+
+	private static final Color BACKGROUND = Color.white;
 
 	/**
 	 * コンストラクタ
@@ -59,10 +67,41 @@ public class ForestModel extends Model {
 	}
 
 	/**
+	 * 自身が変更したことを依存物に通知する
+	 */
+	@Override
+	public void changed() {
+		// フォレストの領域を求め、その領域の幅と高さの画像を生成
+		Rectangle aRectangle = this.getBounds();
+		this.picture(new BufferedImage(aRectangle.width, aRectangle.height, BufferedImage.TYPE_INT_RGB));
+
+		//背景色で塗りつぶす。
+		Graphics aGraphics = this.picture().createGraphics();
+		aGraphics.setColor(BACKGROUND);
+		aGraphics.fillRect(0, 0, aRectangle.width, aRectangle.height);
+
+		// 樹状整列を画像の描画コンテクスト（グラフィックス）に描き出す。
+		this.draw(aGraphics);
+
+		// モデルが変化していることを依存物であるビューたちへ放送（updateを依頼）する。
+		this.dependents.forEach((View aView) -> {
+			aView.update();
+		});
+
+		return;
+
+	}
+
+	/**
 	 * このフォレストを描画する
 	 */
-	private void draw() {
-
+	private void draw(Graphics aGraphics) {
+		this.nodes.forEach((aNode) -> {
+			aNode.draw(aGraphics);
+		});
+		this.branches.forEach((aBranch) -> {
+			aBranch.draw(aGraphics);
+		});
 	}
 
 	/**
@@ -84,6 +123,8 @@ public class ForestModel extends Model {
 			aRectangle.add(aNode.getBounds());
 		});
 
+		//座標ぴったりに確保すると端が描画されないので1ピクセル大きめにとる
+		aRectangle.grow(1, 1);
 		return aRectangle;
 	}
 
@@ -102,7 +143,7 @@ public class ForestModel extends Model {
 			new Condition(() -> nodeMap.containsKey(aNodeData.getId())).ifThenElse(() -> {
 				throw new IllegalArgumentException(String.format("ID:{%s}を持つノードが複数存在します", aNodeData.getId()));
 			}, () -> {
-				nodeMap.put(aNodeData.getId(), new NodeModel(aNodeData.getName()));
+				nodeMap.put(aNodeData.getId(), aNodeModel);
 			});
 			this.nodes.add(aNodeModel);
 		});
@@ -129,14 +170,18 @@ public class ForestModel extends Model {
 			BranchModel aBranchModel = new BranchModel(startNodeModel, endNodeModel);
 			this.branches.add(aBranchModel);
 		});
-
 	}
 
 	/**
 	 * フォレストを縦一列に並べて表示する
 	 */
 	public void listNodes() {
-
+		ValueHolder<Integer> index = new ValueHolder<Integer>(0);
+		this.nodes.forEach((aNode) -> {
+			aNode.setPosition(new Point(0, index.get() * (Constant.VERTICAL_MOVE + aNode.getExtent().y)));
+			index.setDo(value -> value + 1);
+		});
+		this.changed();
 	}
 
 	/**

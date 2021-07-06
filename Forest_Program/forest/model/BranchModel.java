@@ -2,7 +2,9 @@ package forest.model;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 
 /**
  * 一つの枝を表すクラス
@@ -39,17 +41,21 @@ public class BranchModel extends Object {
 	 */
 	public void draw(Graphics aGraphics) {
 
+		//アンチエイリアス
+		Graphics2D aGraphics2D = (Graphics2D) aGraphics;
+		aGraphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		aGraphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
 		// 始点座標を計算
 		Point position = this.startNode.getPosition();
 		Point extent = this.startNode.getExtent();
 		Integer startX = position.x + extent.x;
-		Integer startY = position.y + (extent.y / 2);
-
+		Integer startY = position.y - (extent.y / 2);
 		// 終点座標を計算
 		position = this.endNode.getPosition();
 		extent = this.endNode.getExtent();
 		Integer endX = position.x;
-		Integer endY = position.y + (extent.y / 2);
+		Integer endY = position.y - (extent.y / 2);
 
 		// TODO : Constantクラスで色を設定する
 		aGraphics.setColor(Color.black);

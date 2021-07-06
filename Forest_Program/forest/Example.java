@@ -6,11 +6,13 @@ import java.util.NoSuchElementException;
 
 import javax.annotation.processing.FilerException;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 
 import forest.data.ForestData;
 import forest.model.ForestModel;
 import forest.repository.ForestDataRepository;
 import forest.repository.IForestDataRepository;
+import forest.view.ForestView;
 
 public class Example extends Object {
 
@@ -59,7 +61,16 @@ public class Example extends Object {
     public void run(ForestData forestData) {
         ForestModel aModel = new ForestModel();
         aModel.initialize(forestData);
+        ForestView aForestView = new ForestView(aModel);
+
+        JFrame aWindow = aForestView.getWindow();
+        aWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        aWindow.setSize(800, 600);
+        aWindow.setLocationRelativeTo(null);
+        aWindow.setVisible(true);
+
         System.out.println(aModel);
+        aModel.listNodes();
 
     }
 }

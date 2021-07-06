@@ -5,8 +5,10 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,16 +79,23 @@ public class NodeModel extends Component {
 	 * @param aGraphics 描画するグラフィクス
 	 */
 	public void draw(Graphics aGraphics) {
+		//アンチエイリアス
+		Graphics2D aGraphics2D = (Graphics2D) aGraphics;
+		aGraphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		aGraphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+
 		// TODO 背景色の定数を追加
-		aGraphics.setColor(Color.white);
+		aGraphics.setColor(Color.black);
+
+		//枠を描画する
 		aGraphics.drawRect(this.position.x, this.position.y, this.extent.x, this.extent.y);
 
+		//名前を描画する座標
 		Point namePosition = this.getPosition();
-		namePosition.translate(MARGIN.x, MARGIN.y);
+		namePosition.translate(MARGIN.x, this.extent.y - MARGIN.y);
 
 		aGraphics.setFont(DEFAULT_FONT);
 		aGraphics.drawString(this.name, namePosition.x, namePosition.y);
-
 		return;
 
 	}
