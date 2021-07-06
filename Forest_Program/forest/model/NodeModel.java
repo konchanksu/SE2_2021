@@ -66,8 +66,8 @@ public class NodeModel extends Component {
 		this.parents = new ArrayList<NodeModel>();
 		this.isVisited = false;
 
-		Integer width = this.getStringWidth(name) + MARGIN.x * 2;
-		Integer height = this.getStringHeight(name) + MARGIN.y * 2;
+		Integer width = this.getStringWidth(this.name) + MARGIN.x * 2;
+		Integer height = this.getStringHeight(this.name) + MARGIN.y * 2;
 		this.setExtent(new Point(width, height));
 
 		return;
@@ -90,9 +90,10 @@ public class NodeModel extends Component {
 		//枠を描画する
 		aGraphics.drawRect(this.position.x, this.position.y, this.extent.x, this.extent.y);
 
-		//名前を描画する座標
-		Point namePosition = this.getPosition();
-		namePosition.translate(MARGIN.x, this.extent.y - MARGIN.y);
+		//名前を描画する座標。参照渡しにならないようにgetLocationをつける
+		Point namePosition = this.getPosition().getLocation();
+		//fontは左下座標が原点!!
+		namePosition.translate(MARGIN.x, this.extent.y - MARGIN.y - 1);
 
 		aGraphics.setFont(DEFAULT_FONT);
 		aGraphics.drawString(this.name, namePosition.x, namePosition.y);

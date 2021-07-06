@@ -50,12 +50,12 @@ public class BranchModel extends Object {
 		Point position = this.startNode.getPosition();
 		Point extent = this.startNode.getExtent();
 		Integer startX = position.x + extent.x;
-		Integer startY = position.y - (extent.y / 2);
+		Integer startY = position.y + (extent.y / 2);
 		// 終点座標を計算
 		position = this.endNode.getPosition();
 		extent = this.endNode.getExtent();
 		Integer endX = position.x;
-		Integer endY = position.y - (extent.y / 2);
+		Integer endY = position.y + (extent.y / 2);
 
 		// TODO : Constantクラスで色を設定する
 		aGraphics.setColor(Color.black);
