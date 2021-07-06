@@ -42,7 +42,7 @@ public class Constant extends Object {
 	/**
 	 * フォントの詳細を示す定数
 	 */
-	public static final Font DEFAULT_FONT = new Font("Serif",Font.PLAIN,12);
+	public static final Font DATAIL_FONT = new Font("Serif",Font.PLAIN,12);
 
 	/**
 	 * ノード文字色を示す定数
@@ -52,7 +52,7 @@ public class Constant extends Object {
 	/**
 	 * ブランチの色を示す定数
 	 */
-	public static final Color BRANCH_COLOR = Color.white;
+	public static final Color BRANCH_COLOR = Color.black;
 
 	/**
 	 * 背景の色を示す定数
