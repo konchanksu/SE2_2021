@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,7 +78,6 @@ public class NodeModel extends Component {
 	 */
 	public void draw(Graphics aGraphics) {
 		// TODO 背景色の定数を追加
-
 		aGraphics.setColor(Color.white);
 		aGraphics.drawRect(this.position.x, this.position.y, this.extent.x, this.extent.y);
 
@@ -89,6 +89,17 @@ public class NodeModel extends Component {
 
 		return;
 
+	}
+
+	/**
+	* このノードの矩形の領域を返す
+	*
+	* @return 矩形の領域
+	*/
+	@Override
+	public Rectangle getBounds() {
+
+		return new Rectangle(this.position.x, this.position.y, this.extent.x, this.extent.y);
 	}
 
 	/**
@@ -240,6 +251,18 @@ public class NodeModel extends Component {
 
 		FontMetrics fontMetrics = this.getFontMetrics(DEFAULT_FONT);
 		return fontMetrics.stringWidth(aString);
+	}
+
+	/**
+	* このノードを文字列に変換する
+	*/
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("NodeModel(");
+		builder.append(this.name);
+		builder.append(")");
+		return builder.toString();
 	}
 
 }

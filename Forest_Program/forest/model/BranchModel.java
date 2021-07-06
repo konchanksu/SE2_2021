@@ -82,11 +82,12 @@ public class BranchModel extends Object {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("startNode : (");
-		builder.append(this.startNode.toString());
-		builder.append("), endNode : (");
-		builder.append(this.endNode.toString());
-		builder.append(")");
+		builder.append("BranchModel[");
+		builder.append("startNode : ");
+		builder.append(this.startNode);
+		builder.append(", endNode : ");
+		builder.append(this.endNode);
+		builder.append("]");
 		return builder.toString();
 	}
 
