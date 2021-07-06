@@ -9,7 +9,7 @@ import java.awt.Point;
  * 
  * @author Kodai Okayama
  */
-public class BranchModel {
+public class BranchModel extends Object {
 
 	/**
 	 * この枝の始点を表すノード
