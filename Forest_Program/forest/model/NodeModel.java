@@ -19,7 +19,7 @@ public class NodeModel extends Component {
 	/**
 	 * このノードの子要素を束縛するリスト
 	 */
-	private List<NodeModel> children = new ArrayList<NodeModel>();
+	private List<NodeModel> children;
 
 	/**
 	 * ノードの幅と高さを束縛する
@@ -39,14 +39,14 @@ public class NodeModel extends Component {
 	/**
 	 * このノードの親要素を束縛する
 	 */
-	private List<NodeModel> parents = new ArrayList<NodeModel>();
+	private List<NodeModel> parents;
 
 	/**
 	 * このノードの位置を束縛する。座標は左上が原点
 	 */
 	private Point position;
 
-	//TODO : マージンの定数を追加する
+	// TODO マージンの定数を追加する
 	private final Point MARGIN = new Point(2, 2);
 	// TODO Constant.javaにフォントサイズの要素を追加
 	private final Font DEFAULT_FONT = new Font("Monospaced", Font.PLAIN, 12);
@@ -59,13 +59,13 @@ public class NodeModel extends Component {
 	public NodeModel(String name) {
 		this.setName(name);
 		this.setPosition(new Point(0, 0));
+		this.children = new ArrayList<NodeModel>();
+		this.parents = new ArrayList<NodeModel>();
 		this.isVisited = false;
 
 		Integer width = this.getStringWidth(name) + MARGIN.x * 2;
 		Integer height = this.getStringHeight(name) + MARGIN.y * 2;
-
 		this.setExtent(new Point(width, height));
-		this.isVisited = false;
 
 		return;
 	}
