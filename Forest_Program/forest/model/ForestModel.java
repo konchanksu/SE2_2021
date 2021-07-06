@@ -170,6 +170,8 @@ public class ForestModel extends Model {
 			BranchModel aBranchModel = new BranchModel(startNodeModel, endNodeModel);
 			this.branches.add(aBranchModel);
 		});
+
+		this.roots = this.nodes.stream().filter((aNode) -> aNode.isRoot()).toList();
 	}
 
 	/**
