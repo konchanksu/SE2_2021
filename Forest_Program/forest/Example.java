@@ -3,6 +3,9 @@ package forest;
 import forest.data.ForestData;
 import forest.repository.ForestDataRepository;
 import forest.repository.IForestDataRepository;
+import forest.repository.MockForestDataRepository;
+import forest.view.ForestView;
+import forest.view.IForestView;
 
 import javax.annotation.processing.FilerException;
 import javax.swing.JFileChooser;
@@ -17,7 +20,6 @@ public class Example extends Object {
     public Example(IForestDataRepository anIForestDataRepository) {
         aForestDataRepository = anIForestDataRepository;
     }
-
 
     public static void main(String[] arguments) throws FilerException, FileNotFoundException {
         var aJFileChooser = new JFileChooser();
