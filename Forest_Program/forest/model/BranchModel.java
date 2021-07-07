@@ -26,8 +26,8 @@ public class BranchModel extends Object {
 	/**
 	 * コンストラクタ。始点と終点を受け取り束縛する
 	 * 
-	 * @param from
-	 * @param to
+	 * @param from 始点を表すノード
+	 * @param to 終点を表すノード
 	 */
 	public BranchModel(NodeModel from, NodeModel to) {
 		this.startNode = from;

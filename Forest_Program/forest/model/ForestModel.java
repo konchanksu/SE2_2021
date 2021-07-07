@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import condition.Condition;
+import condition.ConditionException;
 import condition.ValueHolder;
 import forest.Constant;
 import forest.data.BranchData;
@@ -19,6 +20,11 @@ import forest.data.NodeData;
 import mvc.Model;
 import mvc.View;
 
+/**
+ * 樹状整列におけるモデルを担当する
+ * 
+ * @author Kodai Okayama
+ */
 public class ForestModel extends Model {
 
 	/**
@@ -36,6 +42,7 @@ public class ForestModel extends Model {
 	 */
 	private List<BranchModel> branches;
 
+	//TODO 背景色を定義
 	private static final Color BACKGROUND = Color.white;
 
 	/**
@@ -59,11 +66,32 @@ public class ForestModel extends Model {
 	}
 
 	/**
-	 * 樹状整列を行う
-	 * @param aNodeModel 起点となるノード
+	 * 再起的に樹状整列を行う
+	 * @param aNode 起点となるノード
+	 * @return 子要素の描画に必要だった幅と高さ
 	 */
-	public void arrange(NodeModel aNodeModel) {
+	public Point arrange(NodeModel aNode) {
+		aNode.isVisited(true);
+		ValueHolder<Point> childExtent = new ValueHolder<Point>(aNode.getExtent());
 
+		List<NodeModel> children = aNode.getChildren();
+		try {
+			new Condition(() -> children.isEmpty()).ifTrue((aCondition) -> {
+				childExtent.get().translate(aNode.getPosition().x, aNode.getPosition().y);
+				aCondition._return_();
+			});
+		} catch (ConditionException anException) {
+			return childExtent.get();
+		}
+
+		ValueHolder<Integer> x = new ValueHolder<Integer>(aNode.getPosition().x);
+		ValueHolder<Integer> top = new ValueHolder<Integer>(aNode.getPosition().y);
+		ValueHolder<Integer> y = new ValueHolder<Integer>(aNode.getPosition().y);
+		aNode.getChildren().forEach((child) -> {
+			child.setLocation(new Point(x.get() + Constant.HORIZONTAL_MOVE, y.get()));
+			y.set(this.arrange(child).y);
+			y.setDo((value) -> value + child.getExtent().y + Constant.VERTICAL_MOVE);
+		});
 	}
 
 	/**
@@ -110,7 +138,27 @@ public class ForestModel extends Model {
 	 * @return ノード。ない場合はnull
 	 */
 	public NodeModel getNodeFromPoint(Point aPoint) {
-		return null;
+		/*
+		以下の処理と同じ
+		this.nodes.forEach((aNode) -> {
+			if(aNode.getBounds().contains(aPoint)){
+				return aNode;
+			};
+		});
+		return null
+		*/
+		ValueHolder<NodeModel> resultNode = new ValueHolder<>(null);
+		try {
+			this.nodes.forEach((aNode) -> {
+				new Condition(() -> aNode.getBounds().contains(aPoint)).ifTrue((aCondition) -> {
+					resultNode.set(aNode);
+					aCondition._break_();
+				});
+			});
+		} catch (ConditionException anException) {
+			;
+		}
+		return resultNode.get();
 	}
 
 	/**
@@ -118,14 +166,14 @@ public class ForestModel extends Model {
 	 * @return 矩形の領域
 	 */
 	public Rectangle getBounds() {
-		Rectangle aRectangle = new Rectangle();
+		ValueHolder<Rectangle> aRectangle = new ValueHolder<>(new Rectangle());
 		this.nodes.forEach((aNode) -> {
-			aRectangle.add(aNode.getBounds());
+			aRectangle.get().add(aNode.getBounds());
 		});
 
 		//座標ぴったりに確保すると端が描画されないので1ピクセル大きめにとる
-		aRectangle.grow(1, 1);
-		return aRectangle;
+		aRectangle.get().grow(1, 1);
+		return aRectangle.get();
 	}
 
 	/**
@@ -135,15 +183,16 @@ public class ForestModel extends Model {
 	public void initialize(ForestData aForestData) {
 		List<BranchData> branchDataList = aForestData.getBranchList();
 		List<NodeData> nodeDataList = aForestData.getNodeList();
-		Map<String, NodeModel> nodeMap = new HashMap<String, NodeModel>();
+		ValueHolder<Map<String, NodeModel>> nodeMap = new ValueHolder<Map<String, NodeModel>>(
+				new HashMap<String, NodeModel>());
 
 		//NodeDataをNodeModelに変換し、フォレストに追加する
 		nodeDataList.forEach((aNodeData) -> {
 			NodeModel aNodeModel = new NodeModel(aNodeData.getName());
-			new Condition(() -> nodeMap.containsKey(aNodeData.getId())).ifThenElse(() -> {
+			new Condition(() -> nodeMap.get().containsKey(aNodeData.getId())).ifThenElse(() -> {
 				throw new IllegalArgumentException(String.format("ID:{%s}を持つノードが複数存在します", aNodeData.getId()));
 			}, () -> {
-				nodeMap.put(aNodeData.getId(), aNodeModel);
+				nodeMap.get().put(aNodeData.getId(), aNodeModel);
 			});
 			this.nodes.add(aNodeModel);
 		});
@@ -154,15 +203,15 @@ public class ForestModel extends Model {
 			NodeData endNodeData = aBranchData.getEnd();
 
 			//ブランチには存在するが、ノードリストには存在しない場合エラーを出力する
-			new Condition(() -> nodeMap.containsKey(startNodeData.getId())).ifFalse(() -> {
+			new Condition(() -> nodeMap.get().containsKey(startNodeData.getId())).ifFalse(() -> {
 				throw new IllegalArgumentException(String.format("ID:{%s}のノードは定義されていません", startNodeData.getId()));
 			});
-			new Condition(() -> nodeMap.containsKey(endNodeData.getId())).ifFalse(() -> {
+			new Condition(() -> nodeMap.get().containsKey(endNodeData.getId())).ifFalse(() -> {
 				throw new IllegalArgumentException(String.format("ID:{%s}のノードは定義されていません", startNodeData.getId()));
 			});
 
-			NodeModel startNodeModel = nodeMap.get(startNodeData.getId());
-			NodeModel endNodeModel = nodeMap.get(endNodeData.getId());
+			NodeModel startNodeModel = nodeMap.get().get(startNodeData.getId());
+			NodeModel endNodeModel = nodeMap.get().get(endNodeData.getId());
 
 			startNodeModel.addChild(endNodeModel);
 			endNodeModel.addParent(startNodeModel);
@@ -190,7 +239,12 @@ public class ForestModel extends Model {
 	 * 一定時間待ち、その後更新通知を出す
 	 */
 	private void waitAndBroadcast() {
-
+		try {
+			Thread.sleep(Constant.SLEEP_TIME);
+		} catch (InterruptedException anException) {
+			;
+		}
+		this.changed();
 	}
 
 	/**

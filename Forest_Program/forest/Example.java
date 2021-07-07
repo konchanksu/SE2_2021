@@ -59,9 +59,9 @@ public class Example extends Object {
     }
 
     public void run(ForestData forestData) {
-        ForestModel aModel = new ForestModel();
-        aModel.initialize(forestData);
-        ForestView aForestView = new ForestView(aModel);
+        ForestModel aForestModel = new ForestModel();
+        aForestModel.initialize(forestData);
+        ForestView aForestView = new ForestView(aForestModel);
 
         JFrame aWindow = aForestView.getWindow();
         aWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,8 +69,8 @@ public class Example extends Object {
         aWindow.setLocationRelativeTo(null);
         aWindow.setVisible(true);
 
-        System.out.println(aModel);
-        aModel.listNodes();
+        System.out.println(aForestModel);
+        aForestModel.listNodes();
 
     }
 }
