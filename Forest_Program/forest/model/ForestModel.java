@@ -1,6 +1,5 @@
 package forest.model;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -42,9 +41,6 @@ public class ForestModel extends Model {
 	 */
 	private List<BranchModel> branches;
 
-	//TODO 背景色を定義
-	private static final Color BACKGROUND = Color.white;
-
 	/**
 	 * コンストラクタ
 	 */
@@ -62,7 +58,12 @@ public class ForestModel extends Model {
 	 * 樹状整列をアニメーションで行う
 	 */
 	public void animate() {
-
+		ValueHolder<Integer> y = new ValueHolder<Integer>(0);
+		this.roots.forEach((aNode) -> {
+			aNode.setPosition(new Point(0, y.get()));
+			y.set(this.arrange(aNode).y);
+			y.setDo((value) -> value + aNode.getExtent().y + Constant.VERTICAL_MOVE);
+		});
 	}
 
 	/**
@@ -72,26 +73,49 @@ public class ForestModel extends Model {
 	 */
 	public Point arrange(NodeModel aNode) {
 		aNode.isVisited(true);
-		ValueHolder<Point> childExtent = new ValueHolder<Point>(aNode.getExtent());
+		this.waitAndBroadcast();
 
 		List<NodeModel> children = aNode.getChildren();
 		try {
 			new Condition(() -> children.isEmpty()).ifTrue((aCondition) -> {
-				childExtent.get().translate(aNode.getPosition().x, aNode.getPosition().y);
 				aCondition._return_();
 			});
 		} catch (ConditionException anException) {
-			return childExtent.get();
+			return aNode.getPosition();
 		}
 
 		ValueHolder<Integer> x = new ValueHolder<Integer>(aNode.getPosition().x);
+		ValueHolder<Integer> height = new ValueHolder<Integer>(aNode.getPosition().y);
 		ValueHolder<Integer> top = new ValueHolder<Integer>(aNode.getPosition().y);
 		ValueHolder<Integer> y = new ValueHolder<Integer>(aNode.getPosition().y);
 		aNode.getChildren().forEach((child) -> {
-			child.setLocation(new Point(x.get() + Constant.HORIZONTAL_MOVE, y.get()));
-			y.set(this.arrange(child).y);
-			y.setDo((value) -> value + child.getExtent().y + Constant.VERTICAL_MOVE);
+			new Condition(() -> child.isVisited()).ifFalse(() -> {
+				Point extent = child.getExtent();
+				height.setDo(value -> value + extent.y + Constant.VERTICAL_MOVE);
+				child.setPosition((new Point(x.get() + aNode.getExtent().x + Constant.HORIZONTAL_MOVE, y.get())));
+				y.set(this.arrange(child).y);
+				y.setDo((value) -> value + Constant.VERTICAL_MOVE + extent.y);
+				new Condition(() -> y.get() > height.get()).ifTrue(() -> {
+					height.set(y.get());
+				});
+			});
 		});
+
+		y.setDo(value -> value - Constant.VERTICAL_MOVE);
+		y.set(top.get() + (y.get() - top.get() - aNode.getExtent().y) / 2);
+
+		new Condition(() -> aNode.getPosition().y > y.get()).ifTrue(() -> {
+			y.set(aNode.getPosition().y);
+		});
+
+		height.setDo(value -> value - Constant.VERTICAL_MOVE - aNode.getExtent().y);
+		new Condition(() -> aNode.getPosition().y > height.get()).ifTrue(() -> {
+			height.set(aNode.getPosition().y);
+		});
+
+		aNode.setPosition(new Point(x.get(), y.get()));
+		this.waitAndBroadcast();
+		return new Point(x.get(), height.get());
 	}
 
 	/**
@@ -105,7 +129,7 @@ public class ForestModel extends Model {
 
 		//背景色で塗りつぶす。
 		Graphics aGraphics = this.picture().createGraphics();
-		aGraphics.setColor(BACKGROUND);
+		aGraphics.setColor(Constant.BACKGROUND_COLOR);
 		aGraphics.fillRect(0, 0, aRectangle.width, aRectangle.height);
 
 		// 樹状整列を画像の描画コンテクスト（グラフィックス）に描き出す。
