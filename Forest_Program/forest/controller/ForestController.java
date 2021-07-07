@@ -19,6 +19,7 @@ public class ForestController extends Controller {
 
 	/**
 	 * マウスをドラックした際に動作するメソッド
+	 * @param aMouseEvent マウスイベント
 	 */
 	public void mouseDragged(MouseEvent aMouseEvent) {
             super.mouseDragged(aMouseEvent);
@@ -26,6 +27,7 @@ public class ForestController extends Controller {
 
 	/**
 	 * マウスをクリックした際に動作するメソッド
+	 * @param aMouseEvent マウスイベント
 	 */
 	public void mouseClicked(MouseEvent aMouseEvent) {
             Point aPoint = aMouseEvent.getPoint();
