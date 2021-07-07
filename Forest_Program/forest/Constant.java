@@ -43,7 +43,7 @@ public class Constant extends Object {
 	/**
 	 * アニメーションの時間間隔を示す定数
 	 */
-	public static final Integer SLEEP_TIME = 100;
+	public static final Integer SLEEP_TIME = 50;
 
 	/**
 	 * フォントの詳細を示す定数

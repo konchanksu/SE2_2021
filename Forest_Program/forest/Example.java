@@ -56,14 +56,6 @@ public class Example extends Object {
                 e.printStackTrace();
             }
         }
-
-        // Example anExample = new Example(new MockForestDataRepository(new File("")));
-        // List<NodeData> aNodeList = new ArrayList<>();
-        // List<BranchData> aBranchList = new ArrayList<>();
-        // aNodeList.add(new NodeData("1", "temp1"));
-        // aNodeList.add(new NodeData("2", "temp2"));
-        // aBranchList.add(new BranchData(aNodeList.get(0), aNodeList.get(1)));
-        // anExample.run(new ForestData(aNodeList, aBranchList));
     }
 
     public void run(ForestData forestData) {

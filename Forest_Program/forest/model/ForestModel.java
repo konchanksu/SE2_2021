@@ -64,6 +64,8 @@ public class ForestModel extends Model {
 			y.set(this.arrange(aNode).y);
 			y.setDo((value) -> value + aNode.getExtent().y + Constant.VERTICAL_MOVE);
 		});
+
+		return;
 	}
 
 	/**
@@ -141,7 +143,6 @@ public class ForestModel extends Model {
 		});
 
 		return;
-
 	}
 
 	/**
@@ -154,6 +155,8 @@ public class ForestModel extends Model {
 		this.branches.forEach((aBranch) -> {
 			aBranch.draw(aGraphics);
 		});
+
+		return;
 	}
 
 	/**
@@ -245,6 +248,8 @@ public class ForestModel extends Model {
 		});
 
 		this.roots = this.nodes.stream().filter((aNode) -> aNode.isRoot()).toList();
+
+		return;
 	}
 
 	/**
@@ -257,6 +262,8 @@ public class ForestModel extends Model {
 			index.setDo(value -> value + 1);
 		});
 		this.changed();
+
+		return;
 	}
 
 	/**
@@ -269,6 +276,8 @@ public class ForestModel extends Model {
 			;
 		}
 		this.changed();
+
+		return;
 	}
 
 	/**

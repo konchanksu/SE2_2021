@@ -1,10 +1,11 @@
 package forest.model;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+
+import forest.Constant;
 
 /**
  * 一つの枝を表すクラス
@@ -25,7 +26,7 @@ public class BranchModel extends Object {
 
 	/**
 	 * コンストラクタ。始点と終点を受け取り束縛する
-	 * 
+	 *
 	 * @param from 始点を表すノード
 	 * @param to 終点を表すノード
 	 */
@@ -36,7 +37,7 @@ public class BranchModel extends Object {
 
 	/**
 	 * ブランチを表す線を描画する
-	 * 
+	 *
 	 * @param aGraphics 描画するグラフィックス
 	 */
 	public void draw(Graphics aGraphics) {
@@ -57,8 +58,7 @@ public class BranchModel extends Object {
 		Integer endX = position.x;
 		Integer endY = position.y + (extent.y / 2);
 
-		// TODO : Constantクラスで色を設定する
-		aGraphics.setColor(Color.black);
+		aGraphics.setColor(Constant.BRANCH_COLOR);
 		aGraphics.drawLine(startX, startY, endX, endY);
 
 		return;
@@ -66,7 +66,7 @@ public class BranchModel extends Object {
 
 	/**
 	 * この枝の始点を表すノードを返す
-	 * 
+	 *
 	 * @return 始点を表すノード
 	 */
 	public NodeModel getStart() {
@@ -75,7 +75,7 @@ public class BranchModel extends Object {
 
 	/**
 	 * この枝の終点を表すノードを返す
-	 * 
+	 *
 	 * @return 終点を表すノード
 	 */
 	public NodeModel getEnd() {

@@ -2,7 +2,6 @@ package forest.model;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,6 +10,8 @@ import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
+
+import forest.Constant;
 
 /**
  * 一つのノードを表すクラス
@@ -49,11 +50,6 @@ public class NodeModel extends Component {
 	 */
 	private Point position;
 
-	// TODO マージンの定数を追加する
-	private final Point MARGIN = new Point(2, 2);
-	// TODO Constant.javaにフォントサイズの要素を追加
-	private final Font DEFAULT_FONT = new Font("Monospaced", Font.PLAIN, 12);
-
 	/**
 	 * コンストラクタ。 座標は(0,0)に設定され、幅と高さは文字の長さによって決定される。
 	 *
@@ -66,8 +62,8 @@ public class NodeModel extends Component {
 		this.parents = new ArrayList<NodeModel>();
 		this.isVisited = false;
 
-		Integer width = this.getStringWidth(this.name) + MARGIN.x * 2;
-		Integer height = this.getStringHeight(this.name) + MARGIN.y * 2;
+		Integer width = this.getStringWidth(this.name) + Constant.MARGIN.x * 2;
+		Integer height = this.getStringHeight(this.name) + Constant.MARGIN.y * 2;
 		this.setExtent(new Point(width, height));
 
 		return;
@@ -93,12 +89,11 @@ public class NodeModel extends Component {
 		//名前を描画する座標。参照渡しにならないようにgetLocationをつける
 		Point namePosition = this.getPosition().getLocation();
 		//fontは左下座標が原点!!
-		namePosition.translate(MARGIN.x, this.extent.y - MARGIN.y - 1);
+		namePosition.translate(Constant.MARGIN.x, this.extent.y - Constant.MARGIN.y - 1);
 
-		aGraphics.setFont(DEFAULT_FONT);
+		aGraphics.setFont(Constant.FONT);
 		aGraphics.drawString(this.name, namePosition.x, namePosition.y);
 		return;
-
 	}
 
 	/**
@@ -248,7 +243,7 @@ public class NodeModel extends Component {
 	 * @return 文字列の高さ
 	 */
 	private Integer getStringHeight(String aString) {
-		FontMetrics fontMetrics = this.getFontMetrics(DEFAULT_FONT);
+		FontMetrics fontMetrics = this.getFontMetrics(Constant.FONT);
 		return fontMetrics.getHeight();
 	}
 
@@ -259,7 +254,7 @@ public class NodeModel extends Component {
 	 */
 	private Integer getStringWidth(String aString) {
 
-		FontMetrics fontMetrics = this.getFontMetrics(DEFAULT_FONT);
+		FontMetrics fontMetrics = this.getFontMetrics(Constant.FONT);
 		return fontMetrics.stringWidth(aString);
 	}
 
