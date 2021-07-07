@@ -1,6 +1,5 @@
 package forest.model;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
@@ -80,8 +79,7 @@ public class NodeModel extends Component {
 		aGraphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		aGraphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-		// TODO 背景色の定数を追加
-		aGraphics.setColor(Color.black);
+		aGraphics.setColor(Constant.NODE_COLOR);
 
 		//枠を描画する
 		aGraphics.drawRect(this.position.x, this.position.y, this.extent.x, this.extent.y);
@@ -103,7 +101,6 @@ public class NodeModel extends Component {
 	*/
 	@Override
 	public Rectangle getBounds() {
-
 		return new Rectangle(this.position.x, this.position.y, this.extent.x, this.extent.y);
 	}
 
