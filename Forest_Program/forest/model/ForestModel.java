@@ -1,11 +1,11 @@
 package forest.model;
 
+import java.awt.Point;
 import java.util.List;
+
+import forest.data.ForestData;
 import forest.view.IForestView;
 import mvc.Model;
-import forest.data.NodeData;
-import forest.data.ForestData;
-import java.awt.Point;
 
 public class ForestModel extends Model {
 
@@ -47,7 +47,7 @@ public class ForestModel extends Model {
 
 	}
 
-	public NodeData getNodeFromPoint(Point aPoint) {
+	public NodeModel getNodeFromPoint(Point aPoint) {
 		return null;
 	}
 
