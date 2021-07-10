@@ -6,7 +6,7 @@ import forest.model.ForestModel;
 import java.awt.event.MouseEvent;
 import java.awt.Point;
 
-public class ForestController extends Controller {
+public class ForestController extends Controller{
 
 	protected IForestView view;
 
@@ -32,9 +32,24 @@ public class ForestController extends Controller {
 	 */
 	public void mouseClicked(MouseEvent aMouseEvent) {
             Point aPoint = aMouseEvent.getPoint();
-            aPoint.translate(view.scrollAmount().x, view.scrollAmount().y);
-            IForestView aView = this.view;
-            aView.showNodeFromPoint(aPoint);
+            aPoint.translate(this.view.scrollAmount().x, this.view.scrollAmount().y);
+            this.view.showNodeFromPoint(aPoint);
+	}
+
+	/**
+	 * IForestViewを束縛するメソッド
+	 * @param aView 
+	 */
+	public void setView(IForestView aView){
+		this.view = aView;
+	}
+
+	/**
+	 * ForestModelを束縛するメソッド
+	 * @param aModel 
+	 */
+	public void setModel(ForestModel aModel){
+		this.model = aModel;
 	}
 
 }
