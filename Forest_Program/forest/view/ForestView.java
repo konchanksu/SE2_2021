@@ -83,7 +83,7 @@ public class ForestView extends View implements IForestView {
 		 * BufferedImage anImage = this.model.picture();
 		 * if(anImage == null) return;
 		 * Point offset = this.scrollAmount();
-		 * aGraphics.drawImage(anImage, offset.x, offset.y, null);
+		 * aGraphics.drawImage(anImage, -offset.x, -offset.y, null);
 		 */
 
 		try {
@@ -95,7 +95,7 @@ public class ForestView extends View implements IForestView {
 				aCondition._return_();
 			});
 			Point offset = this.scrollAmount();
-			aGraphics.drawImage(anImage, offset.x, offset.y, null);
+			aGraphics.drawImage(anImage, -offset.x, -offset.y, null);
 		} catch (ConditionException exception) {
 			//Condition._retnrn_()が実行 -> 正常
 			//それ以外 -> 異常

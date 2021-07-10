@@ -1,17 +1,19 @@
 package forest;
 
-import forest.data.ForestData;
-import forest.repository.ForestDataRepository;
-import forest.repository.IForestDataRepository;
-import forest.repository.MockForestDataRepository;
-import forest.view.ForestView;
-import forest.view.IForestView;
-
-import javax.annotation.processing.FilerException;
-import javax.swing.JFileChooser;
+import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.NoSuchElementException;
+
+import javax.annotation.processing.FilerException;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+
+import forest.data.ForestData;
+import forest.model.ForestModel;
+import forest.repository.ForestDataRepository;
+import forest.repository.IForestDataRepository;
+import forest.view.ForestView;
 
 public class Example extends Object {
 
@@ -37,19 +39,17 @@ public class Example extends Object {
         if (selected == JFileChooser.APPROVE_OPTION) {
             var aFile = aJFileChooser.getSelectedFile();
             var aForestDataRepository = new ForestDataRepository();
-            try
-            {
+            try {
                 var aForestData = aForestDataRepository.getForestData(aFile);
                 var example = new Example(aForestDataRepository);
                 example.run(aForestData);
-            }catch (FileNotFoundException e) {
+            } catch (FileNotFoundException e) {
                 // TODO : 一旦即終了させ、後でファイルを再選択させる機能を実装する
                 e.printStackTrace();
-            }catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 // TODO : 一旦即終了させ、後でファイルを再選択させる機能を実装する
                 e.printStackTrace();
-            }
-            catch (NoSuchElementException e) {
+            } catch (NoSuchElementException e) {
                 // TODO : 一旦即終了させ、後でファイルを再選択させる機能を実装する
                 e.printStackTrace();
             } catch (IOException e) {
@@ -60,11 +60,19 @@ public class Example extends Object {
     }
 
     public void run(ForestData forestData) {
-        forestData.getBranchList().stream().forEach(x -> {
-            System.out.println(x);
-        });
-        forestData.getNodeList().stream().forEach(x -> {
-            System.out.println(x);
-        });
+        ForestModel aForestModel = new ForestModel();
+        aForestModel.initialize(forestData);
+        ForestView aForestView = new ForestView(aForestModel);
+
+        JFrame aWindow = aForestView.getWindow();
+        Dimension windowSize = new Dimension(Constant.WINDOW_WIDTH, Constant.WINDOW_HEIGHT);
+        Dimension minWindowSize = new Dimension(Constant.WINDOW_WIDTH_MINIMUM, Constant.WINDOW_HEIGHT_MINIMUM);
+        aWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        aWindow.setSize(windowSize);
+        aWindow.setMinimumSize(minWindowSize);
+        aWindow.setLocationRelativeTo(null);
+        aWindow.setVisible(true);
+        aForestModel.listNodes();
+        aForestModel.animate();
     }
 }

@@ -38,8 +38,8 @@ public class Constant extends Object {
 	/**
 	 * ノードのラベルの枠と文字のマージンを表す定数
 	 */
-	public static final Point MARGIN = new Point(2,1);
-	
+	public static final Point MARGIN = new Point(2, 1);
+
 	/**
 	 * アニメーションの時間間隔を示す定数
 	 */
@@ -48,7 +48,7 @@ public class Constant extends Object {
 	/**
 	 * フォントの詳細を示す定数
 	 */
-	public static final Font FONT = new Font("Serif",Font.PLAIN,12);
+	public static final Font FONT = new Font("Serif", Font.PLAIN, 12);
 
 	/**
 	 * ノード文字色を示す定数
@@ -64,6 +64,5 @@ public class Constant extends Object {
 	 * 背景の色を示す定数
 	 */
 	public static final Color BACKGROUND_COLOR = Color.white;
-
 
 }
