@@ -1,5 +1,6 @@
 package forest;
 
+import java.awt.Dimension;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.NoSuchElementException;
@@ -64,12 +65,13 @@ public class Example extends Object {
         ForestView aForestView = new ForestView(aForestModel);
 
         JFrame aWindow = aForestView.getWindow();
+        Dimension windowSize = new Dimension(Constant.WINDOW_WIDTH, Constant.WINDOW_HEIGHT);
+        Dimension minWindowSize = new Dimension(Constant.WINDOW_WIDTH_MINIMUM, Constant.WINDOW_HEIGHT_MINIMUM);
         aWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        aWindow.setSize(800, 600);
+        aWindow.setSize(windowSize);
+        aWindow.setMinimumSize(minWindowSize);
         aWindow.setLocationRelativeTo(null);
         aWindow.setVisible(true);
-
-        System.out.println(aForestModel);
         aForestModel.listNodes();
         aForestModel.animate();
     }

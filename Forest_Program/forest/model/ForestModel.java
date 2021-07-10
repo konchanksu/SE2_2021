@@ -71,7 +71,7 @@ public class ForestModel extends Model {
 	/**
 	 * 再起的に樹状整列を行う
 	 * @param aNode 起点となるノード
-	 * @return 子要素の描画に必要だった幅と高さ
+	 * @return 次のノードの描画する座標
 	 */
 	public Point arrange(NodeModel aNode) {
 		aNode.isVisited(true);
@@ -93,24 +93,19 @@ public class ForestModel extends Model {
 		aNode.getChildren().forEach((child) -> {
 			new Condition(() -> child.isVisited()).ifFalse(() -> {
 				Point extent = child.getExtent();
-				height.setDo(value -> value + extent.y + Constant.VERTICAL_MOVE);
 				child.setPosition((new Point(x.get() + aNode.getExtent().x + Constant.HORIZONTAL_MOVE, y.get())));
 				y.set(this.arrange(child).y);
 				y.setDo((value) -> value + Constant.VERTICAL_MOVE + extent.y);
-				new Condition(() -> y.get() > height.get()).ifTrue(() -> {
-					height.set(y.get());
-				});
 			});
 		});
 
 		y.setDo(value -> value - Constant.VERTICAL_MOVE);
+		height.set(y.get() - aNode.getExtent().y);
 		y.set(top.get() + (y.get() - top.get() - aNode.getExtent().y) / 2);
 
 		new Condition(() -> aNode.getPosition().y > y.get()).ifTrue(() -> {
 			y.set(aNode.getPosition().y);
 		});
-
-		height.setDo(value -> value - Constant.VERTICAL_MOVE - aNode.getExtent().y);
 		new Condition(() -> aNode.getPosition().y > height.get()).ifTrue(() -> {
 			height.set(aNode.getPosition().y);
 		});
