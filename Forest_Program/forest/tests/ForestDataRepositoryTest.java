@@ -161,4 +161,35 @@ public class ForestDataRepositoryTest {
             Files.delete(Paths.get(path));
         }
     }
+
+    /**
+     * Branchの文字列形式がフォーマット通りではなかった場合のエラーに対するテスト
+     * @Throws IOException ファイル入出力時に発生する想定しないException
+     */
+    @Test
+    public void Branchの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト() throws IOException {
+        var data = new StringBuilder();
+        data.append("trees:").append(System.lineSeparator())
+                .append("Object").append(System.lineSeparator())
+                .append("nodes:").append(System.lineSeparator())
+                .append("1, DEF").append(System.lineSeparator())
+                .append("2, ABC").append(System.lineSeparator())
+                .append("branches:").append(System.lineSeparator())
+                .append("1, ").append(System.lineSeparator()); //エラーBranch
+        var path = "./temp.txt";
+        var aFileWriter = new FileWriter(path);
+        aFileWriter.write(data.toString());
+        aFileWriter.close();
+        var aFile = new File(path);
+        var aForestDataRepository = new ForestDataRepository();
+        try{
+            var aForestData = aForestDataRepository.getForestData(aFile);
+            fail();
+        }catch (IllegalArgumentException e) {
+            assertEquals("java.lang.IllegalArgumentException: Branchの文字列フォーマットが正しくありません : 1, ", e.toString());
+        }
+        finally {
+            Files.delete(Paths.get(path));
+        }
+    }
 }

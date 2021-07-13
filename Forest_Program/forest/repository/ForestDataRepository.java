@@ -140,11 +140,25 @@ public class ForestDataRepository implements IForestDataRepository {
      */
     private List<BranchData> convertBranchData(List<String> branchStringList, List<NodeData> nodeList) throws NoSuchElementException {
         var map = nodeList.stream().collect(Collectors.toMap(data -> data.getId(), data -> data));
+        var errorSb = new StringBuilder();
 
         return branchStringList.stream().map(beforeConvert -> {
             var ids = beforeConvert.split(",");
+            if(ids.length != 2)
+            {
+                errorSb.append("Branchの文字列フォーマットが正しくありません : ").append(ids);
+                throw new IllegalArgumentException(errorSb.toString());
+            }
             var fromNodeData = map.get(ids[0]);
             var toNodeData = map.get(ids[1].trim());
+
+            if(fromNodeData == null || fromNodeData == null || toNodeData == null || toNodeData == null)
+            {
+                errorSb.append("Branchの文字列フォーマットが正しくありません : ").append(beforeConvert.toString());
+                throw new IllegalArgumentException(errorSb.toString());
+            }
+
+
             var branch = new BranchData(fromNodeData, toNodeData);
             return branch;
         }).toList();
