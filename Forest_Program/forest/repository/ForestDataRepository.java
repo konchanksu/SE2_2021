@@ -106,14 +106,27 @@ public class ForestDataRepository implements IForestDataRepository {
 
         return nodeStringList.stream().map(aBeforeConvert -> {
             var data = aBeforeConvert.split(",");
-            var aId = data[0];
+
+            if(data.length != 2)
+            {
+                errorSb.append("Nodeの文字列フォーマットが正しくありません : ").append(data);
+                throw new IllegalArgumentException(errorSb.toString());
+            }
+            var anId = data[0];
             var aName = data[1].trim();
+
+            if(anId.isEmpty() || anId.isBlank() || aName.isBlank() || aName.isEmpty())
+            {
+                errorSb.append("Nodeの文字列フォーマットが正しくありません : ").append(aBeforeConvert.toString());
+                throw new IllegalArgumentException(errorSb.toString());
+            }
+
             if (aName.length() >= Constant.MAX_NODE_NAME_COUNT) {
                 errorSb.append("指定されたノードの名前が長すぎます. name : ").append(aName);
                 throw new IllegalArgumentException(errorSb.toString());
             }
 
-            var aNodeData = new NodeData(aId, aName);
+            var aNodeData = new NodeData(anId, aName);
             return aNodeData;
         }).toList();
     }
