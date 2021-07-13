@@ -65,4 +65,9 @@ public class Constant extends Object {
 	 */
 	public static final Color BACKGROUND_COLOR = Color.white;
 
+	/**
+	 * Nodeの名前の最大数
+	 */
+	public static final Integer MAX_Node_Name_Count = 100;
+
 }

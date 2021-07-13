@@ -98,12 +98,12 @@ public class ForestDataRepositoryTest {
      * @throws IOException ファイル入出力時に発生する想定しないException
      */
     @Test
-    public void Nodeの名前が長すぎる例外をキャッチできるかテスト() throws IOException {
+    public void Nodeの名前が100文字以上の例外をキャッチできるかテスト() throws IOException {
         var data = new StringBuilder();
         data.append("trees:").append(System.lineSeparator())
                 .append("Object").append(System.lineSeparator())
                 .append("nodes:").append(System.lineSeparator())
-                .append("1, MagnitudeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA").append(System.lineSeparator())
+                .append("1, abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv").append(System.lineSeparator()) // 100文字
                 .append("2, ArithmeticValue").append(System.lineSeparator())
                 .append("branches:").append(System.lineSeparator())
                 .append("1, 2").append(System.lineSeparator());
@@ -117,8 +117,7 @@ public class ForestDataRepositoryTest {
             var aForestData = aForestDataRepository.getForestData(aFile);
             fail();
         }catch (IllegalArgumentException e) {
-            assertEquals("java.lang.IllegalArgumentException: 指定されたノードの名前が長すぎます. name : MagnitudeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", e.toString());
-
+            assertEquals("java.lang.IllegalArgumentException: 指定されたノードの名前が長すぎます. name : abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv", e.toString());
         }
         finally {
             Files.delete(Paths.get(path));

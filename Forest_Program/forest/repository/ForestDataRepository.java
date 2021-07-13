@@ -1,5 +1,6 @@
 package forest.repository;
 
+import forest.Constant;
 import forest.data.BranchData;
 import forest.data.ForestData;
 import forest.data.NodeData;
@@ -102,7 +103,7 @@ public class ForestDataRepository implements IForestDataRepository {
                 throw new IllegalArgumentException("指定されたIdが数値ではありませんでした. id : " + anId);
             }
             var aName = data[1].trim();
-            if (aName.length() > 50) {
+            if (aName.length() >= Constant.MAX_Node_Name_Count) {
                 throw new IllegalArgumentException("指定されたノードの名前が長すぎます. name : " + aName);
             }
             var aNodeData = new NodeData(anId, aName);
