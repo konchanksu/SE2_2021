@@ -68,6 +68,11 @@ public class Constant extends Object {
 	/**
 	 * Nodeの名前の最大数
 	 */
-	public static final Integer MAX_Node_Name_Count = 100;
+	public static final Integer MAX_NODE_NAME_COUNT = 100;
+
+	/**
+	 * Nodeの最大数
+	 */
+	public static final Integer MAX_NODE_COUNT = 10000;
 
 }

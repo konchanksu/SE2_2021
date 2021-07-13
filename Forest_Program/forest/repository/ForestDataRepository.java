@@ -96,13 +96,23 @@ public class ForestDataRepository implements IForestDataRepository {
      * @throws IllegalArgumentException　変換時に想定していない例外
      */
     private List<NodeData> convertNodeData(List<String> nodeStringList)throws IllegalArgumentException  {
+        var nodeCount = nodeStringList.size();
+        var errorSb = new StringBuilder();
+        if(nodeCount >= Constant.MAX_NODE_COUNT)
+        {
+            errorSb.append("ノードの数が多すぎます. count : ").append(nodeCount);
+            throw new IllegalArgumentException(errorSb.toString());
+        }
+
         return nodeStringList.stream().map(aBeforeConvert -> {
             var data = aBeforeConvert.split(",");
             var aId = data[0];
             var aName = data[1].trim();
-            if (aName.length() >= Constant.MAX_Node_Name_Count) {
-                throw new IllegalArgumentException("指定されたノードの名前が長すぎます. name : " + aName);
+            if (aName.length() >= Constant.MAX_NODE_NAME_COUNT) {
+                errorSb.append("指定されたノードの名前が長すぎます. name : ").append(aName);
+                throw new IllegalArgumentException(errorSb.toString());
             }
+
             var aNodeData = new NodeData(aId, aName);
             return aNodeData;
         }).toList();
