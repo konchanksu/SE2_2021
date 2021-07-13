@@ -98,15 +98,12 @@ public class ForestDataRepository implements IForestDataRepository {
     private List<NodeData> convertNodeData(List<String> nodeStringList)throws IllegalArgumentException  {
         return nodeStringList.stream().map(aBeforeConvert -> {
             var data = aBeforeConvert.split(",");
-            var anId = data[0];
-            if (!anId.chars().allMatch(Character::isDigit)) {
-                throw new IllegalArgumentException("指定されたIdが数値ではありませんでした. id : " + anId);
-            }
+            var aId = data[0];
             var aName = data[1].trim();
             if (aName.length() >= Constant.MAX_Node_Name_Count) {
                 throw new IllegalArgumentException("指定されたノードの名前が長すぎます. name : " + aName);
             }
-            var aNodeData = new NodeData(anId, aName);
+            var aNodeData = new NodeData(aId, aName);
             return aNodeData;
         }).toList();
     }

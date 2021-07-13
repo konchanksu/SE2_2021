@@ -61,39 +61,6 @@ public class ForestDataRepositoryTest {
     }
 
     /**
-     * 文字列からForestDataに変換する際にnodeのidが数値ではない場合に発生する想定されたエラーに対するテスト
-     * @throws IOException ファイル入出力時に発生する想定しないException
-     */
-    @Test
-    public void NodeのIdが数字ではない場合例外をキャッチできるかTest() throws IOException {
-        var data = new StringBuilder();
-        data.append("trees:").append(System.lineSeparator())
-                .append("Object").append(System.lineSeparator())
-                .append("nodes:").append(System.lineSeparator())
-                .append("A, Magnitude").append(System.lineSeparator())
-                .append("B, ArithmeticValue").append(System.lineSeparator())
-                .append("branches:").append(System.lineSeparator())
-                .append("A, B").append(System.lineSeparator());
-
-        var path = "./temp.txt";
-        var aFileWriter = new FileWriter(path);
-        aFileWriter.write(data.toString());
-        aFileWriter.close();
-        var aFile = new File(path);
-        var aForestDataRepository = new ForestDataRepository();
-        try{
-            var aForestData = aForestDataRepository.getForestData(aFile);
-            fail();
-        }catch (IllegalArgumentException e) {
-            assertEquals("java.lang.IllegalArgumentException: 指定されたIdが数値ではありませんでした. id : A", e.toString());
-
-        }
-        finally {
-            Files.delete(Paths.get(path));
-        }
-    }
-
-    /**
      * 文字列からForestDataに変換する際にnodeの名前が長すぎる場合に発生する想定されたエラーに対するテスト
      * @throws IOException ファイル入出力時に発生する想定しないException
      */
