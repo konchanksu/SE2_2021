@@ -37,6 +37,9 @@ public class ForestView extends View implements IForestView {
 	 */
 	public ForestView(ForestModel aModel) {
 		super(aModel, new ForestController());
+		ForestController aForestController = (ForestController) this.controller;
+		aForestController.setModel(aModel);
+		aForestController.setView((IForestView) this);
 		this.model = aModel;
 		this.aWindow.getContentPane().add(this);
 		return;
@@ -51,6 +54,8 @@ public class ForestView extends View implements IForestView {
 	public ForestView(ForestModel aModel, ForestController aController) {
 		super(aModel, aController);
 		this.model = aModel;
+		aController.setModel(aModel);
+		aController.setView((IForestView) this);
 		this.aWindow.getContentPane().add(this);
 		return;
 	}
