@@ -8,7 +8,7 @@ import java.awt.Point;
 
 public class ForestController extends Controller{
 
-	protected IForestView view;
+	protected ForestView view;
 
 	protected ForestModel model;
 	/**
@@ -40,7 +40,7 @@ public class ForestController extends Controller{
 	 * IForestViewを束縛するメソッド
 	 * @param aView 
 	 */
-	public void setView(IForestView aView){
+	public void setView(ForestView aView){
 		this.view = aView;
 	}
 
