@@ -10,9 +10,9 @@
     <!-- <rule ref="category/java/bestpractices.xml/AccessorMethodGeneration" /> -->
     <!-- <rule ref="category/java/bestpractices.xml/ArrayIsStoredDirectly" /> -->
     <!-- <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace" /> -->
-    <!-- <rule ref="category/java/bestpractices.xml/AvoidReassigningCatchVariables" /> -->
+    <rule ref="category/java/bestpractices.xml/AvoidReassigningCatchVariables" />
     <!-- <rule ref="category/java/bestpractices.xml/AvoidReassigningLoopVariables" /> -->
-    <!-- <rule ref="category/java/bestpractices.xml/AvoidReassigningParameters" /> -->
+    <rule ref="category/java/bestpractices.xml/AvoidReassigningParameters" />
     <rule ref="category/java/bestpractices.xml/AvoidMessageDigestField"/>
     <rule ref="category/java/bestpractices.xml/AvoidStringBufferField"/>
     <rule ref="category/java/bestpractices.xml/AvoidUsingHardCodedIP"/>
@@ -27,9 +27,13 @@
     <!-- <rule ref="category/java/bestpractices.xml/JUnit4TestShouldUseAfterAnnotation" /> -->
     <!-- <rule ref="category/java/bestpractices.xml/JUnit4TestShouldUseBeforeAnnotation" /> -->
     <!-- <rule ref="category/java/bestpractices.xml/JUnit4TestShouldUseTestAnnotation" /> -->
-    <!-- <rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage" /> -->
-    <!-- <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts" /> -->
-    <!-- <rule ref="category/java/bestpractices.xml/JUnitTestsShouldIncludeAssert" /> -->
+    <rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage" />
+    <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
+        <properties>
+            <property name="maximumAsserts" value="3" />
+        </properties>
+    </rule>
+    <rule ref="category/java/bestpractices.xml/JUnitTestsShouldIncludeAssert" />
     <!-- <rule ref="category/java/bestpractices.xml/JUnitUseExpected" /> -->
     <rule ref="category/java/bestpractices.xml/LiteralsFirstInComparisons" />
     <rule ref="category/java/bestpractices.xml/LooseCoupling"/>
@@ -38,8 +42,8 @@
     <rule ref="category/java/bestpractices.xml/OneDeclarationPerLine"/>
     <rule ref="category/java/bestpractices.xml/PreserveStackTrace"/>
     <!-- <rule ref="category/java/bestpractices.xml/ReplaceEnumerationWithIterator" /> -->
-    <!-- <rule ref="category/java/bestpractices.xml/ReplaceHashtableWithMap" /> -->
-    <!-- <rule ref="category/java/bestpractices.xml/ReplaceVectorWithList" /> -->
+    <rule ref="category/java/bestpractices.xml/ReplaceHashtableWithMap" />
+    <rule ref="category/java/bestpractices.xml/ReplaceVectorWithList" />
     <rule ref="category/java/bestpractices.xml/SwitchStmtsShouldHaveDefault"/>
     <!-- <rule ref="category/java/bestpractices.xml/SystemPrintln" /> -->
     <!-- <rule ref="category/java/bestpractices.xml/UnusedAssignment"/> -->
@@ -53,7 +57,7 @@
     <rule ref="category/java/bestpractices.xml/UseAssertSameInsteadOfAssertTrue"/>
     <rule ref="category/java/bestpractices.xml/UseAssertTrueInsteadOfAssertEquals"/>
     <rule ref="category/java/bestpractices.xml/UseCollectionIsEmpty"/>
-    <!-- <rule ref="category/java/bestpractices.xml/UseTryWithResources" /> -->
+    <rule ref="category/java/bestpractices.xml/UseTryWithResources" />
     <!-- <rule ref="category/java/bestpractices.xml/UseVarargs" /> -->
     <!-- <rule ref="category/java/bestpractices.xml/WhileLoopWithLiteralBoolean" /> -->
 
@@ -84,7 +88,7 @@
     <!-- <rule ref="category/java/codestyle.xml/AvoidFinalLocalVariable" /> -->
     <rule ref="category/java/codestyle.xml/AvoidProtectedFieldInFinalClass"/>
     <rule ref="category/java/codestyle.xml/AvoidProtectedMethodInFinalClassNotExtending"/>
-    <!-- <rule ref="category/java/codestyle.xml/AvoidUsingNativeCode"/>-->
+    <rule ref="category/java/codestyle.xml/AvoidUsingNativeCode"/>
     <!-- <rule ref="category/java/codestyle.xml/BooleanGetMethodName" /> -->
     <!-- <rule ref="category/java/codestyle.xml/CallSuperInConstructor" /> -->
     <!-- <rule ref="category/java/codestyle.xml/CommentDefaultAccessModifier" /> -->
@@ -111,8 +115,8 @@
     <rule ref="category/java/codestyle.xml/UnnecessaryConstructor"/>
     <rule ref="category/java/codestyle.xml/UnnecessaryFullyQualifiedName"/>
     <rule ref="category/java/codestyle.xml/UnnecessaryLocalBeforeReturn"/>
-    <rule ref="category/java/codestyle.xml/UnnecessaryModifier"/>
-    <rule ref="category/java/codestyle.xml/UnnecessaryReturn"/>
+<!--    <rule ref="category/java/codestyle.xml/UnnecessaryModifier"/>-->
+<!--    <rule ref="category/java/codestyle.xml/UnnecessaryReturn"/>-->
     <!-- <rule ref="category/java/codestyle.xml/UseDiamondOperator" /> -->
     <rule ref="category/java/codestyle.xml/UselessParentheses"/>
     <rule ref="category/java/codestyle.xml/UselessQualifiedThis"/>
@@ -276,7 +280,7 @@
     <rule ref="category/java/errorprone.xml/EmptyStatementNotInLoop"/>
     <rule ref="category/java/errorprone.xml/EmptySwitchStatements"/>
     <rule ref="category/java/errorprone.xml/EmptySynchronizedBlock"/>
-    <rule ref="category/java/errorprone.xml/EmptyTryBlock"/> 
+    <rule ref="category/java/errorprone.xml/EmptyTryBlock"/>
     <rule ref="category/java/errorprone.xml/EmptyWhileStmt"/>
 
 
