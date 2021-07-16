@@ -27,7 +27,7 @@
     <!-- <rule ref="category/java/bestpractices.xml/JUnit4TestShouldUseAfterAnnotation" /> -->
     <!-- <rule ref="category/java/bestpractices.xml/JUnit4TestShouldUseBeforeAnnotation" /> -->
     <!-- <rule ref="category/java/bestpractices.xml/JUnit4TestShouldUseTestAnnotation" /> -->
-    <rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage" />
+    <!--rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage" /> -->
     <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
         <properties>
             <property name="maximumAsserts" value="3" />
