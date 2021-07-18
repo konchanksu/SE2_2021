@@ -47,7 +47,7 @@ public class NodeModel extends Component {
 	/**
 	 * このノードの位置を束縛する。座標は左上が原点
 	 */
-	private Point position;
+	private Point location;
 
 	/**
 	 * コンストラクタ。 座標は(0,0)に設定され、幅と高さは文字の長さによって決定される。
@@ -56,13 +56,13 @@ public class NodeModel extends Component {
 	 */
 	public NodeModel(String name) {
 		this.setName(name);
-		this.setPosition(new Point(0, 0));
+		this.setLocation(new Point(0, 0));
 		this.children = new ArrayList<NodeModel>();
 		this.parents = new ArrayList<NodeModel>();
 		this.isVisited = false;
 
 		Integer width = this.getStringWidth(this.name) + Constant.MARGIN.x * 2;
-		Integer height = this.getStringHeight(this.name) + Constant.MARGIN.y * 2;
+		Integer height = this.getStringHeight() + Constant.MARGIN.y * 2;
 		this.setExtent(new Point(width, height));
 
 		return;
@@ -82,15 +82,15 @@ public class NodeModel extends Component {
 		aGraphics.setColor(Constant.NODE_COLOR);
 
 		//枠を描画する
-		aGraphics.drawRect(this.position.x, this.position.y, this.extent.x, this.extent.y);
+		aGraphics.drawRect(this.location.x, this.location.y, this.extent.x, this.extent.y);
 
 		//名前を描画する座標。参照渡しにならないようにgetLocationをつける
-		Point namePosition = this.getPosition().getLocation();
+		Point nameLocation = this.getLocation().getLocation();
 		//fontは左下座標が原点!!
-		namePosition.translate(Constant.MARGIN.x, this.extent.y - Constant.MARGIN.y - 1);
+		nameLocation.translate(Constant.MARGIN.x, this.extent.y - Constant.MARGIN.y - 1);
 
 		aGraphics.setFont(Constant.FONT);
-		aGraphics.drawString(this.name, namePosition.x, namePosition.y);
+		aGraphics.drawString(this.name, nameLocation.x, nameLocation.y);
 		return;
 	}
 
@@ -101,7 +101,7 @@ public class NodeModel extends Component {
 	*/
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(this.position.x, this.position.y, this.extent.x, this.extent.y);
+		return new Rectangle(this.location.x, this.location.y, this.extent.x, this.extent.y);
 	}
 
 	/**
@@ -127,16 +127,18 @@ public class NodeModel extends Component {
 	 * このノードの座標を取得する
 	 * @return 座標
 	 */
-	public Point getPosition() {
-		return this.position;
+	@Override
+	public Point getLocation() {
+		return this.location;
 	}
 
 	/**
 	 * このノードの座標を設定する
 	 * @param aPoint 座標
 	 */
-	public void setPosition(Point aPoint) {
-		this.position = aPoint;
+	@Override
+	public void setLocation(Point aPoint) {
+		this.location = aPoint;
 		return;
 	}
 
@@ -239,7 +241,7 @@ public class NodeModel extends Component {
 	 * @param aString 対象の文字列
 	 * @return 文字列の高さ
 	 */
-	private Integer getStringHeight(String aString) {
+	private Integer getStringHeight() {
 		FontMetrics fontMetrics = this.getFontMetrics(Constant.FONT);
 		return fontMetrics.getHeight();
 	}
