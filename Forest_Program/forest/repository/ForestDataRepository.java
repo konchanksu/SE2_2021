@@ -57,15 +57,19 @@ public class ForestDataRepository implements IForestDataRepository {
             var aForestDataType = new Object() {
                 ForestDataType value =  null;
             };
+            var foundForestDataTypeList = new ArrayList<ForestDataType>();
             aLines.stream().forEach(data -> {
                 if (data.equals("trees:")) {
                     aForestDataType.value = ForestDataType.trees;
+                    foundForestDataTypeList.add(ForestDataType.trees);
                     return;
                 } else if (data.equals("branches:")) {
                     aForestDataType.value = ForestDataType.branches;
+                    foundForestDataTypeList.add(ForestDataType.branches);
                     return;
                 } else if (data.equals("nodes:")) {
                     aForestDataType.value = ForestDataType.nodes;
+                    foundForestDataTypeList.add(ForestDataType.nodes);
                     return;
                 }
 
@@ -77,8 +81,18 @@ public class ForestDataRepository implements IForestDataRepository {
                     aNodeStringList.add(data);
                 }
             });
+            var foundForestDataStream = foundForestDataTypeList.stream();
+            if(!foundForestDataStream.anyMatch(type -> type == ForestDataType.branches)){
+                throw new IllegalArgumentException("Branchの属性データが読み取れませんでした");
+            }
+
+            if(!foundForestDataStream.anyMatch(type -> type == ForestDataType.nodes)) {
+                throw new IllegalArgumentException("Nodeの属性データが読み取れませんでした");
+            }
+
             var aNodeList = this.convertNodeData(aNodeStringList);
             var aBranchList = this.convertBranchData(branchStringList, aNodeList);
+
             return new ForestData(aNodeList, aBranchList);
         } catch (IOException e) {
             e.printStackTrace();

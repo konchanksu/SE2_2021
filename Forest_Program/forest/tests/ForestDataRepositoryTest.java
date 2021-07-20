@@ -124,7 +124,6 @@ public class ForestDataRepositoryTest {
             var aForestData = aForestDataRepository.getForestData(aFile);
             fail();
         }catch (IllegalArgumentException e) {
-            System.out.print(e);
             assertEquals("java.lang.IllegalArgumentException: ノードの数が多すぎます. count : 10000", e.toString());
         }
         finally {
@@ -187,6 +186,37 @@ public class ForestDataRepositoryTest {
             fail();
         }catch (IllegalArgumentException e) {
             assertEquals("java.lang.IllegalArgumentException: Branchの文字列フォーマットが正しくありません : 1, ", e.toString());
+        }
+        finally {
+            Files.delete(Paths.get(path));
+        }
+    }
+
+    /**
+     * 属性ラベル(node: , branch: etc...)の文字列形式がフォーマット通りではなかった場合のエラーに対するテスト
+     * @Throws IOException ファイル入出力時に発生する想定しないException
+     */
+    @Test
+    public void 属性ラベルの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト() throws IOException {
+        var data = new StringBuilder();
+        data.append("trees:").append(System.lineSeparator())
+                .append("Object").append(System.lineSeparator())
+//                .append("nodes:").append(System.lineSeparator())
+                .append("1, DEF").append(System.lineSeparator())
+                .append("2, ABC").append(System.lineSeparator())
+                .append("branches:").append(System.lineSeparator())
+                .append("1, 2").append(System.lineSeparator());
+        var path = "./temp.txt";
+        var aFileWriter = new FileWriter(path);
+        aFileWriter.write(data.toString());
+        aFileWriter.close();
+        var aFile = new File(path);
+        var aForestDataRepository = new ForestDataRepository();
+        try{
+            var aForestData = aForestDataRepository.getForestData(aFile);
+            fail();
+        }catch (IllegalArgumentException e) {
+            assertEquals("java.lang.IllegalArgumentException: Nodeの属性データが読み取れませんでした", e.toString());
         }
         finally {
             Files.delete(Paths.get(path));
