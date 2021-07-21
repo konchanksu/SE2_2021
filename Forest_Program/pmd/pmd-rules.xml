@@ -27,7 +27,7 @@
     <!-- <rule ref="category/java/bestpractices.xml/JUnit4TestShouldUseAfterAnnotation" /> -->
     <!-- <rule ref="category/java/bestpractices.xml/JUnit4TestShouldUseBeforeAnnotation" /> -->
     <!-- <rule ref="category/java/bestpractices.xml/JUnit4TestShouldUseTestAnnotation" /> -->
-    <rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage" />
+    <!--rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage" /> -->
     <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
         <properties>
             <property name="maximumAsserts" value="3" />
@@ -70,7 +70,7 @@
     <!-- <rule ref="category/java/codestyle.xml/LinguisticNaming" /> -->
     <rule ref="category/java/codestyle.xml/LocalVariableNamingConventions"/>
     <!-- <rule ref="category/java/codestyle.xml/LongVariable" /> -->
-    <rule ref="category/java/codestyle.xml/MethodNamingConventions"/>
+    <!--rule ref="category/java/codestyle.xml/MethodNamingConventions"/> -->
     <rule ref="category/java/codestyle.xml/PackageCase"/>
     <!-- <rule ref="category/java/codestyle.xml/ShortClassName" /> -->
     <!-- <rule ref="category/java/codestyle.xml/ShortMethodName" /> -->
@@ -277,7 +277,7 @@
     <rule ref="category/java/errorprone.xml/EmptyIfStmt"/>
     <rule ref="category/java/errorprone.xml/EmptyInitializer"/>
     <rule ref="category/java/errorprone.xml/EmptyStatementBlock"/>
-    <rule ref="category/java/errorprone.xml/EmptyStatementNotInLoop"/>
+    <!--rule ref="category/java/errorprone.xml/EmptyStatementNotInLoop"/> -->
     <rule ref="category/java/errorprone.xml/EmptySwitchStatements"/>
     <rule ref="category/java/errorprone.xml/EmptySynchronizedBlock"/>
     <rule ref="category/java/errorprone.xml/EmptyTryBlock"/>

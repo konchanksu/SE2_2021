@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,8 +60,15 @@ public class ForestModel extends Model {
 	 */
 	public void animate() {
 		ValueHolder<Integer> y = new ValueHolder<Integer>(0);
-		this.roots.forEach((aNode) -> {
-			aNode.setPosition(new Point(0, y.get()));
+
+		//ノードの子要素を名前順にソートする
+		Comparator<NodeModel> aComparator = Comparator.comparing(NodeModel::getName);
+		this.nodes.forEach((aNode) -> {
+			aNode.getChildren().sort(aComparator);
+		});
+
+		this.roots.stream().sorted(aComparator).forEach((aNode) -> {
+			aNode.setLocation(new Point(0, y.get()));
 			y.set(this.arrange(aNode).y);
 			y.setDo((value) -> value + aNode.getExtent().y + Constant.VERTICAL_MOVE);
 		});
@@ -83,17 +91,17 @@ public class ForestModel extends Model {
 				aCondition._return_();
 			});
 		} catch (ConditionException anException) {
-			return aNode.getPosition();
+			return aNode.getLocation();
 		}
 
-		ValueHolder<Integer> x = new ValueHolder<Integer>(aNode.getPosition().x);
-		ValueHolder<Integer> height = new ValueHolder<Integer>(aNode.getPosition().y);
-		ValueHolder<Integer> top = new ValueHolder<Integer>(aNode.getPosition().y);
-		ValueHolder<Integer> y = new ValueHolder<Integer>(aNode.getPosition().y);
+		ValueHolder<Integer> x = new ValueHolder<Integer>(aNode.getLocation().x);
+		ValueHolder<Integer> height = new ValueHolder<Integer>(aNode.getLocation().y);
+		ValueHolder<Integer> top = new ValueHolder<Integer>(aNode.getLocation().y);
+		ValueHolder<Integer> y = new ValueHolder<Integer>(aNode.getLocation().y);
 		aNode.getChildren().forEach((child) -> {
 			new Condition(() -> child.isVisited()).ifFalse(() -> {
 				Point extent = child.getExtent();
-				child.setPosition((new Point(x.get() + aNode.getExtent().x + Constant.HORIZONTAL_MOVE, y.get())));
+				child.setLocation(new Point(x.get() + aNode.getExtent().x + Constant.HORIZONTAL_MOVE, y.get()));
 				y.set(this.arrange(child).y);
 				y.setDo((value) -> value + Constant.VERTICAL_MOVE + extent.y);
 			});
@@ -103,14 +111,14 @@ public class ForestModel extends Model {
 		height.set(y.get() - aNode.getExtent().y);
 		y.set(top.get() + (y.get() - top.get() - aNode.getExtent().y) / 2);
 
-		new Condition(() -> aNode.getPosition().y > y.get()).ifTrue(() -> {
-			y.set(aNode.getPosition().y);
+		new Condition(() -> aNode.getLocation().y > y.get()).ifTrue(() -> {
+			y.set(aNode.getLocation().y);
 		});
-		new Condition(() -> aNode.getPosition().y > height.get()).ifTrue(() -> {
-			height.set(aNode.getPosition().y);
+		new Condition(() -> aNode.getLocation().y > height.get()).ifTrue(() -> {
+			height.set(aNode.getLocation().y);
 		});
 
-		aNode.setPosition(new Point(x.get(), y.get()));
+		aNode.setLocation(new Point(x.get(), y.get()));
 		this.waitAndBroadcast();
 		return new Point(x.get(), height.get());
 	}
@@ -253,9 +261,10 @@ public class ForestModel extends Model {
 	public void listNodes() {
 		ValueHolder<Integer> index = new ValueHolder<Integer>(0);
 		this.nodes.forEach((aNode) -> {
-			aNode.setPosition(new Point(0, index.get() * (Constant.VERTICAL_MOVE + aNode.getExtent().y)));
+			aNode.setLocation(new Point(0, index.get() * (Constant.VERTICAL_MOVE + aNode.getExtent().y)));
 			index.setDo(value -> value + 1);
 		});
+
 		this.changed();
 
 		return;
