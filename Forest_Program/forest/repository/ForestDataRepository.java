@@ -1,5 +1,6 @@
 package forest.repository;
 
+import forest.Constant;
 import forest.data.BranchData;
 import forest.data.ForestData;
 import forest.data.NodeData;
@@ -56,15 +57,19 @@ public class ForestDataRepository implements IForestDataRepository {
             var aForestDataType = new Object() {
                 ForestDataType value =  null;
             };
+            var foundForestDataTypeList = new ArrayList<ForestDataType>();
             aLines.stream().forEach(data -> {
                 if (data.equals("trees:")) {
                     aForestDataType.value = ForestDataType.trees;
+                    foundForestDataTypeList.add(ForestDataType.trees);
                     return;
                 } else if (data.equals("branches:")) {
                     aForestDataType.value = ForestDataType.branches;
+                    foundForestDataTypeList.add(ForestDataType.branches);
                     return;
                 } else if (data.equals("nodes:")) {
                     aForestDataType.value = ForestDataType.nodes;
+                    foundForestDataTypeList.add(ForestDataType.nodes);
                     return;
                 }
 
@@ -76,8 +81,18 @@ public class ForestDataRepository implements IForestDataRepository {
                     aNodeStringList.add(data);
                 }
             });
+            var foundForestDataStream = foundForestDataTypeList.stream();
+            if(!foundForestDataStream.anyMatch(type -> type == ForestDataType.branches)){
+                throw new IllegalArgumentException("Branchの属性データが読み取れませんでした");
+            }
+
+            if(!foundForestDataStream.anyMatch(type -> type == ForestDataType.nodes)) {
+                throw new IllegalArgumentException("Nodeの属性データが読み取れませんでした");
+            }
+
             var aNodeList = this.convertNodeData(aNodeStringList);
             var aBranchList = this.convertBranchData(branchStringList, aNodeList);
+
             return new ForestData(aNodeList, aBranchList);
         } catch (IOException e) {
             e.printStackTrace();
@@ -95,16 +110,36 @@ public class ForestDataRepository implements IForestDataRepository {
      * @throws IllegalArgumentException　変換時に想定していない例外
      */
     private List<NodeData> convertNodeData(List<String> nodeStringList)throws IllegalArgumentException  {
+        var nodeCount = nodeStringList.size();
+        var errorSb = new StringBuilder();
+        if(nodeCount >= Constant.MAX_NODE_COUNT)
+        {
+            errorSb.append("ノードの数が多すぎます. count : ").append(nodeCount);
+            throw new IllegalArgumentException(errorSb.toString());
+        }
+
         return nodeStringList.stream().map(aBeforeConvert -> {
             var data = aBeforeConvert.split(",");
+
+            if(data.length != 2)
+            {
+                errorSb.append("Nodeの文字列フォーマットが正しくありません : ").append(data);
+                throw new IllegalArgumentException(errorSb.toString());
+            }
             var anId = data[0];
-            if (!anId.chars().allMatch(Character::isDigit)) {
-                throw new IllegalArgumentException("指定されたIdが数値ではありませんでした. id : " + anId);
-            }
             var aName = data[1].trim();
-            if (aName.length() > 50) {
-                throw new IllegalArgumentException("指定されたノードの名前が長すぎます. name : " + aName);
+
+            if(anId.isEmpty() || anId.isBlank() || aName.isBlank() || aName.isEmpty())
+            {
+                errorSb.append("Nodeの文字列フォーマットが正しくありません : ").append(aBeforeConvert.toString());
+                throw new IllegalArgumentException(errorSb.toString());
             }
+
+            if (aName.length() >= Constant.MAX_NODE_NAME_COUNT) {
+                errorSb.append("指定されたノードの名前が長すぎます. name : ").append(aName);
+                throw new IllegalArgumentException(errorSb.toString());
+            }
+
             var aNodeData = new NodeData(anId, aName);
             return aNodeData;
         }).toList();
@@ -119,11 +154,25 @@ public class ForestDataRepository implements IForestDataRepository {
      */
     private List<BranchData> convertBranchData(List<String> branchStringList, List<NodeData> nodeList) throws NoSuchElementException {
         var map = nodeList.stream().collect(Collectors.toMap(data -> data.getId(), data -> data));
+        var errorSb = new StringBuilder();
 
         return branchStringList.stream().map(beforeConvert -> {
             var ids = beforeConvert.split(",");
+            if(ids.length != 2)
+            {
+                errorSb.append("Branchの文字列フォーマットが正しくありません : ").append(ids);
+                throw new IllegalArgumentException(errorSb.toString());
+            }
             var fromNodeData = map.get(ids[0]);
             var toNodeData = map.get(ids[1].trim());
+
+            if(fromNodeData == null || fromNodeData == null || toNodeData == null || toNodeData == null)
+            {
+                errorSb.append("Branchの文字列フォーマットが正しくありません : ").append(beforeConvert.toString());
+                throw new IllegalArgumentException(errorSb.toString());
+            }
+
+
             var branch = new BranchData(fromNodeData, toNodeData);
             return branch;
         }).toList();
