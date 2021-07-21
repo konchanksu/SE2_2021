@@ -264,6 +264,7 @@ public class ForestModel extends Model {
 			aNode.setLocation(new Point(0, index.get() * (Constant.VERTICAL_MOVE + aNode.getExtent().y)));
 			index.setDo(value -> value + 1);
 		});
+
 		this.changed();
 
 		return;

@@ -17,6 +17,7 @@ import forest.Constant;
  *
  * @author Kodai Okayama
  */
+@SuppressWarnings("serial")
 public class NodeModel extends Component {
 
 	/**
