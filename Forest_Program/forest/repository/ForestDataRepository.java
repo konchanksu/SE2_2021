@@ -81,12 +81,12 @@ public class ForestDataRepository implements IForestDataRepository {
                     aNodeStringList.add(data);
                 }
             });
-            var foundForestDataStream = foundForestDataTypeList.stream();
-            if(!foundForestDataStream.anyMatch(type -> type == ForestDataType.branches)){
+
+            if(!foundForestDataTypeList.stream().anyMatch(type -> type == ForestDataType.branches)){
                 throw new IllegalArgumentException("Branchの属性データが読み取れませんでした");
             }
 
-            if(!foundForestDataStream.anyMatch(type -> type == ForestDataType.nodes)) {
+            if(!foundForestDataTypeList.stream().anyMatch(type -> type == ForestDataType.nodes)) {
                 throw new IllegalArgumentException("Nodeの属性データが読み取れませんでした");
             }
 
