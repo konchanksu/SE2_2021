@@ -48,12 +48,12 @@ public class BranchModel extends Object {
 		aGraphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
 		// 始点座標を計算
-		Point position = this.startNode.getPosition();
+		Point position = this.startNode.getLocation();
 		Point extent = this.startNode.getExtent();
 		Integer startX = position.x + extent.x;
 		Integer startY = position.y + (extent.y / 2);
 		// 終点座標を計算
-		position = this.endNode.getPosition();
+		position = this.endNode.getLocation();
 		extent = this.endNode.getExtent();
 		Integer endX = position.x;
 		Integer endY = position.y + (extent.y / 2);
