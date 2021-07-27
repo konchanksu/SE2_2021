@@ -5,16 +5,11 @@ import forest.data.NodeData;
 import forest.repository.ForestDataRepository;
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -39,25 +34,22 @@ public class ForestDataRepositoryTest {
                 .append("branches:").append(System.lineSeparator())
                 .append("1, 2").append(System.lineSeparator());
         var path = "./temp.txt";
-        var aFileWriter = new FileWriter(path);
-        aFileWriter.write(data.toString());
-        aFileWriter.close();
-        var aFile = new File(path);
-        var aForestDataRepository = new ForestDataRepository();
-        var aForestData = aForestDataRepository.getForestData(aFile);
-        var branchArray = aForestData.getBranchList().toArray(new BranchData[]{});
-        var nodeArray = aForestData.getNodeList().toArray(new NodeData[]{});
+        try(FileWriter aFileWriter = new FileWriter(path)) {
+            aFileWriter.write(data.toString());
+            var aFile = new File(path);
+            var aForestDataRepository = new ForestDataRepository();
+            var aForestData = aForestDataRepository.getForestData(aFile);
+            var branchArray = aForestData.getBranchList().toArray(new BranchData[]{});
+            var nodeArray = aForestData.getNodeList().toArray(new NodeData[]{});
 
-        assertEquals("1", nodeArray[0].getId());
-        assertEquals("Magnitude", nodeArray[0].getName());
-
-        assertEquals("2", nodeArray[1].getId());
-        assertEquals("ArithmeticValue", nodeArray[1].getName());
-
-        assertEquals( nodeArray[0], branchArray[0].getStart());
-        assertEquals( nodeArray[1], branchArray[0].getEnd());
-
-        Files.delete(Paths.get(path));
+            assertEquals("1", nodeArray[0].getId());
+            assertEquals("2", nodeArray[1].getId());
+            assertEquals( nodeArray[0], branchArray[0].getStart());
+            Files.delete(Paths.get(path));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -75,19 +67,22 @@ public class ForestDataRepositoryTest {
                 .append("branches:").append(System.lineSeparator())
                 .append("1, 2").append(System.lineSeparator());
         var path = "./temp.txt";
-        var aFileWriter = new FileWriter(path);
-        aFileWriter.write(data.toString());
-        aFileWriter.close();
-        var aFile = new File(path);
-        var aForestDataRepository = new ForestDataRepository();
-        try{
-            var aForestData = aForestDataRepository.getForestData(aFile);
-            fail();
-        }catch (IllegalArgumentException e) {
-            assertEquals("java.lang.IllegalArgumentException: 指定されたノードの名前が長すぎます. name : abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv", e.toString());
+        try(FileWriter aFileWriter = new FileWriter(path)) {
+            aFileWriter.write(data.toString());
+            var aFile = new File(path);
+            var aForestDataRepository = new ForestDataRepository();
+            try{
+                aForestDataRepository.getForestData(aFile);
+                fail();
+            }catch (IllegalArgumentException e) {
+                assertEquals("java.lang.IllegalArgumentException: 指定されたノードの名前が長すぎます. name : abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv", e.toString());
+            }
+            finally {
+                Files.delete(Paths.get(path));
+            }
         }
-        finally {
-            Files.delete(Paths.get(path));
+        catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -115,19 +110,21 @@ public class ForestDataRepositoryTest {
                 .append("1, 2").append(System.lineSeparator());
 
         var path = "./temp.txt";
-        var aFileWriter = new FileWriter(path);
-        aFileWriter.write(data.toString());
-        aFileWriter.close();
-        var aFile = new File(path);
-        var aForestDataRepository = new ForestDataRepository();
-        try{
-            var aForestData = aForestDataRepository.getForestData(aFile);
-            fail();
-        }catch (IllegalArgumentException e) {
-            assertEquals("java.lang.IllegalArgumentException: ノードの数が多すぎます. count : 10000", e.toString());
+        try(FileWriter aFileWriter = new FileWriter(path)) {
+            aFileWriter.write(data.toString());
+            var aFile = new File(path);
+            var aForestDataRepository = new ForestDataRepository();
+            try {
+                aForestDataRepository.getForestData(aFile);
+                fail();
+            } catch (IllegalArgumentException e) {
+                assertEquals("java.lang.IllegalArgumentException: ノードの数が多すぎます. count : 10000", e.toString());
+            } finally {
+                Files.delete(Paths.get(path));
+            }
         }
-        finally {
-            Files.delete(Paths.get(path));
+        catch (IOException e) {
+            e.printStackTrace();
         }
     }
     /**
@@ -145,19 +142,21 @@ public class ForestDataRepositoryTest {
                 .append("branches:").append(System.lineSeparator())
                 .append("1, 2").append(System.lineSeparator());
         var path = "./temp.txt";
-        var aFileWriter = new FileWriter(path);
-        aFileWriter.write(data.toString());
-        aFileWriter.close();
-        var aFile = new File(path);
-        var aForestDataRepository = new ForestDataRepository();
-        try{
-            var aForestData = aForestDataRepository.getForestData(aFile);
-            fail();
-        }catch (IllegalArgumentException e) {
-            assertEquals("java.lang.IllegalArgumentException: Nodeの文字列フォーマットが正しくありません : 1, ", e.toString());
+        try(FileWriter aFileWriter = new FileWriter(path)) {
+            aFileWriter.write(data.toString());
+            var aFile = new File(path);
+            var aForestDataRepository = new ForestDataRepository();
+            try {
+                aForestDataRepository.getForestData(aFile);
+                fail();
+            } catch (IllegalArgumentException e) {
+                assertEquals("java.lang.IllegalArgumentException: Nodeの文字列フォーマットが正しくありません : 1, ", e.toString());
+            } finally {
+                Files.delete(Paths.get(path));
+            }
         }
-        finally {
-            Files.delete(Paths.get(path));
+        catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -176,19 +175,20 @@ public class ForestDataRepositoryTest {
                 .append("branches:").append(System.lineSeparator())
                 .append("1, ").append(System.lineSeparator()); //エラーBranch
         var path = "./temp.txt";
-        var aFileWriter = new FileWriter(path);
-        aFileWriter.write(data.toString());
-        aFileWriter.close();
-        var aFile = new File(path);
-        var aForestDataRepository = new ForestDataRepository();
-        try{
-            var aForestData = aForestDataRepository.getForestData(aFile);
-            fail();
-        }catch (IllegalArgumentException e) {
-            assertEquals("java.lang.IllegalArgumentException: Branchの文字列フォーマットが正しくありません : 1, ", e.toString());
-        }
-        finally {
-            Files.delete(Paths.get(path));
+        try(FileWriter aFileWriter = new FileWriter(path)) {
+            aFileWriter.write(data.toString());
+            var aFile = new File(path);
+            var aForestDataRepository = new ForestDataRepository();
+            try {
+                aForestDataRepository.getForestData(aFile);
+                fail();
+            } catch (IllegalArgumentException e) {
+                assertEquals("java.lang.IllegalArgumentException: Branchの文字列フォーマットが正しくありません : 1, ", e.toString());
+            } finally {
+                Files.delete(Paths.get(path));
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -207,19 +207,20 @@ public class ForestDataRepositoryTest {
                 .append("branches:").append(System.lineSeparator())
                 .append("1, 2").append(System.lineSeparator());
         var path = "./temp.txt";
-        var aFileWriter = new FileWriter(path);
-        aFileWriter.write(data.toString());
-        aFileWriter.close();
-        var aFile = new File(path);
-        var aForestDataRepository = new ForestDataRepository();
-        try{
-            var aForestData = aForestDataRepository.getForestData(aFile);
-            fail();
-        }catch (IllegalArgumentException e) {
-            assertEquals("java.lang.IllegalArgumentException: Nodeの属性データが読み取れませんでした", e.toString());
-        }
-        finally {
-            Files.delete(Paths.get(path));
+        try(FileWriter aFileWriter = new FileWriter(path)) {
+            aFileWriter.write(data.toString());
+            var aFile = new File(path);
+            var aForestDataRepository = new ForestDataRepository();
+            try {
+                aForestDataRepository.getForestData(aFile);
+                fail();
+            } catch (IllegalArgumentException e) {
+                assertEquals("java.lang.IllegalArgumentException: Nodeの属性データが読み取れませんでした", e.toString());
+            } finally {
+                Files.delete(Paths.get(path));
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
