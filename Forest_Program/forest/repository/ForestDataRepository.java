@@ -45,8 +45,8 @@ public class ForestDataRepository implements IForestDataRepository {
      * @throws NoSuchElementException branchData作成時に指定されたnode idが見つからない例外
      */
     private ForestData convertForestData(File aFile) throws IOException, IllegalArgumentException, NoSuchElementException {
-        var reader = new BufferedReader(new FileReader(aFile));
-        try {
+        try (BufferedReader reader =
+                     new BufferedReader(new FileReader(aFile))){
             String str;
             List<String> aLines = new ArrayList<String>();
             while ((str = reader.readLine()) != null) {
@@ -59,23 +59,24 @@ public class ForestDataRepository implements IForestDataRepository {
             };
             var foundForestDataTypeList = new ArrayList<ForestDataType>();
             aLines.stream().forEach(data -> {
-                if (data.equals("trees:")) {
+                if ("trees:".equals(data)) {
                     aForestDataType.value = ForestDataType.trees;
                     foundForestDataTypeList.add(ForestDataType.trees);
                     return;
-                } else if (data.equals("branches:")) {
+                } else if ("branches:".equals(data)) {
                     aForestDataType.value = ForestDataType.branches;
                     foundForestDataTypeList.add(ForestDataType.branches);
                     return;
-                } else if (data.equals("nodes:")) {
+                } else if ("nodes:".equals(data)) {
                     aForestDataType.value = ForestDataType.nodes;
                     foundForestDataTypeList.add(ForestDataType.nodes);
                     return;
                 }
 
-                if (aForestDataType.value == ForestDataType.trees) {
-                    // ignore
-                } else if (aForestDataType.value == ForestDataType.branches) {
+                // if (aForestDataType.value == ForestDataType.trees) {
+                //     ignore
+                //}
+                if (aForestDataType.value == ForestDataType.branches) {
                     branchStringList.add(data);
                 } else if ( aForestDataType.value == ForestDataType.nodes) {
                     aNodeStringList.add(data);
@@ -96,9 +97,6 @@ public class ForestDataRepository implements IForestDataRepository {
             return new ForestData(aNodeList, aBranchList);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
-            reader.close();
         }
         return null;
     }
@@ -140,8 +138,7 @@ public class ForestDataRepository implements IForestDataRepository {
                 throw new IllegalArgumentException(errorSb.toString());
             }
 
-            var aNodeData = new NodeData(anId, aName);
-            return aNodeData;
+            return new NodeData(anId, aName);
         }).toList();
     }
 
@@ -173,8 +170,7 @@ public class ForestDataRepository implements IForestDataRepository {
             }
 
 
-            var branch = new BranchData(fromNodeData, toNodeData);
-            return branch;
+            return new BranchData(fromNodeData, toNodeData);
         }).toList();
     }
 
@@ -187,7 +183,6 @@ public class ForestDataRepository implements IForestDataRepository {
      * @throws NoSuchElementException branchData作成時に指定されたnode idが見つからない例外
      */
     public ForestData getForestData(File aFile) throws IOException, IllegalArgumentException, NoSuchElementException {
-        var aForestData = this.convertForestData(aFile);
-        return aForestData;
+        return this.convertForestData(aFile);
     }
 }
