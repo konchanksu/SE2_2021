@@ -6,7 +6,6 @@ import forest.model.ForestModel;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
-import java.awt.Point;
 
 public class ForestController extends Controller{
 
