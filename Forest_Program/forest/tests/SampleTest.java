@@ -10,8 +10,8 @@ class SampleTest {
         assertEquals(true, true);
     }
 
-    @Test
-    public void testFailed() {
-        assertEquals(true, false);
-    }
+    // @Test
+    // public void testFailed() {
+    //     assertEquals(true, false);
+    // }
 }

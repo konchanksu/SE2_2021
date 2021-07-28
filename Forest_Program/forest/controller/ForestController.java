@@ -3,8 +3,9 @@ package forest.controller;
 import mvc.Controller;
 import forest.view.IForestView;
 import forest.model.ForestModel;
-import java.awt.event.MouseEvent;
+
 import java.awt.Point;
+import java.awt.event.MouseEvent;
 
 public class ForestController extends Controller{
 
