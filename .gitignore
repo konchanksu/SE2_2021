@@ -8,7 +8,5 @@ Forest_Program/pmd-bin
 Forest_Program/pmd/pmd-bin-6.35.0
 Forest_Program/JavaDoc/
 Forest_Program/pmd_report.html
-Forest_Program/Forest.app
-!/Forest_Program/Forest.app/Contents/Resources/Scripts/main.scpt
 Forest.zip
 Forest_Program/junit/test-report
