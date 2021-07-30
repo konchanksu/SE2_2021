@@ -28,6 +28,9 @@ public class ForestView extends View implements IForestView {
 	 */
 	protected ForestModel model;
 
+	/**
+	 * ウィンドウのインスタンス
+	 */
 	private JFrame aWindow = new JFrame();
 
 	/**
