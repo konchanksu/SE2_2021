@@ -31,14 +31,17 @@ public class ForestDataRepository implements IForestDataRepository {
      * 読み込んできた.txtファイルの中に定義されている属性
      */
     private enum ForestDataType{
+        /** 木であるというタグ */
         trees,
+        /** ブランチであるというタグ */
         branches,
+        /** ノードであるというタグ */
         nodes
     }
 
     /**
      * FileクラスからForestDataクラスに変換する
-     * @param aFile
+     * @param aFile 入力のファイル
      * @return ForestData ファイルの中身の情報を格納
      * @throws IOException ファイル読み込み時例外
      * @throws IllegalArgumentException 変換時に想定していない例外
@@ -103,11 +106,11 @@ public class ForestDataRepository implements IForestDataRepository {
 
     /**
      * String ListのnodeデータからNodeDataクラスにコンバートする
-     * @param nodeStringList
+     * @param nodeStringList 文字列のリストの状態となっているノード情報
      * @return NodeData String状態のnode dataの情報を格納
-     * @throws IllegalArgumentException　変換時に想定していない例外
+     * @throws IllegalArgumentException 変換時に想定していない例外
      */
-    private List<NodeData> convertNodeData(List<String> nodeStringList)throws IllegalArgumentException  {
+    private List<NodeData> convertNodeData(List<String> nodeStringList) throws IllegalArgumentException  {
         var nodeCount = nodeStringList.size();
         var errorSb = new StringBuilder();
         if(nodeCount >= Constant.MAX_NODE_COUNT)
