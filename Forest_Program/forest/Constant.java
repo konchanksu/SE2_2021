@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
 
+/**
+ * プログラム全体で利用する設定をまとめたクラス
+ */
 public class Constant extends Object {
 	/**
 	 * 初期のウィンドウサイズの幅を示す定数
