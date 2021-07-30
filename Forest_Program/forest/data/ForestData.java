@@ -19,8 +19,8 @@ public class ForestData {
 
 	/**
 	 * NodeList、BranchListを格納する
-	 * @param aNodeList
-	 * @param aBranchList
+	 * @param aNodeList ノード情報を集めた集合
+	 * @param aBranchList 繋がりの情報を集めた集合
 	 */
 	public ForestData(List<NodeData> aNodeList, List<BranchData> aBranchList) {
 		this.nodeList = aNodeList;
