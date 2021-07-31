@@ -41,6 +41,9 @@ public class BranchData {
 		return this.endNodeData;
 	}
 
+	/**
+	 * このクラスを文字列に変換する
+	 */
 	@Override
 	public String toString() {
 		var sb = new StringBuilder();
