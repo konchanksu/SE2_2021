@@ -2,7 +2,7 @@ package forest.data;
 
 /**
  * ノードの情報を格納するクラス
- * @RyogaYamauchi
+ * @author RyogaYamauchi
  */
 public class NodeData {
 
@@ -18,8 +18,8 @@ public class NodeData {
 
 	/**
 	 * idとnameを格納する
-	 * @param id
-	 * @param name
+	 * @param id ノードの識別番号
+	 * @param name ノードにつけられている名前
 	 */
 	public NodeData(String id, String name) {
 		this.id = id;
@@ -42,6 +42,9 @@ public class NodeData {
 		return this.id;
 	}
 
+	/**
+	 * このクラスを文字列に変換する
+	 */
 	@Override
 	public String toString()
 	{

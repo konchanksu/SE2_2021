@@ -212,7 +212,7 @@ public class NodeModel extends Component {
 
 	/**
 	* このノードの子要素を追加する
-	* @param child 子要素のリスト
+	* @param children 子要素のリスト
 	*/
 	public void addChildren(List<NodeModel> children) {
 		this.children.addAll(children);
@@ -239,7 +239,6 @@ public class NodeModel extends Component {
 
 	/**
 	 * 文字列の高さを取得する
-	 * @param aString 対象の文字列
 	 * @return 文字列の高さ
 	 */
 	private Integer getStringHeight() {

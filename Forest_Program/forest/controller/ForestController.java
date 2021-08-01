@@ -7,11 +7,22 @@ import forest.model.ForestModel;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
-public class ForestController extends Controller{
+/**
+ * Forestに対して与えられる入力に対応するコントローラーのクラス
+ * MVCのCの役割を持つ
+ */
+public class ForestController extends Controller {
 
+	/**
+	 * コントローラーに対応するView
+	 */
 	protected IForestView view;
 
+	/**
+	 * コントローラーに対応するModel
+	 */
 	protected ForestModel model;
+
 	/**
 	 * このクラスのインスタンスを作成するコンストラクタ
 	 */
@@ -42,7 +53,7 @@ public class ForestController extends Controller{
 
 	/**
 	 * IForestViewを束縛するメソッド
-	 * @param aView 
+	 * @param aView Viewのインスタンス
 	 */
 	public void setView(IForestView aView){
 		this.view = aView;
@@ -51,7 +62,7 @@ public class ForestController extends Controller{
 
 	/**
 	 * ForestModelを束縛するメソッド
-	 * @param aModel 
+	 * @param aModel Modelのインスタンス
 	 */
 	public void setModel(ForestModel aModel){
 		this.model = aModel;

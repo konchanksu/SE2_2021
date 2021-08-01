@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class ForestDataRepositoryTest {
     /**
      * 文字列からForestDataに正しく変換できるかのテスト
-     * @throws IOException
+     * @throws IOException ファイル入出力時に発生する想定しないException
      */
     @Test
     public void 正しくForestDataを変換できるかTest() throws IOException {
@@ -90,7 +90,7 @@ public class ForestDataRepositoryTest {
 
     /**
      * Nodeの個数が10000以上の場合に発生する想定されたエラーに対するテスト
-     * @Throws IOException ファイル入出力時に発生する想定しないException
+     * @throws IOException ファイル入出力時に発生する想定しないException
      */
     @Test
     public void Nodeの個数が10000以上の例外をキャッチできるかテスト() throws IOException{
@@ -132,7 +132,7 @@ public class ForestDataRepositoryTest {
     }
     /**
      * Nodeの文字列形式がフォーマット通りではなかった場合のエラーに対するテスト
-     * @Throws IOException ファイル入出力時に発生する想定しないException
+     * @throws IOException ファイル入出力時に発生する想定しないException
      */
     @Test
     public void Nodeの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト() throws IOException {
@@ -165,7 +165,7 @@ public class ForestDataRepositoryTest {
 
     /**
      * Branchの文字列形式がフォーマット通りではなかった場合のエラーに対するテスト
-     * @Throws IOException ファイル入出力時に発生する想定しないException
+     * @throws IOException ファイル入出力時に発生する想定しないException
      */
     @Test
     public void Branchの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト() throws IOException {
@@ -198,7 +198,7 @@ public class ForestDataRepositoryTest {
 
     /**
      * 属性ラベル(node: , branch: etc...)の文字列形式がフォーマット通りではなかった場合のエラーに対するテスト
-     * @Throws IOException ファイル入出力時に発生する想定しないException
+     * @throws IOException ファイル入出力時に発生する想定しないException
      */
     @Test
     public void 属性ラベルの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト() throws IOException {
