@@ -208,6 +208,30 @@ public class ForestModel extends Model {
 	}
 
 	/**
+	 * この森のノード群のシャローコピーを返す
+	 * @return この森のノードのリスト
+	 */
+	public List<NodeModel> getNodes(){
+		List<NodeModel> aNodeModels = new ArrayList<>();
+		this.nodes.forEach((aNode)->{
+			aNodeModels.add(aNode);
+		});
+		return aNodeModels;
+	}
+
+	/**
+	 * この森の枝群のシャローコピーを返す
+	 * @return この森の枝のリスト
+	 */
+	public List<BranchModel> getBranches(){
+		List<BranchModel> aBranchModels = new ArrayList<>();
+		this.branches.forEach((aBranch) -> {
+			aBranchModels.add(aBranch);
+		});
+		return aBranchModels;
+	}
+
+	/**
 	 * ForestDataを読み込み、ノード、ブランチ、ルートを設定する
 	 * @param aForestData フォレストのデータ
 	 */
@@ -219,7 +243,7 @@ public class ForestModel extends Model {
 
 		//NodeDataをNodeModelに変換し、フォレストに追加する
 		nodeDataList.forEach((aNodeData) -> {
-			NodeModel aNodeModel = new NodeModel(aNodeData.getName());
+			NodeModel aNodeModel = new NodeModel(aNodeData.getId(),aNodeData.getName());
 			new Condition(() -> nodeMap.get().containsKey(aNodeData.getId())).ifThenElse(() -> {
 				throw new IllegalArgumentException(String.format("ID:{%s}を持つノードが複数存在します", aNodeData.getId()));
 			}, () -> {

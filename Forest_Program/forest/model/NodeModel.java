@@ -10,6 +10,8 @@ import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
 
+import condition.Condition;
+import condition.ConditionException;
 import forest.Constant;
 
 /**
@@ -29,6 +31,11 @@ public class NodeModel extends Component {
 	 * ノードの幅と高さを束縛する
 	 */
 	private Point extent;
+
+	/**
+	 * このノードのID。同値性の比較に使用
+	 */
+	private String id;
 
 	/**
 	 * 一度の描画ですでに描画済みか
@@ -55,7 +62,8 @@ public class NodeModel extends Component {
 	 *
 	 * @param name ノード名
 	 */
-	public NodeModel(String name) {
+	public NodeModel(String id,String name) {
+		this.id = id;
 		this.setName(name);
 		this.setLocation(new Point(0, 0));
 		this.children = new ArrayList<NodeModel>();
@@ -112,6 +120,14 @@ public class NodeModel extends Component {
 	 */
 	public String getName() {
 		return this.name;
+	}
+
+	/**
+	 * このノードのIDを返す
+	 * @return このノードのID
+	 */
+	public String getId(){
+		return this.id;
 	}
 
 	/**
@@ -255,6 +271,39 @@ public class NodeModel extends Component {
 
 		FontMetrics fontMetrics = this.getFontMetrics(Constant.FONT);
 		return fontMetrics.stringWidth(aString);
+	}
+
+	/**
+	 * このオブジェクトと他のオブジェクトが等しいかを示す
+	 * @param anObject 比較対象のオブジェクト
+	 */
+	@Override
+	public boolean equals(Object anObject){
+		try{
+		new Condition(()->anObject == this).ifTrue((aCondition)->{
+			aCondition._return_();
+		});
+
+		new Condition(()->(anObject instanceof NodeModel)).ifTrue((aCondition)->{
+			NodeModel aNodeModel = (NodeModel) anObject;
+			new Condition(()->aNodeModel.getId().equals(this.getId())).ifTrue(()->{
+				aCondition._return_();
+			});
+		});
+
+		}catch(ConditionException anException){
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * このオブジェクトのハッシュコードを返す
+	 */
+	@Override
+	public int hashCode(){
+		return this.id.hashCode();
 	}
 
 	/**
