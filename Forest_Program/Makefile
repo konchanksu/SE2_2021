@@ -47,6 +47,9 @@ install:
 doc:
 	$(ANT) doc
 
+jconsole:
+	sh ./jconsole.sh ./ forest forest.jar
+
 wipe: clean
 	@find . -name ".DS_Store" -exec echo rm -f {} ";" -exec rm -f {} ";"
 	@find . -maxdepth 1 -name "$(PMD_BIN)" -exec echo rm -f {} ";" -exec rm -f {} ";"
