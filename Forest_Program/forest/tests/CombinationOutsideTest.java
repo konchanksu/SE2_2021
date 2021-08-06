@@ -4,31 +4,25 @@ import forest.data.BranchData;
 import forest.data.ForestData;
 import forest.data.NodeData;
 
-import forest.model.BranchModel;
-import forest.model.NodeModel;
 import forest.model.ForestModel;
 
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * ForestDataとForestModelに対するテスト
- * 一度ForestDataを作ってから、確認する
  * @author Ryutaro Kajiwara
  */
 public class CombinationOutsideTest {
         /**
-         * ForestData のBranchとNodeの内容が
-         * ForestModelのBranchModelとNodeModelの内容とが合致しているか
+         * BranchDataの先頭NodeのidとBranchModelの先頭Nodeのidが合致しているか
+         * の確認
+         * @author Ryutaro Kajiwara
          */
         @Test
-        public void ForestDataのbranchDataとForestModelのbranchModelの最初の内容が合致しているか() {
+        public void BranchDataの先頭NodeのidとBranchModelの先頭Nodeのidが合致しているか() {
                 var startNodeData = new NodeData("id_1", "name_1");
                 var endNodeData = new NodeData("id_2", "name_2");
                 var nodeList = new ArrayList<NodeData>();
@@ -41,16 +35,20 @@ public class CombinationOutsideTest {
 
                 ForestData forestData = new ForestData(nodeList, branchList);
 
-                List<NodeData> nodeModel = new ArrayList<NodeData>();
-                nodeModel.add(forestData.getNodeList().get(0));
-                nodeModel.add(forestData.getNodeList().get(1));
-                var branchModel = new BranchData(nodeModel.get(0), nodeModel.get(1));
+                ForestModel forestModel = new ForestModel();
+                forestModel.initialize(forestData);
 
-                assertEquals(startNodeData, branchModel.getStart());
+                //assertEquals(branchData.getStart().getId(), forestModel.getNodes().get(0).getId());
+                assertEquals(branchData.getStart().getId(), forestModel.getBranches().get(0).getStart().getId());
         }
 
+        /**
+         * BranchDataの先頭NodeのnameとBranchModelの先頭Nodeのnameが合致しているか
+         * の確認
+         * @author Ryutaro Kajiwara
+         */
         @Test
-        public void ForestDataのbranchDataとForestModelのbranchModelの最後の内容が合致しているか() {
+        public void BranchDataの先頭NodeのnameとBranchModelの先頭Nodeのnameが合致しているか() {
                 var startNodeData = new NodeData("id_1", "name_1");
                 var endNodeData = new NodeData("id_2", "name_2");
                 var nodeList = new ArrayList<NodeData>();
@@ -63,16 +61,19 @@ public class CombinationOutsideTest {
 
                 ForestData forestData = new ForestData(nodeList, branchList);
 
-                List<NodeData> nodeModel = new ArrayList<NodeData>();
-                nodeModel.add(forestData.getNodeList().get(0));
-                nodeModel.add(forestData.getNodeList().get(1));
-                var branchModel = new BranchData(nodeModel.get(0), nodeModel.get(1));
+                ForestModel forestModel = new ForestModel();
+                forestModel.initialize(forestData);
 
-                assertEquals(endNodeData, branchModel.getEnd());
+                assertEquals(branchData.getStart().getName(), forestModel.getBranches().get(0).getStart().getName());
         }
 
+        /**
+         * BranchDataの最後のNodeのnameとBranchModelの最後のNodeのidが合致しているか
+         * の確認
+         * @author Ryutaro Kajiwara
+         */
         @Test
-        public void ForestDataのnodeDataとForestModelのnodeModelのidが合致しているか() {
+        public void BranchDataの最後のNodeのnameとBranchModelの最後のNodeのidが合致しているか() {
                 var startNodeData = new NodeData("id_1", "name_1");
                 var endNodeData = new NodeData("id_2", "name_2");
                 var nodeList = new ArrayList<NodeData>();
@@ -85,16 +86,19 @@ public class CombinationOutsideTest {
 
                 ForestData forestData = new ForestData(nodeList, branchList);
 
-                List<NodeData> nodeModel = new ArrayList<NodeData>();
-                nodeModel.add(forestData.getNodeList().get(0));
-                nodeModel.add(forestData.getNodeList().get(1));
-                var branchModel = new BranchData(nodeModel.get(0), nodeModel.get(1));
+                ForestModel forestModel = new ForestModel();
+                forestModel.initialize(forestData);
 
-                assertEquals("id_1", forestData.getNodeList().get(0).getId());
+                assertEquals(branchData.getEnd().getId(), forestModel.getBranches().get(0).getEnd().getId());
         }
 
+        /**
+         * BranchDataの最後のNodeのnameとBranchModelの最後のNodeのnameが合致しているか
+         * の確認
+         * @author Ryutaro Kajiwara
+         */
         @Test
-        public void ForestDataのnodeDataとForestModelのNodenodelのnameが合致しているか() {
+        public void BranchDataの最後のNodeのnameとBranchModelの最後のNodeのnameが合致しているか() {
                 var startNodeData = new NodeData("id_1", "name_1");
                 var endNodeData = new NodeData("id_2", "name_2");
                 var nodeList = new ArrayList<NodeData>();
@@ -107,11 +111,9 @@ public class CombinationOutsideTest {
 
                 ForestData forestData = new ForestData(nodeList, branchList);
 
-                List<NodeData> nodeModel = new ArrayList<NodeData>();
-                nodeModel.add(forestData.getNodeList().get(0));
-                nodeModel.add(forestData.getNodeList().get(1));
-                var branchModel = new BranchData(nodeModel.get(0), nodeModel.get(1));
+                ForestModel forestModel = new ForestModel();
+                forestModel.initialize(forestData);
 
-                assertEquals("name_1", forestData.getNodeList().get(0).getName());
+                assertEquals(branchData.getEnd().getName(), forestModel.getBranches().get(0).getEnd().getName());
         }
 }
