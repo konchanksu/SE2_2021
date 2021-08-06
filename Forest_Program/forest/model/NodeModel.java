@@ -61,6 +61,7 @@ public class NodeModel extends Component {
 	 * コンストラクタ。 座標は(0,0)に設定され、幅と高さは文字の長さによって決定される。
 	 *
 	 * @param name ノード名
+	 * @param id id
 	 */
 	public NodeModel(String id,String name) {
 		this.id = id;
