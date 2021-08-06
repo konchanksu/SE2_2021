@@ -284,7 +284,7 @@ public class NodeModel extends Component {
 			aCondition._return_();
 		});
 
-		new Condition(()->(anObject instanceof NodeModel)).ifTrue((aCondition)->{
+		new Condition(()->anObject instanceof NodeModel).ifTrue((aCondition)->{
 			NodeModel aNodeModel = (NodeModel) anObject;
 			new Condition(()->aNodeModel.getId().equals(this.getId())).ifTrue(()->{
 				aCondition._return_();
