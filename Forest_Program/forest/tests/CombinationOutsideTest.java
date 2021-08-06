@@ -13,16 +13,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * ForestDataとForestModelに対するテスト
+ * まずForestDataを作成し、それを元にしてForestModelを作成
+ * その作成したForestModel内のBranchModelからNodeModelを参照し
+ * ForestData作成に用いたNodeDataと内容が一致するかをテストする
  * @author Ryutaro Kajiwara
  */
 public class CombinationOutsideTest {
         /**
-         * BranchDataの先頭NodeのidとBranchModelの先頭Nodeのidが合致しているか
-         * の確認
+         * BranchDataの先頭NodeのidとBranchModelの先頭Nodeのidが一致しているか
+         * のテスト
          * @author Ryutaro Kajiwara
          */
         @Test
-        public void BranchDataの先頭NodeのidとBranchModelの先頭Nodeのidが合致しているか() {
+        public void BranchDataの先頭NodeのidとBranchModelの先頭Nodeのidが一致する() {
                 var startNodeData = new NodeData("id_1", "name_1");
                 var endNodeData = new NodeData("id_2", "name_2");
                 var nodeList = new ArrayList<NodeData>();
@@ -38,17 +41,16 @@ public class CombinationOutsideTest {
                 ForestModel forestModel = new ForestModel();
                 forestModel.initialize(forestData);
 
-                //assertEquals(branchData.getStart().getId(), forestModel.getNodes().get(0).getId());
                 assertEquals(branchData.getStart().getId(), forestModel.getBranches().get(0).getStart().getId());
         }
 
         /**
-         * BranchDataの先頭NodeのnameとBranchModelの先頭Nodeのnameが合致しているか
-         * の確認
+         * BranchDataの先頭NodeのnameとBranchModelの先頭Nodeのnameが一致しているか
+         * のテスト
          * @author Ryutaro Kajiwara
          */
         @Test
-        public void BranchDataの先頭NodeのnameとBranchModelの先頭Nodeのnameが合致しているか() {
+        public void BranchDataの先頭NodeのnameとBranchModelの先頭Nodeのnameが一致する() {
                 var startNodeData = new NodeData("id_1", "name_1");
                 var endNodeData = new NodeData("id_2", "name_2");
                 var nodeList = new ArrayList<NodeData>();
@@ -68,12 +70,12 @@ public class CombinationOutsideTest {
         }
 
         /**
-         * BranchDataの最後のNodeのnameとBranchModelの最後のNodeのidが合致しているか
-         * の確認
+         * BranchDataの最後のNodeのidとBranchModelの最後のNodeのidが一致しているか
+         * のテスト
          * @author Ryutaro Kajiwara
          */
         @Test
-        public void BranchDataの最後のNodeのnameとBranchModelの最後のNodeのidが合致しているか() {
+        public void BranchDataの最後のNodeのidとBranchModelの最後のNodeのidが一致する() {
                 var startNodeData = new NodeData("id_1", "name_1");
                 var endNodeData = new NodeData("id_2", "name_2");
                 var nodeList = new ArrayList<NodeData>();
@@ -93,12 +95,12 @@ public class CombinationOutsideTest {
         }
 
         /**
-         * BranchDataの最後のNodeのnameとBranchModelの最後のNodeのnameが合致しているか
-         * の確認
+         * BranchDataの最後のNodeのnameとBranchModelの最後のNodeのnameが一致しているか
+         * のテスト
          * @author Ryutaro Kajiwara
          */
         @Test
-        public void BranchDataの最後のNodeのnameとBranchModelの最後のNodeのnameが合致しているか() {
+        public void BranchDataの最後のNodeのnameとBranchModelの最後のNodeのnameが一致する() {
                 var startNodeData = new NodeData("id_1", "name_1");
                 var endNodeData = new NodeData("id_2", "name_2");
                 var nodeList = new ArrayList<NodeData>();
