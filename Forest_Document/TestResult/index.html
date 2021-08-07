@@ -10,6 +10,7 @@
   <meta name="author" content="AOKI Atsushi">
   <link rev="made" href="index.html">
   <link rel="index" href="index.html">
+  <link rel="icon" href="../icon/favicon.ico" id="favicon">
   <link rel="stylesheet" href="../base_style.css">
   <style type="text/css">
     <!--
@@ -51,6 +52,7 @@
     <h3><a name="TantaiTest">単体テスト</a></h3>
   </div>
   <a href="test-report/html/junit-noframes.html">Unittest結果</a>
+
   <div class="belt">
     <h3><a name="KetsugouTest">結合テスト</a></h3>
   </div>
@@ -64,66 +66,83 @@
         <tr>
           <th class="left-padding" abbr="1">概要</th>
           <th class="left-padding" abbr="2">結果</th>
+          <th class="left-padding" abbr="3">テストが正当に行えたか</th>
         </tr>
         <tr>
           <td class="left-padding">表示時間のテスト</td>
-          <td class="left-padding">平均6.54秒かかった。</td>
+          <td class="left-padding">平均2.23秒であり、3秒以内であることを確認した。</td>
+          <td class="left-padding">行えた</td>
         </tr>
         <tr>
           <td class="left-padding">マウスドラッグのテスト</td>
-          <td class="left-padding">アプリケーションがマウスドラッグ可能な画面でマウスドラッグを受け付けることが確認できた。</td>
+          <td class="left-padding">アプリケーションがマウスドラッグ可能な画面でマウスドラッグを受け付けることを確認した。</td>
+          <td class="left-padding">行えた</td>
         </tr>
         <tr>
           <td class="left-padding">スクロール時の描画のテスト</td>
-          <td class="left-padding">画面をスクロールしたとき、画面表示が正しく綺麗に表示されることが確認できた。</td>
+          <td class="left-padding">画面をスクロールしたとき、画面表示が正しく綺麗に表示されることを確認した。</td>
+          <td class="left-padding">行えた</td>
         </tr>
         <tr>
           <td class="left-padding">クリックのテスト</td>
-          <td class="left-padding">アプリケーション全体を通して、クリック可能な箇所で正常にクリックができることが確認できた。</td>
+          <td class="left-padding">アプリケーション全体を通して、クリック可能な箇所で正常にクリックができることを確認した。</td>
+          <td class="left-padding">行えた</td>
         </tr>
         <tr>
           <td class="left-padding">正常なデータの読み込みテスト</td>
-          <td class="left-padding">(単体テストにて記載)</td>
+          <td class="left-padding">正常なデータならば3秒以内に読み込まれることを確認した。また、フォーマット違反の取得ができることが単体テストから確認できた。</td>
+          <td class="left-padding">行えた</td>
         </tr>
         <tr>
           <td class="left-padding">ウィンドウタイトルのテスト</td>
-          <td class="left-padding">ウィンドウタイトルは入力ファイルの名称になっていた。</td>
+          <td class="left-padding">ウィンドウタイトルは入力ファイルの名称になっていることが確認できた。。</td>
+          <td class="left-padding">行えた</td>
         </tr>
         <tr>
           <td class="left-padding">異なる拡張子のファイルを開くテスト</td>
-          <td class="left-padding">(単体テストにて記載)</td>
+          <td class="left-padding">ファイルの拡張子がtxt以外のファイルは開けるが、樹形図が表示されないことが確認できた。</td>
+          <td class="left-padding">行えた</td>
         </tr>
         <tr>
           <td class="left-padding">壊れたファイルを開くテスト</td>
-          <td class="left-padding">(単体テストにて記載)</td>
+          <td class="left-padding">テキストファイルの壊し方が不明であったため、検証不可。</td>
+          <td class="left-padding">行えなかった</td>
         </tr>
         <tr>
           <td class="left-padding">ノードの詳細が確認できるかのテスト</td>
           <td class="left-padding">ノードをクリックした時に、そのノードの詳細のダイアログが表示されることが確認できた。</td>
+          <td class="left-padding">行えた</td>
+
         </tr>
         <tr>
           <td class="left-padding">ノードのダイアログが複数表示されないかのテスト</td>
           <td class="left-padding">ノードをクリックした時に、すでにダイアログが表示されている場合何も起きないことが確認できた。</td>
+          <td class="left-padding">行えた</td>
         </tr>
         <tr>
           <td class="left-padding">ウィンドウの最大化のテスト</td>
-          <td class="left-padding">ウィンドウを最大化しても、表示は崩れなかった。</td>
+          <td class="left-padding">ウィンドウを最大化しても、表示は崩れなかったことが確認できた。</td>
+          <td class="left-padding">行えた</td>
         </tr>
         <tr>
           <td class="left-padding">ウィンドウの最小化のテスト</td>
-          <td class="left-padding">ウィンドウを最小化しても、表示は崩れなかった。</td>
+          <td class="left-padding">ウィンドウを最小化しても、表示は崩れなかったことが確認できた。</td>
+          <td class="left-padding">行えた</td>
         </tr>
         <tr>
           <td class="left-padding">ウィンドウの最小幅が機能しているかのテスト</td>
-          <td class="left-padding">ウィンドウのサイズを小さくする際、縦200×横200が最小値であった。</td>
+          <td class="left-padding">ウィンドウのサイズを小さくする際、縦200×横200が最小値であった。また、これは規定値であり設定された最小幅は機能していることが確認できた。</td>
+          <td class="left-padding">行えた</td>
         </tr>
         <tr>
           <td class="left-padding">ウィンドウサイズ変更のテスト</td>
           <td class="left-padding">ウィンドウのサイズを変更する時、ノードサイズが変更されず見える範囲が変更されることが確確認できた。</td>
+          <td class="left-padding">行えた</td>
         </tr>
         <tr>
           <td class="left-padding">日本語対応のテスト</td>
-          <td class="left-padding">(単体テストにて記載)</td>
+          <td class="left-padding">UTF-8の文字コードのファイルを正しく読み込めることが確認できた。</td>
+          <td class="left-padding">行えた</td>
         </tr>
       </table>
     </li>
