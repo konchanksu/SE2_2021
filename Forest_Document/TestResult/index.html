@@ -45,6 +45,7 @@
       <ul>
         <li><a href="#KinouseiTest">機能性テスト</a></li>
         <li><a href="#KourituseiTest">効率性テスト</a></li>
+        <li><a href="#ShinraiseiTest">信頼性テスト</a></li>
         <li><a href="#HoshuseiTest">保守性テスト</a></li>
         <li><a href="#IshokuseiTest">移植性テスト</a></li>
       </ul>
@@ -150,6 +151,34 @@
       <a href="./images/jconsoleResult.png">
         <img class=" borderless" src="./images/jconsoleResult.png" alt="jconsoleResult.png" width="600">
       </a>
+    </li>
+    <li>
+      <h4><a name="ShinraiseiTest">信頼性テスト</a></h4>
+      <ul>
+        <li>
+          <p>CPU負荷状態でのテスト</p>
+        </li>
+          <p>jconsoleを用いてCPU使用率が40％を超えることがないことを確かめる。<br>
+          24時間以上実行した結果、問題なく動作していることが確認できた。</p>
+          <a href="./images/Burdening3.png">
+            <img class=" borderless" src="./images/Burdening3.png" alt="Burdening3.png" width="400">
+          </a>
+          <a href="./images/Burdening4.png">
+            <img class=" borderless" src="./images/Burdening4.png" alt="Burdening4.png" width="400">
+          </a>
+        <li>
+          <p>使用メモリ量のテスト</p>
+        </li>
+          <p>	jconsoleを用いてメモリの使用量が200MiBを超えることがないことを確かめる。<br>
+              yesコマンドを用いて、85%まで負荷をあげた状態で正しく動作していることが確認できた。<br>
+              jconsoleによりCPU使用率が最大4.2%~4.3%, 常時0.1%~0.2%の使用率を示しているため、95%までであれば処理が落ちることなく実行できる。</p>
+         <a href="./images/Burdening1.png">
+            <img class=" borderless" src="./images/Burdening1.png" alt="Burdening1.png" width="300">
+         </a>
+         <a href="./images/Burdening2.png">
+           <img class=" borderless" src="./images/Burdening2.png" alt="Burdening2.png" width="300">
+         </a>
+      </ul>
     </li>
     <li>
       <h4><a name="HoshuseiTest">保守性テスト</a></h4>
