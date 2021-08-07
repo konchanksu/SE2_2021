@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" hostname="kaba-temple.local" id="0" name="JUnit Jupiter" package="" skipped="0" tests="17" time="7.341" timestamp="2021-08-07T23:41:13">
+    <properties>
+      <property name="file.encoding" value="UTF-8" />
+
+      <property name="file.separator" value="/" />
+
+      <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
+
+      <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
+
+      <property name="java.class.path" value="/Users/kaba-temple/Downloads/SE2_2021-main/Forest_Program/forest.jar" />
+
+      <property name="java.class.version" value="60.0" />
+
+      <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-16.jdk/Contents/Home" />
+
+      <property name="java.io.tmpdir" value="/var/folders/6c/hdk18trx7k989y3rdgr3zcx00000gn/T/" />
+
+      <property name="java.library.path" value="/Users/kaba-temple/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:." />
+
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+
+      <property name="java.runtime.version" value="16+36-2231" />
+
+      <property name="java.specification.name" value="Java Platform API Specification" />
+
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+
+      <property name="java.specification.version" value="16" />
+
+      <property name="java.vendor" value="Oracle Corporation" />
+
+      <property name="java.vendor.url" value="https://java.oracle.com/" />
+
+      <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/" />
+
+      <property name="java.version" value="16" />
+
+      <property name="java.version.date" value="2021-03-16" />
+
+      <property name="java.vm.compressedOopsMode" value="Zero based" />
+
+      <property name="java.vm.info" value="mixed mode, sharing" />
+
+      <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+
+      <property name="java.vm.specification.version" value="16" />
+
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+
+      <property name="java.vm.version" value="16+36-2231" />
+
+      <property name="jdk.debug" value="release" />
+
+      <property name="line.separator" value=" " />
+
+      <property name="os.arch" value="x86_64" />
+
+      <property name="os.name" value="Mac OS X" />
+
+      <property name="os.version" value="10.16" />
+
+      <property name="path.separator" value=":" />
+
+      <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
+
+      <property name="sun.arch.data.model" value="64" />
+
+      <property name="sun.awt.enableExtraMouseButtons" value="true" />
+
+      <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-16.jdk/Contents/Home/lib" />
+
+      <property name="sun.cpu.endian" value="little" />
+
+      <property name="sun.font.fontmanager" value="sun.font.CFontManager" />
+
+      <property name="sun.io.unicode.encoding" value="UnicodeBig" />
+
+      <property name="sun.java.command" value="org.junit.platform.console.ConsoleLauncher --scan-class-path=./Classes --reports-dir ./junit/test-report" />
+
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+
+      <property name="sun.jnu.encoding" value="UTF-8" />
+
+      <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+
+      <property name="user.country" value="JP" />
+
+      <property name="user.dir" value="/Users/kaba-temple/Downloads/SE2_2021-main/Forest_Program" />
+
+      <property name="user.home" value="/Users/kaba-temple" />
+
+      <property name="user.language" value="ja" />
+
+      <property name="user.name" value="kaba-temple" />
+
+      <property name="user.timezone" value="Asia/Tokyo" />
+
+    </properties>
+
+    <testcase classname="forest.tests.ForestDataRepositoryTest" name="Nodeの名前が100文字以上の例外をキャッチできるかテスト()" time="0.004">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.ForestDataRepositoryTest]/[method:Nodeの名前が100文字以上の例外をキャッチできるかテスト()]
+display-name: Nodeの名前が100文字以上の例外をキャッチできるかテスト()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.CombinationOutsideTest" name="BranchDataの最後のNodeのnameとBranchModelの最後のNodeのnameが一致する()" time="0">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.CombinationOutsideTest]/[method:BranchDataの最後のNodeのnameとBranchModelの最後のNodeのnameが一致する()]
+display-name: BranchDataの最後のNodeのnameとBranchModelの最後のNodeのnameが一致する()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.ForestDataRepositoryTest" name="Nodeの個数が10000以上の例外をキャッチできるかテスト()" time="0.162">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.ForestDataRepositoryTest]/[method:Nodeの個数が10000以上の例外をキャッチできるかテスト()]
+display-name: Nodeの個数が10000以上の例外をキャッチできるかテスト()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.CombinationOutsideTest" name="BranchDataの先頭NodeのnameとBranchModelの先頭Nodeのnameが一致する()" time="7.083">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.CombinationOutsideTest]/[method:BranchDataの先頭NodeのnameとBranchModelの先頭Nodeのnameが一致する()]
+display-name: BranchDataの先頭NodeのnameとBranchModelの先頭Nodeのnameが一致する()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.NodeDataTest" name="コンストラクタで設定したnameが値と一致する()" time="0">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.NodeDataTest]/[method:コンストラクタで設定したnameが値と一致する()]
+display-name: コンストラクタで設定したnameが値と一致する()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.ForestDataRepositoryTest" name="Nodeの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト()" time="0.006">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.ForestDataRepositoryTest]/[method:Nodeの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト()]
+display-name: Nodeの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.ForestDataRepositoryTest" name="属性ラベルの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト()" time="0.004">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.ForestDataRepositoryTest]/[method:属性ラベルの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト()]
+display-name: 属性ラベルの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.BranchDataTest" name="コンストラクタで設定したendNodeDataと値が一致する()" time="0">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.BranchDataTest]/[method:コンストラクタで設定したendNodeDataと値が一致する()]
+display-name: コンストラクタで設定したendNodeDataと値が一致する()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.ForestDataRepositoryTest" name="正しくForestDataを変換できるかTest()" time="0.007">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.ForestDataRepositoryTest]/[method:正しくForestDataを変換できるかTest()]
+display-name: 正しくForestDataを変換できるかTest()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.SampleTest" name="testSuccess()" time="0.001">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.SampleTest]/[method:testSuccess()]
+display-name: testSuccess()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.ForestDataTest" name="コンストラクタで設定したbranchListと値がすべて一致する()" time="0">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.ForestDataTest]/[method:コンストラクタで設定したbranchListと値がすべて一致する()]
+display-name: コンストラクタで設定したbranchListと値がすべて一致する()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.NodeDataTest" name="コンストラクタで設定したidが値と一致する()" time="0">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.NodeDataTest]/[method:コンストラクタで設定したidが値と一致する()]
+display-name: コンストラクタで設定したidが値と一致する()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.CombinationOutsideTest" name="BranchDataの先頭NodeのidとBranchModelの先頭Nodeのidが一致する()" time="0">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.CombinationOutsideTest]/[method:BranchDataの先頭NodeのidとBranchModelの先頭Nodeのidが一致する()]
+display-name: BranchDataの先頭NodeのidとBranchModelの先頭Nodeのidが一致する()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.ForestDataTest" name="コンストラクタで設定したnodeListと値がすべて一致する()" time="0">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.ForestDataTest]/[method:コンストラクタで設定したnodeListと値がすべて一致する()]
+display-name: コンストラクタで設定したnodeListと値がすべて一致する()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.ForestDataRepositoryTest" name="Branchの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト()" time="0.004">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.ForestDataRepositoryTest]/[method:Branchの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト()]
+display-name: Branchの文字列形式がフォーマット通りではなかった場合の例外をキャッチできるかテスト()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.BranchDataTest" name="コンストラクタで設定したstartNodeDataと値が一致する()" time="0">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.BranchDataTest]/[method:コンストラクタで設定したstartNodeDataと値が一致する()]
+display-name: コンストラクタで設定したstartNodeDataと値が一致する()
+]]></system-out>
+
+    </testcase>
+
+    <testcase classname="forest.tests.CombinationOutsideTest" name="BranchDataの最後のNodeのidとBranchModelの最後のNodeのidが一致する()" time="0">
+      <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:forest.tests.CombinationOutsideTest]/[method:BranchDataの最後のNodeのidとBranchModelの最後のNodeのidが一致する()]
+display-name: BranchDataの最後のNodeのidとBranchModelの最後のNodeのidが一致する()
+]]></system-out>
+
+    </testcase>
+
+    <system-out><![CDATA[
+unique-id: [engine:junit-jupiter]
+display-name: JUnit Jupiter
+]]></system-out>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="kaba-temple.local" id="1" name="JUnit Vintage" package="" skipped="0" tests="0" time="0.001" timestamp="2021-08-07T23:41:13">
+    <properties>
+      <property name="file.encoding" value="UTF-8" />
+
+      <property name="file.separator" value="/" />
+
+      <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
+
+      <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
+
+      <property name="java.class.path" value="/Users/kaba-temple/Downloads/SE2_2021-main/Forest_Program/forest.jar" />
+
+      <property name="java.class.version" value="60.0" />
+
+      <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-16.jdk/Contents/Home" />
+
+      <property name="java.io.tmpdir" value="/var/folders/6c/hdk18trx7k989y3rdgr3zcx00000gn/T/" />
+
+      <property name="java.library.path" value="/Users/kaba-temple/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:." />
+
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+
+      <property name="java.runtime.version" value="16+36-2231" />
+
+      <property name="java.specification.name" value="Java Platform API Specification" />
+
+      <property name="java.specification.vendor" value="Oracle Corporation" />
+
+      <property name="java.specification.version" value="16" />
+
+      <property name="java.vendor" value="Oracle Corporation" />
+
+      <property name="java.vendor.url" value="https://java.oracle.com/" />
+
+      <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/" />
+
+      <property name="java.version" value="16" />
+
+      <property name="java.version.date" value="2021-03-16" />
+
+      <property name="java.vm.compressedOopsMode" value="Zero based" />
+
+      <property name="java.vm.info" value="mixed mode, sharing" />
+
+      <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+
+      <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+
+      <property name="java.vm.specification.version" value="16" />
+
+      <property name="java.vm.vendor" value="Oracle Corporation" />
+
+      <property name="java.vm.version" value="16+36-2231" />
+
+      <property name="jdk.debug" value="release" />
+
+      <property name="line.separator" value=" " />
+
+      <property name="os.arch" value="x86_64" />
+
+      <property name="os.name" value="Mac OS X" />
+
+      <property name="os.version" value="10.16" />
+
+      <property name="path.separator" value=":" />
+
+      <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16" />
+
+      <property name="sun.arch.data.model" value="64" />
+
+      <property name="sun.awt.enableExtraMouseButtons" value="true" />
+
+      <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-16.jdk/Contents/Home/lib" />
+
+      <property name="sun.cpu.endian" value="little" />
+
+      <property name="sun.font.fontmanager" value="sun.font.CFontManager" />
+
+      <property name="sun.io.unicode.encoding" value="UnicodeBig" />
+
+      <property name="sun.java.command" value="org.junit.platform.console.ConsoleLauncher --scan-class-path=./Classes --reports-dir ./junit/test-report" />
+
+      <property name="sun.java.launcher" value="SUN_STANDARD" />
+
+      <property name="sun.jnu.encoding" value="UTF-8" />
+
+      <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+
+      <property name="user.country" value="JP" />
+
+      <property name="user.dir" value="/Users/kaba-temple/Downloads/SE2_2021-main/Forest_Program" />
+
+      <property name="user.home" value="/Users/kaba-temple" />
+
+      <property name="user.language" value="ja" />
+
+      <property name="user.name" value="kaba-temple" />
+
+      <property name="user.timezone" value="Asia/Tokyo" />
+
+    </properties>
+
+    <system-out><![CDATA[
+unique-id: [engine:junit-vintage]
+display-name: JUnit Vintage
+]]></system-out>
+
+  </testsuite>
+</testsuites>
