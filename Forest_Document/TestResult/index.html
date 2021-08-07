@@ -39,22 +39,19 @@
   <hr>
   <h2>ソフトウェア工学II「樹状整列」テスト結果報告書</h2>
   <ul>
-    <li><a href="#TantaiTest">単体テスト</a></li>
-    <li><a href="#KetsugouTest">結合テスト</a></li>
+    <li><a href="#TantaiTest">単体テスト、結合テスト</a></li>
     <li>
       <a href="#SougouTest">総合テスト</a>
       <ul>
         <li><a href="#KinouseiTest">機能性テスト</a></li>
+        <li><a href="#KourituseiTest">効率性テスト</a></li>
       </ul>
     </li>
   </ul>
   <div class="belt">
-    <h3><a name="TantaiTest">単体テスト</a></h3>
+    <h3><a name="TantaiTest">単体テスト、結合テスト</a></h3>
   </div>
   <a href="test-report/html/junit-noframes.html">Unittest結果</a>
-  <div class="belt">
-    <h3><a name="KetsugouTest">結合テスト</a></h3>
-  </div>
   <div class="belt">
     <h3><a name="SougouTest">総合テスト</a></h3>
   </div>
@@ -144,9 +141,17 @@
         </tr>
       </table>
     </li>
+    <li>
+      <h4><a name="KourituseiTest">効率性テスト</a></h4>
+      <p>make testを起動し、10分間ドラッグ、クリックの操作をし続けた結果である。<br>
+      CPU使用率は40%を常に下回り、メモリ使用率も200Mibを超えていないことが確認できる。</p>
+      <a href="./images/jconsoleResult.png">
+        <img class=" borderless" src="./images/jconsoleResult.png" alt="jconsoleResult.png" width="600">
+      </a>
+    </li>
   </ul>
   <hr>
-  <div class="right-small">Copyright 2021 Project Forest, Updated: 2021/08/06 (Created: 2021/05/12)</div>
+  <div class="right-small">Copyright 2021 Project Forest, Updated: 2021/08/08 (Created: 2021/05/12)</div>
 </body>
 
 </html>
