@@ -1,6 +1,0 @@
-trees:Object
-nodes:
-1, Magnitude
-2, ArithmeticValue
-branches: 
-1, 2
