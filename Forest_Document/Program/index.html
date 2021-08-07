@@ -36,11 +36,304 @@
   </div>
   <hr>
   <h2>ソフトウェア工学II「樹状整列」プログラム</h2>
+  <ul>
+    <li><a href="#Example">Example</a></li>
+    <li><a href="#Constant">Constant</a></li>
+    <li><a href="#ForestView">ForestView</a></li>
+    <li><a href="#ForestModel">ForestModel</a></li>
+    <li><a href="#ForestController">ForestController</a></li>
+    <li><a href="#Forestdata">ForestData</a></li>
+    <li><a href="#ForestRepository">ForestRepository</a></li>
+    <li><a href="#Makefile">Makefile</a></li>
+    <li><a href="#Buildxml">build.xml</a></li>
+  </ul>
   <div class="belt">
-    <h3><a name="KanseiSaseteKudasai">完成させてください</a></h3>
+    <h3><a name="Example">Example</a></h3>
   </div>
+    <a href="../JavaDoc/forest/Example.html">Example JavaDoc</a>
+  <div class="belt">
+    <h3><a name="Constant">Costant</a></h3>
+  </div>
+    <a href="../JavaDoc/forest/Constant.html">Constant JavaDoc</a>
+  <div class="belt">
+    <h3><a name="ForestView">ForestView</a></h3>
+  </div>
+    <a href="../JavaDoc/forest/view/package-summary.html">ForestView JavaDoc</a>
+  <div class="belt">
+    <h3><a name="ForestModel">ForestModel</a></h3>
+  </div>
+    <a href="../JavaDoc/forest/model/package-summary.html">ForestModel JavaDoc</a>
+  <div class="belt">
+    <h3><a name="ForestController">ForestContoller</a></h3>
+  </div>
+    <a href="../JavaDoc/forest/controller/package-summary.html">ForestController JavaDoc</a>
+  <div class="belt">
+    <h3><a name="Forestdata">Forestdata</a></h3>
+  </div>
+    <a href="../JavaDoc/forest/data/package-summary.html">ForestData JavaDoc</a>
+  <div class="belt">
+    <h3><a name="ForestRepository">ForestRepository</a></h3>
+  </div>
+    <a href="../JavaDoc/forest/repository/package-summary.html">ForestRepository JavaDoc</a>
+  <div class="belt">
+    <h3><a name="Makefile">Makefile</a></h3>
+  </div>
+  <pre>
+    <code>
+ANT = sh ./PreparePMD.sh ;env LC_ALL=ja_JP.UTF-8 ant
+ARCHIVE = $(shell basename `pwd`)
+LINT_SRC = "./" #PMDでのリントの実行対象。「make lint LINT_SRC=./forest/Example.java」などと指定できるように
+PMD_BIN = "pmd-bin"
+PMD_DIR = "pmd"
+PMD_COMMAND = ./$(PMD_BIN)/bin/run.sh pmd -d $(LINT_SRC) -f textcolor -R ./$(PMD_DIR)/pmd-rules.xml -l java
+PMD_COMMAND_HTML  = ./$(PMD_BIN)/bin/run.sh pmd -d ./ -f html -R ./$(PMD_DIR)/pmd-rules.xml -l java
+PMD_REPORT_HTML = pmd_report.html
+
+all:
+  $(ANT) all
+
+clean:
+  $(ANT) clean
+  @find . -maxdepth 1 -name "$(PMD_REPORT_HTML)" -exec echo rm -f {} ";" -exec rm -f {} ";"
+
+test:
+  $(ANT) test
+
+#JUnitの実行
+unittest:
+  $(ANT) unittest
+
+#PMDを実行
+pmd:all
+  @echo $(PMD_COMMAND)
+  @eval $(PMD_COMMAND) 2&gt; /dev/null
+
+#PMDのHTML出力
+pmd_html:all
+  @echo $(PMD_COMMAND_HTML) '&gt; ./$(PMD_REPORT_HTML)'
+  -@eval $(PMD_COMMAND_HTML) &gt; ./$(PMD_REPORT_HTML) 2&gt; /dev/null
+  open -a 'Safari' ./$(PMD_REPORT_HTML)
+
+tree: clean
+  $(ANT) tree
+
+forest: clean
+  $(ANT) forest
+
+semilattice: clean
+  $(ANT) semilattice
+
+install:
+  $(ANT) install
+
+doc:
+  $(ANT) doc
+
+jconsole:
+  sh ./jconsole.sh ./ forest forest.jar
+
+
+wipe: clean
+  @find . -name ".DS_Store" -exec echo rm -f {} ";" -exec rm -f {} ";"
+  @find . -maxdepth 1 -name "$(PMD_BIN)" -exec echo rm -f {} ";" -exec rm -f {} ";"
+  @find $(PMD_DIR) -maxdepth 1 -type d -name "$(PMD_BIN)-[0-9]*.[0-9]*.[0-9]*" -exec echo rm -rf {} ";" -exec rm -rf {} ";"
+  @find .. -maxdepth 1 -name "$(ARCHIVE).zip" -exec echo rm -f {} ";" -exec rm -f {} ";"
+
+zip:
+  $(ANT) zip
+
+lint: pmd
+  @:
+      </code>
+    </pre>
+    <div class="belt">
+      <h3><a name="Buildxml">build.xml</a></h3>
+    </div>
+    <pre>
+      <code>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;project name="Forest" default="all" basedir="."&gt;
+
+  &lt;property name="package" value="forest" /&gt;
+  &lt;property name="mvc" value="mvc" /&gt;
+  &lt;property name="condition" value="condition" /&gt;
+  &lt;property name="packagenames" value="${package},${mvc},${condition},${package}/*" /&gt;
+  &lt;property name="destdir" value="./Classes" /&gt;
+  &lt;property name="docdir" value="./JavaDoc" /&gt;
+  &lt;property name="instdir" value="./${ant.project.name}.app/Contents/Resources/Java" /&gt;
+  &lt;property name="junitdir" value="./junit" /&gt;
+  &lt;property name="testfile" value="*"/&gt;
+  &lt;property name="doc-title" value="長期課題 樹状整列"/&gt;
+  &lt;property name="copyright" value="Copyright 2021 Project Forest. All Rights Reserved." /&gt;
+  &lt;property name="zipname" value="${ant.project.name}" /&gt;
+  &lt;property name="junitjar" value="${junitdir}/junit-platform-console-standalone-1.7.2.jar" /&gt;
+  &lt;property name="reportdir" value="${junitdir}/test-report" /&gt;
+
+  &lt;fail message="Apache Ant 1.10.4+ is required."&gt;
+    &lt;condition&gt;
+      &lt;not&gt;
+        &lt;antversion atleast="1.10.4"/&gt;
+      &lt;/not&gt;
+    &lt;/condition&gt;
+  &lt;/fail&gt;
+
+  &lt;target name="all" depends="jar" description="build all"&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="prepare" depends="" description="prepare to compile"&gt;
+    &lt;mkdir dir="${destdir}" /&gt;
+    &lt;exec executable="bash" spawn="false"&gt;
+      &lt;arg line="./PreparePMD.sh" /&gt;
+    &lt;/exec&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="compile" depends="prepare" description="compile all sources"&gt;
+    &lt;javac fork="true" srcdir="${basedir}" destdir="${destdir}" includeAntRuntime="true" encoding="UTF-8" deprecation="on" verbose="false"&gt;
+      &lt;compilerarg value="-J-Dfile.encoding=UTF8" /&gt;
+      &lt;compilerarg value="-Xlint:all" /&gt;
+      &lt;classpath&gt;
+        &lt;pathelement location="." /&gt;
+        &lt;pathelement location="${mvc}.jar" /&gt;
+        &lt;pathelement location="${condition}.jar" /&gt;
+        &lt;pathelement location="${junitjar}" /&gt;
+      &lt;/classpath&gt;
+    &lt;/javac&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="jar" depends="compile" description="make jar file"&gt;
+    &lt;jar jarfile="${package}.jar" basedir="${destdir}" manifest="${package}.mf"&gt;
+      &lt;zipfileset src="${mvc}.jar" /&gt;
+      &lt;zipfileset src="${condition}.jar" /&gt;
+      &lt;zipfileset src="${junitjar}" /&gt;
+    &lt;/jar&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="clean" description="cleaning"&gt;
+    &lt;delete dir="${destdir}" /&gt;
+    &lt;delete file="${package}.jar" /&gt;
+    &lt;delete dir="${docdir}" /&gt;
+    &lt;delete dir="${instdir}" /&gt;
+    &lt;delete file="../${zipname}.zip" /&gt;
+    &lt;delete dir="${reportdir}" /&gt;
+    &lt;delete&gt;
+      &lt;fileset dir="${package}" includes="*.class" /&gt;
+    &lt;/delete&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;!-- 単体テスト追加 --&gt;
+  &lt;target name="unittest.junit.launcher" depends="all" description="junit launcher"&gt;
+    &lt;delete dir="${reportdir}" /&gt;
+    &lt;junitlauncher haltOnFailure="true" printSummary="true"&gt;
+      &lt;classpath&gt;
+        &lt;pathelement location="." /&gt;
+        &lt;pathelement location="${junitjar}" /&gt;
+      &lt;/classpath&gt;
+      &lt;testclasses outputdir="${reportdir}"&gt;
+        &lt;fileset dir="${destdir}"&gt;
+          &lt;include name="*.class"/&gt;
+        &lt;/fileset&gt;
+        &lt;listener type="legacy-xml" sendSysOut="true" sendSysErr="true"/&gt;
+        &lt;listener type="legacy-plain" sendSysOut="true" /&gt;
+      &lt;/testclasses&gt;
+    &lt;/junitlauncher&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;!-- 単体テスト追加 --&gt;
+  &lt;target name="unittest.console.launcher" depends="all" description="console launcher"&gt;
+    &lt;java classpath="${package}.jar" classname="org.junit.platform.console.ConsoleLauncher" fork="true" failonerror="false"&gt;
+      &lt;arg value="--scan-class-path=${destdir}" /&gt;
+      &lt;arg line="--reports-dir ${reportdir}" /&gt;
+      &lt;jvmarg value="-Dfile.encoding=UTF-8" /&gt;
+    &lt;/java&gt;
+    &lt;junitreport todir="${reportdir}"&gt;
+      &lt;fileset dir="${reportdir}"&gt;
+        &lt;include name="TEST-*.xml"/&gt;
+      &lt;/fileset&gt;
+      &lt;report format="noframes" todir="${reportdir}/html"/&gt;
+    &lt;/junitreport&gt;
+    &lt;exec executable="open" spawn="true"&gt;
+      &lt;arg line="-a 'Safari' ${reportdir}/html/junit-noframes.html" /&gt;
+    &lt;/exec&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;!-- 単体テスト --&gt;
+  &lt;target name="unittest" depends="unittest.junit.launcher, unittest.console.launcher"&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="test" depends="all,tree" description="test"&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="tree" depends="all" description="tree"&gt;
+    &lt;exec executable="java" spawn="false"&gt;
+      &lt;arg line="-Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar ${package}.jar resource/data/tree.txt" /&gt;
+    &lt;/exec&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="forest" depends="all" description="forest"&gt;
+    &lt;exec executable="java" spawn="false"&gt;
+      &lt;arg line="-Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar ${package}.jar resource/data/forest.txt" /&gt;
+    &lt;/exec&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="semilattice" depends="all" description="semilattice"&gt;
+    &lt;exec executable="java" spawn="false"&gt;
+      &lt;arg line="-Dfile.encoding=UTF-8 -Xmx512m -Xss1024k -jar ${package}.jar resource/data/semilattice.txt" /&gt;
+    &lt;/exec&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="install" depends="all" description="install into application"&gt;
+    &lt;copy file="${package}.jar" todir="${instdir}" /&gt;
+    &lt;copy file="resource/data/forest.txt" todir="${instdir}" /&gt;
+    &lt;exec executable="chmod"&gt;
+      &lt;arg line="755 ${instdir}/../../MacOS/applet" /&gt;
+    &lt;/exec&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="doc" depends="all" description="make document (javadoc)"&gt;
+    &lt;mkdir dir="${docdir}" /&gt;
+    &lt;javadoc locale="ja_JP" sourcepath="${basedir}" destdir="${docdir}" packagenames="${packagenames}" author="true" version="true" charset="UTF-8" encoding="UTF-8" docencoding="UTF-8" linksource="yes" additionalparam="-J-Dfile.encoding=UTF-8" access="private"&gt;
+      &lt;doctitle&gt;${doc-title}&lt;/doctitle&gt;
+      &lt;bottom&gt;${copyright}&lt;/bottom&gt;
+      &lt;classpath&gt;
+        &lt;pathelement location="." /&gt;
+        &lt;pathelement location="${mvc}.jar" /&gt;
+        &lt;pathelement location="${condition}.jar" /&gt;
+        &lt;pathelement location="${junitjar}" /&gt;
+      &lt;/classpath&gt;
+    &lt;/javadoc&gt;
+    &lt;exec executable="open"&gt;
+      &lt;arg line="-a /Applications/Safari.app ${docdir}/index.html" /&gt;
+    &lt;/exec&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+  &lt;target name="zip" depends="clean" description="make zip file"&gt;
+    &lt;delete file="../${zipname}.zip" /&gt;
+    &lt;zip destfile="../${zipname}.zip"&gt;
+      &lt;zipfileset dir="." prefix="${zipname}" /&gt;
+    &lt;/zip&gt;
+    &lt;exec executable="date" spawn="false" /&gt;
+  &lt;/target&gt;
+
+&lt;/project&gt;
+      </code>
+    </pre>
   <hr>
-  <div class="right-small">Copyright 2021 Project Forest, Updated: 2021/05/19 (Created: 2021/05/12)</div>
+  <div class="right-small">Copyright 2021 Project Forest, Updated: 2021/08/07 (Created: 2021/05/12)</div>
 </body>
 
 </html>
