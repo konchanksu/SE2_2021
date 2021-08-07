@@ -37,9 +37,113 @@
   </div>
   <hr>
   <h2>ソフトウェア工学II「樹状整列」テスト結果報告書</h2>
+  <ul>
+    <li><a href="#TantaiTest">単体テスト</a></li>
+    <li><a href="#KetsugouTest">結合テスト</a></li>
+    <li>
+      <a href="#SougouTest">総合テスト</a>
+      <ul>
+        <li><a href="#KinouseiTest">機能性テスト</a></li>
+      </ul>
+    </li>
+  </ul>
   <div class="belt">
-    <h3><a name="KanseiSaseteKudasai">完成させてください</a></h3>
+    <h3><a name="TantaiTest">単体テスト</a></h3>
   </div>
+  <a href="">Unittest JavaDoc</a>
+  <div class="belt">
+    <h3><a name="KetsugouTest">結合テスト</a></h3>
+  </div>
+  <div class="belt">
+    <h3><a name="SougouTest">総合テスト</a></h3>
+  </div>
+  <ul>
+    <li>
+      <h4><a name="KinouseiTest">機能性テスト</a></h4>
+      <table border="1" summary="table">
+        <tr>
+          <th class="left-padding" abbr="1">概要</th>
+          <th class="left-padding" abbr="2">結果</th>
+          <th class="left-padding" abbr="3">テストが正当に行えたか</th>
+        </tr>
+        <tr>
+          <td class="left-padding">表示時間のテスト</td>
+          <td class="left-padding">平均2.23秒であり、3秒以内であることを確認した。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+        <tr>
+          <td class="left-padding">マウスドラッグのテスト</td>
+          <td class="left-padding">アプリケーションがマウスドラッグ可能な画面でマウスドラッグを受け付けることを確認した。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+        <tr>
+          <td class="left-padding">スクロール時の描画のテスト</td>
+          <td class="left-padding">画面をスクロールしたとき、画面表示が正しく綺麗に表示されることを確認した。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+        <tr>
+          <td class="left-padding">クリックのテスト</td>
+          <td class="left-padding">アプリケーション全体を通して、クリック可能な箇所で正常にクリックができることを確認した。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+        <tr>
+          <td class="left-padding">正常なデータの読み込みテスト</td>
+          <td class="left-padding">正常なデータならば3秒以内に読み込まれることを確認した。また、フォーマット違反の取得ができることが単体テストから確認できた。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+        <tr>
+          <td class="left-padding">ウィンドウタイトルのテスト</td>
+          <td class="left-padding">ウィンドウタイトルは入力ファイルの名称になっていることが確認できた。。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+        <tr>
+          <td class="left-padding">異なる拡張子のファイルを開くテスト</td>
+          <td class="left-padding">ファイルの拡張子がtxt以外のファイルは開けるが、樹形図が表示されないことが確認できた。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+        <tr>
+          <td class="left-padding">壊れたファイルを開くテスト</td>
+          <td class="left-padding">テキストファイルの壊し方が不明であったため、検証不可。</td>
+          <td class="left-padding">行えなかった</td>
+        </tr>
+        <tr>
+          <td class="left-padding">ノードの詳細が確認できるかのテスト</td>
+          <td class="left-padding">ノードをクリックした時に、そのノードの詳細のダイアログが表示されることが確認できた。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+        <tr>
+          <td class="left-padding">ノードのダイアログが複数表示されないかのテスト</td>
+          <td class="left-padding">ノードをクリックした時に、すでにダイアログが表示されている場合何も起きないことが確認できた。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+        <tr>
+          <td class="left-padding">ウィンドウの最大化のテスト</td>
+          <td class="left-padding">ウィンドウを最大化しても、表示は崩れなかったことが確認できた。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+        <tr>
+          <td class="left-padding">ウィンドウの最小化のテスト</td>
+          <td class="left-padding">ウィンドウを最小化しても、表示は崩れなかったことが確認できた。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+        <tr>
+          <td class="left-padding">ウィンドウの最小幅が機能しているかのテスト</td>
+          <td class="left-padding">ウィンドウのサイズを小さくする際、縦200×横200が最小値であった。また、これは規定値であり設定された最小幅は機能していることが確認できた。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+        <tr>
+          <td class="left-padding">ウィンドウサイズ変更のテスト</td>
+          <td class="left-padding">ウィンドウのサイズを変更する時、ノードサイズが変更されず見える範囲が変更されることが確確認できた。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+        <tr>
+          <td class="left-padding">日本語対応のテスト</td>
+          <td class="left-padding">UTF-8の文字コードのファイルを正しく読み込めることが確認できた。</td>
+          <td class="left-padding">行えた</td>
+        </tr>
+      </table>
+    </li>
+  </ul>
   <hr>
   <div class="right-small">Copyright 2021 Project Forest, Updated: 2021/05/19 (Created: 2021/05/12)</div>
 </body>
