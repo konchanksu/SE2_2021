@@ -15,6 +15,11 @@
   <style type="text/css">
     <!--
     /*ここに追加のスタイルを記述*/
+
+    /*文字のインデントをずらす*/
+    p {
+      padding-left: 20pt;
+    }
     -->
   </style>
 
@@ -38,11 +43,234 @@
   </div>
   <hr>
   <h2>ソフトウェア工学II「樹状整列」マニュアル</h2>
+
   <div class="belt">
-    <h3><a name="KanseiSaseteKudasai">完成させてください</a></h3>
+    <h3><a name="usrmanual">取扱説明書</a></h3>
   </div>
+
+  <p>　ユーザ、開発者の方共にこのアプリケーションの使用方法は以下のpdfに記載されています。この文書には使い方の他に注意事項等も含まれています。必ずご確認ください。この文書は白黒です。印刷またはダウンロード等の保管をし、アプリケーションを破棄するまで大切に保管してください。開発者の方など、<a href="https://github.com/konchanksu/SE2_2021">GitHubのページ</a>からクローンしてきた場合は、このhtmlファイルと同じディレクトリにある Document 内に以下のファイルが自動的にダウンロードされています。</p>
+  <p>マニュアル ---&gt;　<a href="../Documents/ForestManual_v2.5.pdf">PDF :木構造表示アニメーション「Forest」マニュアルv2.5.pdf</a></p>
+
+  <div class="belt">
+    <h3><a name="metrics">メトリクス</a></h3>
+  </div>
+
+  <p>　メトリクスの結果に基づくこの製品の概要は以下の通りです。このメトリクスは基本メトリクスに沿った項目を採用しています。LOCはあるクラスのソースコードの行数、NOAはあるクラスの属性の数、NCVはあるクラスのクラス実数の数、NIVはあるクラスのインスタンスの数、NOMはあるクラスのメソッドの数、NCMはあるクラスのメソッドの数、NIMあるクラスのインスタンスメソッドの数を表します。</p>
+  <table border="1" summary="table">
+    <tr>
+      <th class="left-padding" abbr="1">Program</th>
+      <th class="left-padding" abbr="2">LOC</th>
+      <th class="left-padding" abbr="3">NOA</th>
+      <th class="left-padding" abbr="4">NCV</th>
+      <th class="left-padding" abbr="5">NIV</th>
+      <th class="left-padding" abbr="6">NOM</th>
+      <th class="left-padding" abbr="7">NCM</th>
+      <th class="left-padding" abbr="8">NIM</th>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.Example</td>
+      <td class="left-padding">101</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">3</td>
+      <td class="left-padding">1</td>
+      <td class="left-padding">2</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.Constant</td>
+      <td class="left-padding">20</td>
+      <td class="left-padding">14</td>
+      <td class="left-padding">14</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.controller.ForestController</td>
+      <td class="left-padding">32</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">5</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">5</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.data.BranchData</td>
+      <td class="left-padding">25</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">4</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">4</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.data.ForestData</td>
+      <td class="left-padding">16</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">3</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">3</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.data.NodeData</td>
+      <td class="left-padding">25</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">4</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">4</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.model.BranchModel</td>
+      <td class="left-padding">47</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">5</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">5</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.model.ForestModel</td>
+      <td class="left-padding">200</td>
+      <td class="left-padding">3</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">3</td>
+      <td class="left-padding">13</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">13</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.model.NodeModel</td>
+      <td class="left-padding">146</td>
+      <td class="left-padding">7</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">7</td>
+      <td class="left-padding">24</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">24</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.repository.ForestRepository</td>
+      <td class="left-padding">142</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">4</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">4</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.repository.IForestRepository</td>
+      <td class="left-padding">8</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">1</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">1</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.tests.BranchDataTest</td>
+      <td class="left-padding">23</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">2</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.tests.CombinationOutsideTest</td>
+      <td class="left-padding">70</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">4</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">4</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.tests.ForestDataRepositoryTest</td>
+      <td class="left-padding">186</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">6</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">6</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.tests.ForestDataTest</td>
+      <td class="left-padding">36</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">2</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.tests.NodeDataTest</td>
+      <td class="left-padding">18</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">2</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.tests.SampleTest</td>
+      <td class="left-padding">9</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">1</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">1</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.view.ForestView</td>
+      <td class="left-padding">72</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">6</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">6</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.view.IForestView</td>
+      <td class="left-padding">13</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">7</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">7</td>
+    </tr>
+    <tr>
+      <td class="left-padding">forest.view.MockForestView</td>
+      <td class="left-padding">33</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">2</td>
+      <td class="left-padding">6</td>
+      <td class="left-padding">0</td>
+      <td class="left-padding">6</td>
+    </tr>
+  </table>
+
   <hr>
-  <div class="right-small">Copyright 2021 Project Forest, Updated: 2021/08/06 (Created: 2021/05/12)</div>
+  <div class="right-small">Copyright 2021 Project Forest, Updated: 2021/08/08 (Created: 2021/05/12)</div>
 </body>
 
 </html>
