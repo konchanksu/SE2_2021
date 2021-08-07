@@ -1,6 +1,6 @@
 package forest.tests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ class SampleTest {
      */
     @Test
     public void testSuccess() {
-        assertEquals(true, true);
+        assertTrue(true);
     }
 
     // @Test
