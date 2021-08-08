@@ -4,6 +4,8 @@
 ## このソースコードとドキュメント群について
 ドキュメントは Forest_Document/index.html を開き、Webページ形式で閲覧できます。
 アプリケーションのソースコードは Forest_Program/forest に存在しています。
+全ての成果物は https://github.com/konchanksu/SE2_2021 に保管されています。
+htmlは https://konchanksu.github.io/SE2_2021/index.html へアクセスすることでも閲覧できます。
 
 ## 計画書について
 本プロジェクトの詳細な計画書は Forest_Document/DevelopmentPlan 内のhtmlドキュメントよりリンクを辿るか、Forest_Document/DevelopmentPlan/Documents 内のTreeAlignmentPlan_v4.3.pdfをご覧ください。
